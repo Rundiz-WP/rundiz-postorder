@@ -1,0 +1,306 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Rundiz PostOrder\n"
+"POT-Creation-Date: 2016-10-19 12:44+0700\n"
+"PO-Revision-Date: 2016-10-19 12:52+0700\n"
+"Last-Translator: Vee W.\n"
+"Language-Team: \n"
+"Language: th_TH\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.10\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;_n_noop;_nx_noop;translate_nooped_plural;"
+"esc_html__;esc_html_e;esc_html_x;esc_attr__;esc_attr_e;esc_attr_x;number_format_i18n;"
+"date_i18n\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../App.php:37
+#, php-format
+msgid "Your WordPress version does not meet the requirement. (%s < %s)."
+msgstr "เวิร์ดเพรสของคุณนั้นรุ่นเก่ากว่าความต้องการ. (%s < %s)."
+
+#: ../App.php:42
+#, php-format
+msgid "Your PHP version does not meet the requirement. (%s < %s)."
+msgstr "รุ่น PHP ของคุณนั้นเก่ากว่าความต้องการ. (%s < %s)."
+
+#: ../Controllers/Admin/PluginMetaAndLinks.php:40
+msgid "Donate"
+msgstr "บริจาค"
+
+#: ../Controllers/Admin/ReOrderPosts.php:23
+msgid "Re-order by dragging"
+msgstr "เรียงลำดับโดยการลาก"
+
+#: ../Controllers/Admin/ReOrderPosts.php:25
+#, php-format
+msgid ""
+"Put your cursor on the row you want to re-order and drag at the up/down icon (%s) to re-order "
+"the post item."
+msgstr "วางเคอร์เซอร์บนบรรทัดที่คุณต้องการในการเปลี่ยนลำดับแล้วลากที่ไอคอนขึ้น/ลง (%s) เพื่อเรียงลำดับโพสต์."
+
+#: ../Controllers/Admin/ReOrderPosts.php:27
+msgid "Once you stop dragging and release the mouse button it will be update automatically."
+msgstr "เมื่อคุณหยุดลากและปล่อยปุ่มเมาส์แล้ว มันจะอัพเดทเองโดยอัตโนมัติ."
+
+#: ../Controllers/Admin/ReOrderPosts.php:29
+msgid ""
+"To cancel re-order while dragging, please press &quot;escape&quot; (Esc) on your keyboard."
+msgstr "การยกเลิกเรียงลำดับในขณะกำลังลาก, โปรดกดคีย์บอร์ดที่ปุ่ม &quot;escape&quot; (Esc)."
+
+#: ../Controllers/Admin/ReOrderPosts.php:33 ../Controllers/Admin/ReOrderPosts.php:46
+#: ../Controllers/Admin/ReOrderPosts.php:61 ../Controllers/Admin/ReOrderPosts.php:74
+msgid ""
+"Please note that sticky post can be re-order here because whenever it is unstick then it can "
+"be displayed in correct order."
+msgstr ""
+"โปรดทราบว่าโพสต์ที่ติดหนึบ (sticky) จะยังสามารถเรียงลำดับได้ที่นี่ เพราะว่าเมื่อใดก็ตามที่มันยกเลิกการติดหนึบ "
+"มันจะได้แสดงผลออกมาถูกต้อง."
+
+#: ../Controllers/Admin/ReOrderPosts.php:38
+msgid "Re-order over next/previous pages"
+msgstr "เรียงลำดับข้ามหน้าก่อน/หน้าถัดไป"
+
+#: ../Controllers/Admin/ReOrderPosts.php:40
+msgid ""
+"To re-order a post over next or previous pages, move your cursor on the row you want to re-"
+"order and click on move up or move down."
+msgstr ""
+"การเรียงลำดับข้ามไปยังหน้าก่อนหรือหน้าถัดไป, ให้ย้ายเคอร์เซอร์ไปบนบรรทัดที่คุณต้องการแล้วคลิกที่ย้ายขึ้นหรือย้ายลง."
+
+#: ../Controllers/Admin/ReOrderPosts.php:42
+msgid ""
+"The post that is on top of the list will be move up to previous page, the post that is on "
+"bottom of the list will be move down to next page."
+msgstr "โพสต์ที่อยู่ด้านบนของรายการจะย้ายขึ้นไปยังหน้าก่อน, โพสต์ที่อยู่ด้านล่างจะย้ายลงไปยังหน้าถัดไป."
+
+#: ../Controllers/Admin/ReOrderPosts.php:51
+msgid "Manually change order number"
+msgstr "เปลี่ยนเลขลำดับด้วยตนเอง"
+
+#: ../Controllers/Admin/ReOrderPosts.php:53
+msgid ""
+"The manually change order number is very useful if you have many posts and you want some "
+"posts from the very bottom of whole list to move to the very top of it."
+msgstr ""
+"การเปลี่ยนเลขลำดับเอาเองจะมีประโยชน์อย่างมากหากคุณมีหลายๆโพสต์และต้องการย้ายบางโพสต์จากลำดับล่างๆของรายการทั้งหมด "
+"ไปยังลำดับบนๆของรายการ."
+
+#: ../Controllers/Admin/ReOrderPosts.php:55
+msgid ""
+"You can just enter the number you want. The lowest number (example: 1) will be display on the "
+"last while the highest number will be display first."
+msgstr "คุณสามารถกรอกตัวเลขที่ต้องการได้เลย. ตัวเลขที่ต่ำสุด (เช่น 1) จะแสดงรั้งท้าย ขณะที่ตัวเลขที่สูงสุดจะแสดงก่อน."
+
+#: ../Controllers/Admin/ReOrderPosts.php:57
+msgid ""
+"Once you okay with that numbers, please select &quot;Save all changes on order numbers&quot; "
+"from bulk actions and click &quot;Apply&quot;."
+msgstr ""
+"เมื่อคุณลงตัวกับตัวเลขต่างๆแล้ว, โปรดเลือก&quot;บันทึกการเปลี่ยนแปลงตัวเลขทั้งหมด&quot; จากตัวเลือกแล้วคลิก &quot;"
+"นำไปใช้&quot;."
+
+#: ../Controllers/Admin/ReOrderPosts.php:66
+msgid "Re-number and reset"
+msgstr "เรียงเลขและล้างค่า"
+
+#: ../Controllers/Admin/ReOrderPosts.php:68
+msgid ""
+"To re-number all the posts in current listing order, please select &quot;Re-number all "
+"posts&quot; from bulk actions and click &quot;Apply&quot;."
+msgstr ""
+"การเรียงเลขใหม่ทั้งหมดจากลำดับการแสดงที่เห็นอยู่ในปัจจุบัน, ให้เลือก &quot;เรียงเลขโพสต์ใหม่ทั้งหมด&quot; "
+"จากตัวเลือกแล้วคลิกที่ปุ่ม &quot;นำไปใช้&quot;."
+
+#: ../Controllers/Admin/ReOrderPosts.php:70
+msgid ""
+"To reset all the posts order by date, please select &quot;Reset all order&quot; from bulk "
+"actions and click &quot;Apply&quot;."
+msgstr ""
+"การล้างค่าใหม่ทั้งหมดโดยเรียงลำดับจากวันที่, ให้เลือก &quot;ล้างค่าใหม่ทั้งหมด&quot; จากตัวเลือกแล้วคลิกที่ปุ่ม &quot;"
+"นำไปใช้&quot;."
+
+#: ../Controllers/Admin/ReOrderPosts.php:86 ../Views/admin/ReOrderPosts/listPostsAction_v.php:2
+msgid "Re-order posts"
+msgstr "จัดเรียงโพสต์"
+
+#: ../Controllers/Admin/ReOrderPosts.php:106 ../Controllers/Admin/ReOrderPosts.php:174
+#: ../Controllers/Admin/ReOrderPosts.php:310 ../Controllers/Admin/ReOrderPosts.php:417
+#: ../Controllers/Admin/ReOrderPosts.php:484 ../Controllers/Admin/ReOrderPosts.php:552
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:113 ../Controllers/Admin/ReOrderPosts.php:181
+#: ../Controllers/Admin/ReOrderPosts.php:317 ../Controllers/Admin/ReOrderPosts.php:424
+#: ../Controllers/Admin/ReOrderPosts.php:491
+#: ../Views/admin/ReOrderPosts/listPostsAction_v.php:18
+msgid "Please reload this page and try again."
+msgstr "กรุณาโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
+
+#: ../Controllers/Admin/ReOrderPosts.php:140 ../Controllers/Admin/ReOrderPosts.php:272
+#: ../Controllers/Admin/ReOrderPosts.php:393 ../Controllers/Admin/ReOrderPosts.php:451
+#: ../Controllers/Admin/ReOrderPosts.php:521
+msgid "Update completed"
+msgstr "อัพเดทเรียบร้อยแล้ว."
+
+#: ../Controllers/Admin/ReOrderPosts.php:194 ../Controllers/Admin/ReOrderPosts.php:332
+msgid ""
+"Error! Unable to re-order the posts due the the currently order number is incorrect. Please "
+"click on &quot;Re-number all posts&quot; button to re-number all the posts."
+msgstr ""
+"ผิดพลาด! ไม่สามารถเรียงลำดับโพสต์ได้เนื่องจากเลขลำดับปัจจุบันไม่ถูกต้อง. โปรดคลิกบนปุ่ม &quot;"
+"เรียงเลขโพสต์ใหม่ทั้งหมด&quot; เพื่อเรียงเลขของโพสต์ทั้งหมดเสียใหม่."
+
+#: ../Controllers/Admin/ReOrderPosts.php:206
+msgid ""
+"Unable to re-order the post. The js form did not send required data to re-order. Please "
+"reload the page and try again."
+msgstr ""
+"ไม่สามารถเรียงลำดับโพสต์. ฟอร์ม javascript ไม่ได้ส่งค่าที่ต้องการมาให้ในการเรียงลำดับ. "
+"โปรดโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
+
+#: ../Controllers/Admin/ReOrderPosts.php:340 ../Controllers/Admin/ReOrderPosts.php:503
+msgid ""
+"Unable to re-order the posts. The js form did not send any data to re-order. Please reload "
+"the page and try again."
+msgstr ""
+"ไม่สามารถเรียงลำดับโพสต์. ฟอร์ม javascript ไม่ได้ส่งค่าใดๆให้ในการเรียงลำดับ. โปรดโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
+
+#: ../Models/PostsListTable.php:33
+msgid "Drag to re-order"
+msgstr "ลากเพื่อเรียงลำดับ"
+
+#: ../Models/PostsListTable.php:50
+msgid "Unpublished"
+msgstr ""
+
+#: ../Models/PostsListTable.php:54
+msgid "Y/m/d g:i:s a"
+msgstr "d/m/Y H:i:s"
+
+#: ../Models/PostsListTable.php:61
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: ../Models/PostsListTable.php:63
+msgid "Y/m/d"
+msgstr "d/m/Y"
+
+#: ../Models/PostsListTable.php:70
+msgid "Published"
+msgstr ""
+
+#: ../Models/PostsListTable.php:73
+msgid "Missed schedule"
+msgstr ""
+
+#: ../Models/PostsListTable.php:75 ../Models/PostsListTable.php:183
+msgid "Scheduled"
+msgstr ""
+
+#: ../Models/PostsListTable.php:78
+msgid "Last Modified"
+msgstr ""
+
+#: ../Models/PostsListTable.php:132
+msgid "Edit"
+msgstr ""
+
+#: ../Models/PostsListTable.php:133
+msgid "Move up"
+msgstr "ย้ายขึ้น"
+
+#: ../Models/PostsListTable.php:134
+msgid "Move down"
+msgstr "ย้ายลง"
+
+#: ../Models/PostsListTable.php:160 ../Models/PostsListTable.php:210
+msgid ", "
+msgstr ""
+
+#: ../Models/PostsListTable.php:179
+msgid "Password protected"
+msgstr ""
+
+#: ../Models/PostsListTable.php:186
+msgid "Draft"
+msgstr ""
+
+#: ../Models/PostsListTable.php:189
+msgid "Pending"
+msgstr ""
+
+#: ../Models/PostsListTable.php:192
+msgid "Private"
+msgstr ""
+
+#: ../Models/PostsListTable.php:195
+msgid "Trash"
+msgstr ""
+
+#: ../Models/PostsListTable.php:198
+msgid "Sticky"
+msgstr ""
+
+#: ../Models/PostsListTable.php:239
+msgid "Re-number all posts"
+msgstr "เรียงเลขโพสต์ใหม่ทั้งหมด"
+
+#: ../Models/PostsListTable.php:240
+msgid "Reset all order"
+msgstr "ล้างค่าลำดับทั้งหมด"
+
+#: ../Models/PostsListTable.php:241
+msgid "Save all changes on order numbers"
+msgstr "บันทึกการเปลี่ยนแปลงตัวเลขทั้งหมด"
+
+#: ../Models/PostsListTable.php:255
+msgid "Title"
+msgstr ""
+
+#: ../Models/PostsListTable.php:256
+msgid "Author"
+msgstr ""
+
+#: ../Models/PostsListTable.php:257
+msgid "Categories"
+msgstr ""
+
+#: ../Models/PostsListTable.php:258
+msgid "Tags"
+msgstr ""
+
+#: ../Models/PostsListTable.php:259
+msgid "Order"
+msgstr "ลำดับ"
+
+#: ../Models/PostsListTable.php:260
+msgid "Date"
+msgstr ""
+
+#: ../Views/admin/ReOrderPosts/listPostsAction_v.php:19
+msgid "Are you sure?"
+msgstr "คุณแน่ใจหรือไม่?"
+
+#: ../Views/admin/ReOrderPosts/listPostsAction_v.php:20
+msgid "Are you sure to doing this? (This may slow down your server if you have too many posts.)"
+msgstr "คุณแน่ใจหรือไม่ที่จะทำสิ่งนี้? (นี่อาจทำให้เซิร์ฟเวอร์ของคุณทำงานช้าลงถ้าคุณมีโพสต์จำนวนมาก.)"
+
+#: ../Views/admin/ReOrderPosts/listPostsAction_v.php:21
+msgid "Dismiss this notice."
+msgstr ""
+
+#~ msgid "Click on this button to re-number all the posts in current listing order."
+#~ msgstr "คลิกที่ปุ่มนี้เพื่อเรียงเลขของโพสต์ทั้งหมดเสียใหม่โดยยังคงลำดับการแสดงผลเดิม."
+
+#~ msgid "Click on this button to reset all the posts order by date."
+#~ msgstr "คลิกที่ปุ่มนี้เพื่อล้างค่าการเรียงลำดับโพสต์ใหม่ทั้งหมดให้เป็นไปตามวันที่."
+
+#~ msgid "Once you stop sorting it will be update automatically."
+#~ msgstr "เมื่อคุณหยุดเรียงแล้วมันจะอัพเดทให้เองโดยอัตโนมัติ."

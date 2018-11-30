@@ -1,0 +1,300 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Rundiz PostOrder\n"
+"POT-Creation-Date: 2016-10-19 12:44+0700\n"
+"PO-Revision-Date: 2016-10-19 12:44+0700\n"
+"Last-Translator: Vee W.\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.10\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;_n_noop;_nx_noop;"
+"translate_nooped_plural;esc_html__;esc_html_e;esc_html_x;esc_attr__;"
+"esc_attr_e;esc_attr_x;number_format_i18n;date_i18n\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../App.php:37
+#, php-format
+msgid "Your WordPress version does not meet the requirement. (%s < %s)."
+msgstr ""
+
+#: ../App.php:42
+#, php-format
+msgid "Your PHP version does not meet the requirement. (%s < %s)."
+msgstr ""
+
+#: ../Controllers/Admin/PluginMetaAndLinks.php:40
+msgid "Donate"
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:23
+msgid "Re-order by dragging"
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:25
+#, php-format
+msgid ""
+"Put your cursor on the row you want to re-order and drag at the up/down icon "
+"(%s) to re-order the post item."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:27
+msgid ""
+"Once you stop dragging and release the mouse button it will be update "
+"automatically."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:29
+msgid ""
+"To cancel re-order while dragging, please press &quot;escape&quot; (Esc) on "
+"your keyboard."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:33
+#: ../Controllers/Admin/ReOrderPosts.php:46
+#: ../Controllers/Admin/ReOrderPosts.php:61
+#: ../Controllers/Admin/ReOrderPosts.php:74
+msgid ""
+"Please note that sticky post can be re-order here because whenever it is "
+"unstick then it can be displayed in correct order."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:38
+msgid "Re-order over next/previous pages"
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:40
+msgid ""
+"To re-order a post over next or previous pages, move your cursor on the row "
+"you want to re-order and click on move up or move down."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:42
+msgid ""
+"The post that is on top of the list will be move up to previous page, the "
+"post that is on bottom of the list will be move down to next page."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:51
+msgid "Manually change order number"
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:53
+msgid ""
+"The manually change order number is very useful if you have many posts and "
+"you want some posts from the very bottom of whole list to move to the very "
+"top of it."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:55
+msgid ""
+"You can just enter the number you want. The lowest number (example: 1) will "
+"be display on the last while the highest number will be display first."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:57
+msgid ""
+"Once you okay with that numbers, please select &quot;Save all changes on "
+"order numbers&quot; from bulk actions and click &quot;Apply&quot;."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:66
+msgid "Re-number and reset"
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:68
+msgid ""
+"To re-number all the posts in current listing order, please select &quot;Re-"
+"number all posts&quot; from bulk actions and click &quot;Apply&quot;."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:70
+msgid ""
+"To reset all the posts order by date, please select &quot;Reset all "
+"order&quot; from bulk actions and click &quot;Apply&quot;."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:86
+#: ../Views/admin/ReOrderPosts/listPostsAction_v.php:2
+msgid "Re-order posts"
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:106
+#: ../Controllers/Admin/ReOrderPosts.php:174
+#: ../Controllers/Admin/ReOrderPosts.php:310
+#: ../Controllers/Admin/ReOrderPosts.php:417
+#: ../Controllers/Admin/ReOrderPosts.php:484
+#: ../Controllers/Admin/ReOrderPosts.php:552
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:113
+#: ../Controllers/Admin/ReOrderPosts.php:181
+#: ../Controllers/Admin/ReOrderPosts.php:317
+#: ../Controllers/Admin/ReOrderPosts.php:424
+#: ../Controllers/Admin/ReOrderPosts.php:491
+#: ../Views/admin/ReOrderPosts/listPostsAction_v.php:18
+msgid "Please reload this page and try again."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:140
+#: ../Controllers/Admin/ReOrderPosts.php:272
+#: ../Controllers/Admin/ReOrderPosts.php:393
+#: ../Controllers/Admin/ReOrderPosts.php:451
+#: ../Controllers/Admin/ReOrderPosts.php:521
+msgid "Update completed"
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:194
+#: ../Controllers/Admin/ReOrderPosts.php:332
+msgid ""
+"Error! Unable to re-order the posts due the the currently order number is "
+"incorrect. Please click on &quot;Re-number all posts&quot; button to re-"
+"number all the posts."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:206
+msgid ""
+"Unable to re-order the post. The js form did not send required data to re-"
+"order. Please reload the page and try again."
+msgstr ""
+
+#: ../Controllers/Admin/ReOrderPosts.php:340
+#: ../Controllers/Admin/ReOrderPosts.php:503
+msgid ""
+"Unable to re-order the posts. The js form did not send any data to re-order. "
+"Please reload the page and try again."
+msgstr ""
+
+#: ../Models/PostsListTable.php:33
+msgid "Drag to re-order"
+msgstr ""
+
+#: ../Models/PostsListTable.php:50
+msgid "Unpublished"
+msgstr ""
+
+#: ../Models/PostsListTable.php:54
+msgid "Y/m/d g:i:s a"
+msgstr ""
+
+#: ../Models/PostsListTable.php:61
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: ../Models/PostsListTable.php:63
+msgid "Y/m/d"
+msgstr ""
+
+#: ../Models/PostsListTable.php:70
+msgid "Published"
+msgstr ""
+
+#: ../Models/PostsListTable.php:73
+msgid "Missed schedule"
+msgstr ""
+
+#: ../Models/PostsListTable.php:75 ../Models/PostsListTable.php:183
+msgid "Scheduled"
+msgstr ""
+
+#: ../Models/PostsListTable.php:78
+msgid "Last Modified"
+msgstr ""
+
+#: ../Models/PostsListTable.php:132
+msgid "Edit"
+msgstr ""
+
+#: ../Models/PostsListTable.php:133
+msgid "Move up"
+msgstr ""
+
+#: ../Models/PostsListTable.php:134
+msgid "Move down"
+msgstr ""
+
+#: ../Models/PostsListTable.php:160 ../Models/PostsListTable.php:210
+msgid ", "
+msgstr ""
+
+#: ../Models/PostsListTable.php:179
+msgid "Password protected"
+msgstr ""
+
+#: ../Models/PostsListTable.php:186
+msgid "Draft"
+msgstr ""
+
+#: ../Models/PostsListTable.php:189
+msgid "Pending"
+msgstr ""
+
+#: ../Models/PostsListTable.php:192
+msgid "Private"
+msgstr ""
+
+#: ../Models/PostsListTable.php:195
+msgid "Trash"
+msgstr ""
+
+#: ../Models/PostsListTable.php:198
+msgid "Sticky"
+msgstr ""
+
+#: ../Models/PostsListTable.php:239
+msgid "Re-number all posts"
+msgstr ""
+
+#: ../Models/PostsListTable.php:240
+msgid "Reset all order"
+msgstr ""
+
+#: ../Models/PostsListTable.php:241
+msgid "Save all changes on order numbers"
+msgstr ""
+
+#: ../Models/PostsListTable.php:255
+msgid "Title"
+msgstr ""
+
+#: ../Models/PostsListTable.php:256
+msgid "Author"
+msgstr ""
+
+#: ../Models/PostsListTable.php:257
+msgid "Categories"
+msgstr ""
+
+#: ../Models/PostsListTable.php:258
+msgid "Tags"
+msgstr ""
+
+#: ../Models/PostsListTable.php:259
+msgid "Order"
+msgstr ""
+
+#: ../Models/PostsListTable.php:260
+msgid "Date"
+msgstr ""
+
+#: ../Views/admin/ReOrderPosts/listPostsAction_v.php:19
+msgid "Are you sure?"
+msgstr ""
+
+#: ../Views/admin/ReOrderPosts/listPostsAction_v.php:20
+msgid ""
+"Are you sure to doing this? (This may slow down your server if you have too "
+"many posts.)"
+msgstr ""
+
+#: ../Views/admin/ReOrderPosts/listPostsAction_v.php:21
+msgid "Dismiss this notice."
+msgstr ""

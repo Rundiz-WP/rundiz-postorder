@@ -2,8 +2,9 @@
 Contributors: okvee
 Tags: posts, order, sort, re-arrange, re arrange, rearrange, re_arrange, sortable, sort posts, order posts
 Requires at least: 4.0
-Tested up to: 4.9.2
+Tested up to: 4.9.8
 Stable tag: 0.9
+Requires PHP: 5.5
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9HQE4GVV4KTZE
 License: MIT
 License URI: http://opensource.org/licenses/MIT

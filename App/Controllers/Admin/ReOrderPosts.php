@@ -618,7 +618,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
          */
         public function registerScripts()
         {
-            wp_enqueue_style('rd-postorder-font-awesome-css', plugin_dir_url(RDPOSTORDER_FILE) . 'assets/css/font-awesome.min.css', [], '4.6.3');
+            // to name font awesome handle as `plugin-name-prefix-font-awesome4` is to prevent conflict with other plugins that maybe use older version but same handle that cause some newer icons in this plugin disappears.
+            wp_enqueue_style('rd-postorder-font-awesome4', plugin_dir_url(RDPOSTORDER_FILE) . 'assets/css/font-awesome.min.css', [], '4.7.0');
             wp_enqueue_style('rd-postorder-ReOrderPosts-css', plugin_dir_url(RDPOSTORDER_FILE) . 'assets/css/ReOrderPosts.css');
 
             wp_enqueue_script('rd-postorder-ReOrderPosts-js', plugin_dir_url(RDPOSTORDER_FILE) . 'assets/js/ReOrderPosts.js', ['jquery', 'jquery-ui-core', 'jquery-ui-sortable', 'jquery-touch-punch', 'jquery-query'], false, true);

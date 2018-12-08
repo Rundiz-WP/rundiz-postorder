@@ -34,12 +34,14 @@ if (!class_exists('\\RdPostOrder\\App\\App')) {
             $php_version = (defined('PHP_VERSION') ? PHP_VERSION : (function_exists('phpversion') ? phpversion() : '4'));
 
             if (version_compare(get_bloginfo('version'), $wordpress_required_version, '<')) {
-                $error_message = sprintf(__('Your WordPress version does not meet the requirement. (%s < %s).', 'rd-postorder'), get_bloginfo('version'), $wordpress_required_version);
+                /* translators: %1$s: Current WordPress version, %2$s: Required WordPress version. */
+                $error_message = sprintf(__('Your WordPress version does not meet the requirement. (%1$s < %2$s).', 'rd-postorder'), get_bloginfo('version'), $wordpress_required_version);
                 throw new \Exception($error_message);
             }
 
             if (version_compare($php_version, $php_required_version, '<')) {
-                $error_message = sprintf(__('Your PHP version does not meet the requirement. (%s < %s).', 'rd-postorder'), $php_version, $php_required_version);
+                /* translators: %1$s: Current PHP version, %2$s: Required PHP version. */
+                $error_message = sprintf(__('Your PHP version does not meet the requirement. (%1$s < %2$s).', 'rd-postorder'), $php_version, $php_required_version);
                 throw new \Exception($error_message);
             }
 

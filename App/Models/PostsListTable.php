@@ -15,7 +15,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
      * @link http://www.sitepoint.com/using-wp_list_table-to-create-wordpress-admin-tables/ another tutorial
      * @link https://codex.wordpress.org/Class_Reference/WP_List_Table wordpress list table class source.
      */
-    class PostsListTable extends \WP_List_Table
+    class PostsListTable extends WPListTable
     {
 
 

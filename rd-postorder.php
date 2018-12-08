@@ -1,15 +1,15 @@
 <?php
 /**
  * Plugin Name: Rundiz PostOrder
- * Plugin URI: http://rundiz.com
+ * Plugin URI: https://rundiz.com/?p=319
  * Description: Re-order posts to what you want.
- * Version: 0.9
+ * Version: 0.9.1
  * Author: Vee Winch
  * Author URI: http://rundiz.com
  * License: MIT
  * License URI: http://opensource.org/licenses/MIT
  * Text Domain: rd-postorder
- * Domain Path: /languages/
+ * Domain Path: /App/languages/
  * 
  * @package rundiz-postorder
  */

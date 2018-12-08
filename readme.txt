@@ -2,8 +2,8 @@
 Contributors: okvee
 Tags: posts, order, sort, re-arrange, re arrange, rearrange, re_arrange, sortable, sort posts, order posts
 Requires at least: 4.0
-Tested up to: 4.9.8
-Stable tag: 0.9
+Tested up to: 5.0
+Stable tag: 0.9.1
 Requires PHP: 5.5
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9HQE4GVV4KTZE
 License: MIT
@@ -64,6 +64,16 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+
+= 0.9.1 =
+2018-12-08
+
+* Update Font Awesome to 4.7.0.
+* Add requires PHP version.
+* Add translation template file (.POT).
+* Add translators help message.
+* Fix bug disable order is not working on category page.
+
 = 0.9 =
 2018-01-04
 

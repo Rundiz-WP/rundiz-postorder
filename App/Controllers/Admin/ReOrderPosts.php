@@ -22,6 +22,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
                 'id' => 'rd-postorder_reorder-posts-helptab1',
                 'title' => __('Re-order by dragging', 'rd-postorder'),
                 'content' => '<p>'
+                    /* translators: %s: The re-order icon. */
                     . sprintf(__('Put your cursor on the row you want to re-order and drag at the up/down icon (%s) to re-order the post item.', 'rd-postorder'), '<i class="fa fa-sort fa-fw"></i>')
                     . '<br>'."\n"
                     . __('Once you stop dragging and release the mouse button it will be update automatically.', 'rd-postorder')

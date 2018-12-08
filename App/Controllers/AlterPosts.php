@@ -183,6 +183,16 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\AlterPosts')) {
                     $this_category_id = (isset($this_category->term_id) ? $this_category->term_id : 0);
                     unset($this_category);
 
+                    if ($this_category_id === 0) {
+                        // if found no category.
+                        // @link https://wordpress.stackexchange.com/questions/59476/get-current-category-id-php In case that website post don't select any category then this is the last chance.
+                        $this_category = get_queried_object();
+                        if (isset($this_category->term_id)) {
+                            $this_category_id = $this_category->term_id;
+                        }
+                    }
+                    unset($this_category);
+
                     if (
                         array_key_exists('disable_customorder_categories', $plugin_options) && 
                         is_array($plugin_options['disable_customorder_categories']) &&

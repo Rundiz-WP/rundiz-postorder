@@ -30,7 +30,7 @@ if (!class_exists('\\RdPostOrder\\App\\App')) {
         private function checkRequirement()
         {
             $wordpress_required_version = '4.0';
-            $php_required_version = '5.4';
+            $php_required_version = '5.5';
             $php_version = (defined('PHP_VERSION') ? PHP_VERSION : (function_exists('phpversion') ? phpversion() : '4'));
 
             if (version_compare(get_bloginfo('version'), $wordpress_required_version, '<')) {

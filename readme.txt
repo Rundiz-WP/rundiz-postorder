@@ -30,7 +30,7 @@ It's completely free!<br>
 It's not the "pay for premium feature" or freemium. It's free and no ADs. However, if you like it please donate to help me buy some food.
 
 = System requirement =
-PHP 5.4 or higher<br>
+PHP 5.5 or higher<br>
 WordPress 4.0 or higher
 
 == Installation ==

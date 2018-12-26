@@ -7,7 +7,7 @@ Stable tag: 0.9.1
 Requires PHP: 5.5
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9HQE4GVV4KTZE
 License: MIT
-License URI: http://opensource.org/licenses/MIT
+License URI: https://opensource.org/licenses/MIT
 
 Re-order posts to what you want.
 

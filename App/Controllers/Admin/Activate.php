@@ -23,7 +23,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Activate')) {
         {
             global $wpdb;
 
-            \RdPostOrder\App\Libraries\Debug::writeLog('RundizPostOrder activateAction() method was called.');
+            \RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder activateAction() method was called.');
 
             // start by add order number into tables while activate the plugin.
             // newest post order is the latest number, oldest post order is always at 1st. 
@@ -148,7 +148,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Activate')) {
                     unset($key, $plugin, $this_plugin);
 
                     if (isset($this_plugin_updated) && $this_plugin_updated === true) {
-                        \RdPostOrder\App\Libraries\Debug::writeLog('RundizPostOrder updatePlugin() method was called.');
+                        \RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder updatePlugin() method was called.');
 
                         global $wpdb;
                         // do the update plugin task.

@@ -3,8 +3,8 @@ Contributors: okvee
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9HQE4GVV4KTZE
 Tags: posts, order, sort, re-arrange, re arrange, rearrange, re_arrange, sortable, sort posts, order posts
 Requires at least: 4.6.0
-Tested up to: 5.0.3
-Stable tag: 1.0
+Tested up to: 5.1
+Stable tag: 1.0.1
 Requires PHP: 5.5
 License: MIT
 License URI: https://opensource.org/licenses/MIT
@@ -64,6 +64,10 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.0.1 =
+2019-03-07
+
+* Update WPListTable class to work with WP 5.1+.
 
 = 1.0 =
 2019-01-23

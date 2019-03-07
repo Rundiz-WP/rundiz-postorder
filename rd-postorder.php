@@ -3,7 +3,7 @@
  * Plugin Name: Rundiz PostOrder
  * Plugin URI: https://rundiz.com/?p=319
  * Description: Re-order posts to what you want.
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Vee Winch
  * Author URI: http://rundiz.com
  * License: MIT

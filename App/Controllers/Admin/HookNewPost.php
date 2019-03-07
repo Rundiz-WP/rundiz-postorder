@@ -47,7 +47,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controlers\\Admin\\HookNewPost')) {
 
                 $wpdb->update($wpdb->posts, ['menu_order' => $menu_order], ['ID' => $post_id], ['%d'], ['%d']);
 
-                \RdPostOrder\App\Libraries\Debug::writeLog('RundizPostOrder hookInsertPostAction() method was called. Admin is saving new post. The new `menu_order` value is ' . $menu_order . ' and the post `ID` is ' . $post_id . '.');
+                \RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder hookInsertPostAction() method was called. Admin is saving new post. The new `menu_order` value is ' . $menu_order . ' and the post `ID` is ' . $post_id . '.');
             }
         }// hookInsertPostAction
 

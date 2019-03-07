@@ -110,7 +110,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Uninstall')) {
             global $wpdb;
             $ThisClass = new self;
 
-            \RdPostOrder\App\Libraries\Debug::writeLog('RundizPostOrder uninstallAction() method was called.');
+            \RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder uninstallAction() method was called.');
 
             if (is_multisite()) {
                 $blog_ids = $wpdb->get_col('SELECT blog_id FROM '.$wpdb->blogs);

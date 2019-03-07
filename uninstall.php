@@ -13,7 +13,7 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 // write the log for easy debug.
-\RdPostOrder\App\Libraries\Debug::writeLog('RundizPostOrder uninstall.php file was called.');
+\RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder uninstall.php file was called.');
 
 // require main plugin file to use its autoload.
 require 'rd-postorder.php';

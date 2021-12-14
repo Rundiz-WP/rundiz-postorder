@@ -2,7 +2,7 @@
 Contributors: okvee
 Tags: posts, order, sort, re-arrange, re arrange, rearrange, re_arrange, sortable, sort posts, order posts
 Tested up to: 5.8.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 Requires at least: 4.6.0
@@ -63,6 +63,11 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.0.2 =
+2021-12-14
+
+* Update WPListTable class based on WordPress 5.8.2.
+
 = 1.0.1 =
 2019-03-07
 

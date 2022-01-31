@@ -29,43 +29,16 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Uninstall')) {
          * 
          * - Reset all values to its default.<br>
          * - Remove option related to this plugin.
-         * 
-         * @global \wpdb $wpdb WordPress DB class.
          */
         private function doUninstallAction()
         {
-            global $wpdb;
-
             // reset data in the table matched as in activate process.
             // see App\Controllers\Admin\Activate.php `activateAction()` method.
 
             // reset order number in `posts` table.
-            $results = $wpdb->get_results(
-                'SELECT ' . 
-                    '`ID`, ' . 
-                    '`post_date`, ' . 
-                    '`post_name`, ' . 
-                    '`post_status`, ' . 
-                    '`post_type`' . 
-                    ' FROM `' . $wpdb->posts . '`' . 
-                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'post\'' . 
-                    ' AND `' . $wpdb->posts . '`.`post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')' . 
-                    ' ORDER BY `' . $wpdb->posts . '`.`post_date` ASC',
-                OBJECT
-            );
-            if (is_array($results)) {
-                foreach ($results as $row) {
-                    $wpdb->update(
-                        $wpdb->posts,
-                        ['menu_order' => 0],
-                        ['ID' => $row->ID],
-                        ['%d'],
-                        ['%d']
-                    );
-                }// endforeach;
-                unset($row);
-            }
-            unset($results);
+            $PostOrder = new \RdPostOrder\App\Models\PostOrder();
+            $PostOrder->resetPosts();
+            unset($PostOrder);
 
             // remove option related to this plugin.
             delete_option($this->main_option_name);

@@ -34,6 +34,9 @@ if (!class_exists('\\RdPostOrder\\App\\Libraries\\Loader')) {
                     $testController = new \ReflectionClass($this_file_classname);
                     if (!$testController->isAbstract()) {
                         $ControllerClass = new $this_file_classname();
+                        if (property_exists($ControllerClass, 'Loader')) {
+                            $ControllerClass->Loader = $this;
+                        }
                         if (method_exists($ControllerClass, 'registerHooks')) {
                             $ControllerClass->registerHooks();
                         }
@@ -79,6 +82,26 @@ if (!class_exists('\\RdPostOrder\\App\\Libraries\\Loader')) {
             unset($view_dir);
             return false;
         }// loadView
+
+
+        /**
+         * Get load view contents by return, not display it.
+         * 
+         * @since 1.0.3
+         * @see `loadView()` method for more details.
+         * @param string $view_name
+         * @param array $data
+         * @param string $require_once
+         * @return string
+         */
+        public function getLoadView($view_name, array $data = [], $require_once = false)
+        {
+            ob_start();
+            $this->loadView($view_name, $data, $require_once);
+            $output = ob_get_contents();
+            ob_end_clean();
+            return $output;
+        }// getLoadView
 
 
     }

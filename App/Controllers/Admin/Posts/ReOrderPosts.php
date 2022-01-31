@@ -29,47 +29,26 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
             $screen->add_help_tab([
                 'id' => 'rd-postorder_reorder-posts-helptab1',
                 'title' => __('Re-order by dragging', 'rd-postorder'),
-                'content' => '<p>'
-                    /* translators: %s: The re-order icon. */
-                    . sprintf(__('Put your cursor on the row you want to re-order and drag at the up/down icon (%s) to re-order the post item.', 'rd-postorder'), '<i class="fa fa-sort fa-fw"></i>')
-                    . '<br>'."\n"
-                    . __('Once you stop dragging and release the mouse button it will be update automatically.', 'rd-postorder')
-                    . '<br>'."\n"
-                    . __('To cancel re-order while dragging, please press &quot;escape&quot; (Esc) on your keyboard.', 'rd-postorder')
-                    . '</p>'."\n",
+                'content' => $this->Loader->getLoadView('admin/Posts/ReOrderPosts/adminHelpTab_01'),
             ]);
             $screen->add_help_tab([
                 'id' => 'rd-postorder_reorder-posts-helptab2',
                 'title' => __('Re-order over next/previous pages', 'rd-postorder'),
-                'content' => '<p>'
-                    . __('To re-order a post over next or previous pages, move your cursor on the row you want to re-order and click on move up or move down.', 'rd-postorder')
-                    . '<br>'."\n"
-                    . __('The post that is on top of the list will be move up to previous page, the post that is on bottom of the list will be move down to next page.', 'rd-postorder')
-                    . '</p>'."\n",
+                'content' => $this->Loader->getLoadView('admin/Posts/ReOrderPosts/adminHelpTab_02'),
             ]);
             $screen->add_help_tab([
                 'id' => 'rd-postorder_reorder-posts-helptab3',
                 'title' => __('Manually change order number', 'rd-postorder'),
-                'content' => '<p>'
-                    . __('The manually change order number is very useful if you have many posts and you want some posts from the very bottom of whole list to move to the very top of it.', 'rd-postorder')
-                    . '<br>'."\n"
-                    . __('You can just enter the number you want. The lowest number (example: 1) will be display on the last while the highest number will be display first.', 'rd-postorder')
-                    . '<br>'."\n"
-                    . __('Once you okay with that numbers, please select &quot;Save all changes on order numbers&quot; from bulk actions and click &quot;Apply&quot;.', 'rd-postorder')
-                    . '</p>'."\n",
+                'content' => $this->Loader->getLoadView('admin/Posts/ReOrderPosts/adminHelpTab_03'),
             ]);
             $screen->add_help_tab([
                 'id' => 'rd-postorder_reorder-posts-helptab4',
                 'title' => __('Re-number and reset', 'rd-postorder'),
-                'content' => '<p>'
-                    . __('To re-number all the posts in current listing order, please select &quot;Re-number all posts&quot; from bulk actions and click &quot;Apply&quot;.', 'rd-postorder')
-                    . '<br>'."\n"
-                    . __('To reset all the posts order by date, please select &quot;Reset all order&quot; from bulk actions and click &quot;Apply&quot;.', 'rd-postorder')
-                    . '</p>'."\n",
+                'content' => $this->Loader->getLoadView('admin/Posts/ReOrderPosts/adminHelpTab_04'),
             ]);
 
             $sidebar_html = $screen->get_help_sidebar();
-            $sidebar_content = '<i class="fa fa-info-circle fa-fw"></i> ' . __('Please note that sticky post can be re-order here because whenever it is unstick then it can be displayed in correct order.', 'rd-postorder');
+            $sidebar_content = '<i class="fa fa-info-circle fa-fw"></i> ' . __('Please note that sticky post can be re-order here but the results will remain on top on the front untill it is unstick.', 'rd-postorder');
             $screen->set_help_sidebar($sidebar_html . $sidebar_content);
             unset($sidebar_content, $sidebar_html);
         }// adminHelpTab

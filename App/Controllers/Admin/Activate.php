@@ -30,7 +30,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Activate')) {
                 $original_blog_id = get_current_blog_id();
 
                 if (is_array($blog_ids)) {
-                    // loop thru each sites to do uninstall action (reset data to its default value).
+                    // loop thru each sites to do activate action.
                     foreach ($blog_ids as $blog_id) {
                         switch_to_blog($blog_id);
                         $this->doActivateAction();

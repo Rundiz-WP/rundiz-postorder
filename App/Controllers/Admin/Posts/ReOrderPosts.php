@@ -19,8 +19,6 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
 
         /**
          * Admin help tab.
-         * 
-         * @todo make it more understandable.
          */
         public function adminHelpTab()
         {

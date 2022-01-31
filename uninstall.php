@@ -22,4 +22,4 @@ require 'rd-postorder.php';
 // (some time is working and some time is not working. I don't know why.) 
 // wordpress did not call to registered uninstall hook. 
 // we have to directly call it here.
-\RdPostOrder\App\Controllers\Admin\Uninstall::uninstallAction();
+\RdPostOrder\App\Controllers\Admin\Plugin\Uninstall::uninstallAction();

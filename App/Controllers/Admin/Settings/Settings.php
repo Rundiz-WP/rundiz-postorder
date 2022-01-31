@@ -1,9 +1,9 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers\Admin;
+namespace RdPostOrder\App\Controllers\Admin\Settings;
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Settings')) {
+if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\Settings')) {
     /**
      * This controller will be working as settings for rundiz postorder.
      */
@@ -80,6 +80,13 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Settings')) {
                 $data = [];
                 $data['disable_customorder_frontpage'] = (isset($_POST['disable_customorder_frontpage']) && $_POST['disable_customorder_frontpage'] == '1' ? '1' : null);
                 $data['disable_customorder_categories'] = (isset($_POST['disable_customorder_categories']) && is_array($_POST['disable_customorder_categories']) ? $_POST['disable_customorder_categories'] : []);
+                // validate selected categories.
+                foreach ($data['disable_customorder_categories'] as $index => $eachCategory) {
+                    if (!is_numeric($eachCategory)) {
+                        unset($data['disable_customorder_categories'][$index]);
+                    }
+                }// endforeach;
+                unset($eachCategory, $index);
 
                 update_option($this->main_option_name, $data);
 
@@ -91,7 +98,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Settings')) {
             $output['options'] = get_option($this->main_option_name);
 
             $Loader = new \RdPostOrder\App\Libraries\Loader();
-            $Loader->loadView('admin/Settings/settingsPageAction_v', $output);
+            $Loader->loadView('admin/Settings/settings_v', $output);
             unset($Loader, $output);
         }// settingsPageAction
 

@@ -1,9 +1,9 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers\Admin;
+namespace RdPostOrder\App\Controllers\Admin\Posts;
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
+if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')) {
     /**
      * This controller will be working as re-order the posts page.
      */
@@ -12,6 +12,18 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
 
 
         use \RdPostOrder\App\AppTrait;
+
+
+        /**
+         * @var string Admin menu slug.
+         */
+        const MENU_SLUG = 'rd-postorder_reorder-posts';
+
+
+        /**
+         * @var string The hook name (also known as the hook suffix) used to determine the screen.
+         */
+        protected $hookName;
 
 
         public function adminHelpTab()
@@ -73,7 +85,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
          */
         public function adminMenuAction()
         {
-            $hook = add_posts_page(__('Re-order posts', 'rd-postorder'), __('Re-order posts', 'rd-postorder'), 'edit_others_posts', 'rd-postorder_reorder-posts', [$this, 'listPostsAction']);
+            $hook = add_posts_page(__('Re-order posts', 'rd-postorder'), __('Re-order posts', 'rd-postorder'), 'edit_others_posts', static::MENU_SLUG, [$this, 'listPostsAction']);
+            $this->hookName = $hook;
             // redirect to nice URL if there are un-necessary query string in it.
             add_action('load-' . $hook, [$this, 'redirectNiceUrl']);
             // register css & js
@@ -108,6 +121,9 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
                 }
 
                 $paged = (isset($_POST['paged']) ? intval($_POST['paged']) : null);
+                if (!is_numeric($paged)) {
+                    $paged = null;
+                }
                 global $wpdb;
 
                 // get all posts order by current menu_order (even it contain wrong order number but keep most of current order).
@@ -136,7 +152,9 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
                 $_GET['paged'] = $paged;
                 unset($paged);
                 ob_start();
-                $PostsListTable = new \RdPostOrder\App\Models\PostsListTable();
+                $PostsListTable = new \RdPostOrder\App\Models\PostsListTable([
+                    'screen' => sanitize_text_field($this->getHookName()),
+                ]);
                 $PostsListTable->prepare_items();
                 $PostsListTable->display();
                 $output['list_table_updated'] = ob_get_contents();
@@ -191,6 +209,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
                 if (
                     ($move_to == null || ($move_to != 'up' && $move_to != 'down')) ||
                     ($postID == null) ||
+                    ($menu_order == null) ||
                     ($paged == null)
                 ) {
                     status_header(400);
@@ -271,7 +290,9 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
                 $_GET['paged'] = $paged;
                 unset($paged);
                 ob_start();
-                $PostsListTable = new \RdPostOrder\App\Models\PostsListTable();
+                $PostsListTable = new \RdPostOrder\App\Models\PostsListTable([
+                    'screen' => sanitize_text_field($this->getHookName()),
+                ]);
                 $PostsListTable->prepare_items();
                 $PostsListTable->display();
                 $output['list_table_updated'] = ob_get_contents();
@@ -419,6 +440,9 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
                 }
 
                 $paged = (isset($_POST['paged']) ? intval($_POST['paged']) : null);
+                if (!is_numeric($paged)) {
+                    $paged = null;
+                }
                 global $wpdb;
 
                 // get all posts order by current menu_order (even it contain wrong order number but keep most of current order).
@@ -447,7 +471,9 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
                 $_GET['paged'] = $paged;
                 unset($paged);
                 ob_start();
-                $PostsListTable = new \RdPostOrder\App\Models\PostsListTable();
+                $PostsListTable = new \RdPostOrder\App\Models\PostsListTable([
+                    'screen' => sanitize_text_field($this->getHookName()),
+                ]);
                 $PostsListTable->prepare_items();
                 $PostsListTable->display();
                 $output['list_table_updated'] = ob_get_contents();
@@ -517,7 +543,9 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
                 $_GET['paged'] = $paged;
                 unset($paged);
                 ob_start();
-                $PostsListTable = new \RdPostOrder\App\Models\PostsListTable();
+                $PostsListTable = new \RdPostOrder\App\Models\PostsListTable([
+                    'screen' => sanitize_text_field($this->getHookName()),
+                ]);
                 $PostsListTable->prepare_items();
                 $PostsListTable->display();
                 $output['list_table_updated'] = ob_get_contents();
@@ -532,6 +560,27 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
 
             wp_die();// required
         }// ajaxSaveAllNumbersChanged
+
+
+        /**
+         * Get hook name.
+         * 
+         * @return string
+         */
+        protected function getHookName()
+        {
+            if (isset($_REQUEST['hookName'])) {
+                $hookName = trim($_REQUEST['hookName']);
+            } else {
+                $hookName = '';
+            }
+
+            if (empty($hookName)) {
+                $hookName = 'posts_page_' . static::MENU_SLUG;
+            }
+
+            return $hookName;
+        }// getHookName
 
 
         /**
@@ -554,7 +603,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
 
             // load views for displaying
             $Loader = new \RdPostOrder\App\Libraries\Loader();
-            $Loader->loadView('admin/ReOrderPosts/listPostsAction_v', $output);
+            $Loader->loadView('admin/Posts/reOrderPosts_listPostsAction_v', $output);
             unset($Loader, $output);
         }// listPostsAction
 
@@ -565,7 +614,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
          */
         public function redirectNiceUrl()
         {
-            if (isset($_GET['page']) && $_GET['page'] == 'rd-postorder_reorder-posts') {
+            if (isset($_GET['page']) && $_GET['page'] == static::MENU_SLUG) {
                 // redirect to show nice URL
                 $not_showing_queries = ['_wpnonce', '_wp_http_referer', 'menu_order'];
                 if (is_array($_REQUEST)) {
@@ -624,6 +673,20 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\ReOrderPosts')) {
             wp_enqueue_style('rd-postorder-ReOrderPosts-css', plugin_dir_url(RDPOSTORDER_FILE) . 'assets/css/ReOrderPosts.css');
 
             wp_enqueue_script('rd-postorder-ReOrderPosts-js', plugin_dir_url(RDPOSTORDER_FILE) . 'assets/js/ReOrderPosts.js', ['jquery', 'jquery-ui-core', 'jquery-ui-sortable', 'jquery-touch-punch', 'jquery-query'], false, true);
+            wp_localize_script(
+                'rd-postorder-ReOrderPosts-js',
+                'RdPostOrderObj',
+                [
+                    'ajaxnonce' => wp_create_nonce('rdPostOrderReOrderPostsAjaxNonce'),
+                    'ajaxnonce_error_message' => __('Please reload this page and try again.', 'rd-postorder'),
+                    'debug' => (defined('WP_DEBUG') && WP_DEBUG === true ? 'true' : 'false'),
+                    'hookName' => $this->hookName,
+                    'txtConfirm' => __('Are you sure?', 'rd-postorder'),
+                    'txtConfirmReorderAll' => __('Are you sure to doing this? (This may slow down your server if you have too many posts.)', 'rd-postorder'),
+                    'txtDismissNotice' => __('Dismiss this notice.'),
+                    'txtPreviousXhrWorking' => __('The previous XHR is currently working, please wait few seconds and try again.', 'rd-postorder'),
+                ]
+            );
         }// registerScripts
 
 

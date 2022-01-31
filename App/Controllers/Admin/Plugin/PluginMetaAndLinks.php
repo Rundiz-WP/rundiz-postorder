@@ -1,9 +1,9 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers\Admin;
+namespace RdPostOrder\App\Controllers\Admin\Plugin;
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\PluginMetaAndLinks')) {
+if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMetaAndLinks')) {
     class PluginMetaAndLinks implements \RdPostOrder\App\Controllers\ControllerInterface
     {
 

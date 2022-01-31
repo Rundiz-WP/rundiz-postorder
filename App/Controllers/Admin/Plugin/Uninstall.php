@@ -1,9 +1,9 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers\Admin;
+namespace RdPostOrder\App\Controllers\Admin\Plugin;
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Uninstall')) {
+if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Uninstall')) {
     /**
      * The controller that will be working on uninstall (delete) the plugin.
      */
@@ -20,7 +20,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Uninstall')) {
         public function registerHooks()
         {
             // register uninstall hook
-            register_uninstall_hook(RDPOSTORDER_FILE, ['\\RdPostOrder\\App\\Controllers\\Admin\\Uninstall', 'uninstallAction']);
+            register_uninstall_hook(RDPOSTORDER_FILE, ['\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Uninstall', 'uninstallAction']);
         }// registerHooks
 
 

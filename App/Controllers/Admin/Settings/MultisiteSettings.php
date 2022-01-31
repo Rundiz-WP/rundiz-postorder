@@ -4,10 +4,10 @@
  */
 
 
-namespace RdPostOrder\App\Controllers\Admin;
+namespace RdPostOrder\App\Controllers\Admin\Settings;
 
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\MultisiteSettings')) {
+if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\MultisiteSettings')) {
     class MultisiteSettings implements \RdPostOrder\App\Controllers\ControllerInterface
     {
 
@@ -81,7 +81,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\MultisiteSettings')) 
             $output['options'] = get_option($this->main_option_name);
 
             $Loader = new \RdPostOrder\App\Libraries\Loader();
-            $Loader->loadView('admin/MultisiteSettings/networkSettingsPageAction_v', $output);
+            $Loader->loadView('admin/Settings/multisiteSettings_v', $output);
             unset($Loader, $output);
         }// networkSettingsPageAction
 

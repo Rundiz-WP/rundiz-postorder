@@ -40,3 +40,15 @@
     background-color: rgba(255,255,255,0.7);
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
+
+
+.rd-postorder-notice-popup.is-dismissible,
+.wp-core-ui .rd-postorder-notice-popup.is-dismissible {
+    bottom: 20px;
+    left: 20px;
+    margin-bottom: 0;
+    margin-left: 0;
+    min-width: 200px;
+    position: fixed;
+    z-index: 1;
+}

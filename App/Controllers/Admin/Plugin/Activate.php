@@ -1,9 +1,9 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers\Admin;
+namespace RdPostOrder\App\Controllers\Admin\Plugin;
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Activate')) {
+if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate')) {
     /**
      * The controller that will be working on activate the plugin.
      */

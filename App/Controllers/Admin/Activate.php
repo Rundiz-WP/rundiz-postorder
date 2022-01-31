@@ -17,7 +17,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Activate')) {
         /**
          * Activate the plugin.
          * 
-         * @global \wpdb $wpdb WordPress db class.
+         * @global \wpdb $wpdb WordPress DB class.
          */
         public function activateAction()
         {
@@ -25,11 +25,42 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Activate')) {
 
             \RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder activateAction() method was called.');
 
-            // start by add order number into tables while activate the plugin.
-            // newest post order is the latest number, oldest post order is always at 1st. 
-            // this is the best for server performance (referrer: https://wordpress.org/support/topic/new-post-order-new-number-order-to-fix-slowly-add-new-post/ )
+            if (is_multisite()) {
+                $blog_ids = $wpdb->get_col('SELECT blog_id FROM '.$wpdb->blogs);
+                $original_blog_id = get_current_blog_id();
 
-            // add order number in `table_relationships` table.
+                if (is_array($blog_ids)) {
+                    // loop thru each sites to do uninstall action (reset data to its default value).
+                    foreach ($blog_ids as $blog_id) {
+                        switch_to_blog($blog_id);
+                        $this->doActivateAction();
+                    }
+                }
+
+                // switch back to current site.
+                switch_to_blog($original_blog_id);
+                unset($blog_id, $blog_ids, $original_blog_id);
+            } else {
+                $this->doActivateAction();
+            }
+        }// activateAction
+
+
+        /**
+         * Do the activate plugin action. 
+         * 
+         * - Add order number into `posts` table.<br>
+         * - Add option related to this plugin (if not exists).
+         * 
+         * @global \wpdb $wpdb WordPress DB class.
+         */
+        protected function doActivateAction()
+        {
+            global $wpdb;
+
+            // it is not supported manual order per category.
+            // if doing that, the single post will still load previous & next post from home posts listing.
+            // example code to add order number in `table_relationships` table.
             /*$results = $wpdb->get_results(
                 'SELECT ' . 
                     '`' . $wpdb->term_relationships . '`.`object_id`, ' . 
@@ -67,11 +98,10 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Activate')) {
                 }// endforeach;
                 unset($i_count, $row);
             }
-            unset($results);*/ // this is not working on single post page due to it cannot find the referred category page. So, I cannot know what is that single post come from (from category or from home).
-            // in the single post page there will be next/previous post and those posts must be related on where it come from which is required from a category page but there is no category referred.
-            // so, i cannot working on this re-order posts in each category.
+            unset($results);*/
+            // the example code above will not be use as explained.
 
-            // next is add order number into `posts` table ---for display in home page--- (changed, to be ALL page).
+            // add order number into `posts` table.
             $results = $wpdb->get_results(
                 'SELECT ' . 
                     '`ID`, ' . 
@@ -84,6 +114,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Activate')) {
                     ' WHERE `' . $wpdb->posts . '`.`post_type` = \'post\'' . 
                     ' AND `' . $wpdb->posts . '`.`post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')' . 
                     ' ORDER BY `' . $wpdb->posts . '`.`post_date` ASC',// get the oldest for number 1st to display at last page.
+                    // the scheduled for future post has the `post_date` as scheduled date.
                 OBJECT
             );
             if (is_array($results)) {
@@ -104,7 +135,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Activate')) {
             }
             unset($results);
 
-            // check that there is an option from this plugin added, if not then add new.
+            // add option related to this plugin (if not exists).
             $plugin_option = get_option($this->main_option_name);
             if ($plugin_option === false) {
                 // not exists, add new.
@@ -112,7 +143,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Activate')) {
             }
             unset($plugin_option);
             // finished activate the plugin.
-        }// activateAction
+        }// doActivateAction
 
 
         /**
@@ -121,7 +152,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Activate')) {
         public function registerHooks()
         {
             // register activate hook
-            register_activation_hook(RDPOSTORDER_FILE, [&$this, 'activateAction']);
+            register_activation_hook(RDPOSTORDER_FILE, [$this, 'activateAction']);
             // on update/upgrade plugin
             add_action('upgrader_process_complete', [$this, 'updatePlugin'], 10, 2);
         }// registerHooks

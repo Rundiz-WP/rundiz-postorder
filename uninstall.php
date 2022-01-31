@@ -12,11 +12,11 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
     die;
 }
 
-// write the log for easy debug.
-\RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder uninstall.php file was called.');
-
 // require main plugin file to use its autoload.
 require 'rd-postorder.php';
+
+// write the log for easy debug.
+\RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder uninstall.php file was called.');
 
 // due to it is not working to uninstall (delete) the plugin via multisite enabled. 
 // (some time is working and some time is not working. I don't know why.) 

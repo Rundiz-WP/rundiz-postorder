@@ -25,47 +25,19 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Uninstall')) {
 
 
         /**
-         * Do the uninstallation action (reset all values to its default).
+         * Do the uninstallation action
          * 
-         * @global \wpdb $wpdb
+         * - Reset all values to its default.<br>
+         * - Remove option related to this plugin.
+         * 
+         * @global \wpdb $wpdb WordPress DB class.
          */
         private function doUninstallAction()
         {
             global $wpdb;
 
-            // reset order number in `term_relationships` table.
-            /*$results = $wpdb->get_results(
-                'SELECT ' . 
-                    '`' . $wpdb->term_relationships . '`.`object_id`, ' . 
-                    '`' . $wpdb->term_relationships . '`.`term_taxonomy_id`, ' . 
-                    '`' . $wpdb->term_taxonomy . '`.`term_taxonomy_id`, ' . 
-                    '`' . $wpdb->term_taxonomy . '`.`term_id`, ' . 
-                    '`' . $wpdb->term_taxonomy . '`.`taxonomy`, ' . 
-                    '`' . $wpdb->posts . '`.`ID`, ' . 
-                    '`' . $wpdb->posts . '`.`post_date`, ' . 
-                    '`' . $wpdb->posts . '`.`post_name`, ' . 
-                    '`' . $wpdb->posts . '`.`post_status`' . 
-                    ' FROM `' . $wpdb->term_relationships . '`' . 
-                    ' LEFT JOIN `' . $wpdb->term_taxonomy . '` ON `' . $wpdb->term_relationships . '`.`term_taxonomy_id` = `' . $wpdb->term_taxonomy . '`.`term_taxonomy_id`' . 
-                    ' LEFT JOIN `' . $wpdb->posts . '` ON `' . $wpdb->term_relationships . '`.`object_id` = `' . $wpdb->posts . '`.`ID`' . 
-                    ' WHERE `' . $wpdb->term_taxonomy . '`.`taxonomy` = \'category\'' . 
-                    ' AND `' . $wpdb->posts . '`.`post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')' . 
-                    ' ORDER BY `' . $wpdb->posts . '`.`post_date` ASC',
-                OBJECT
-            );
-            if (is_array($results)) {
-                foreach ($results as $row) {
-                    $wpdb->update(
-                        $wpdb->term_relationships, 
-                        ['term_order' => 0], 
-                        ['object_id' => $row->object_id, 'term_taxonomy_id' => $row->term_taxonomy_id],
-                        ['%d'],
-                        ['%d', '%d']
-                    );
-                }// endforeach;
-                unset($row);
-            }
-            unset($results);*/ // please read the comment in /Activate controller, it's the same reason.
+            // reset data in the table matched as in activate process.
+            // see App\Controllers\Admin\Activate.php `activateAction()` method.
 
             // reset order number in `posts` table.
             $results = $wpdb->get_results(
@@ -95,6 +67,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Uninstall')) {
             }
             unset($results);
 
+            // remove option related to this plugin.
             delete_option($this->main_option_name);
         }// doUninstallAction
 

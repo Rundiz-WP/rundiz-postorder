@@ -31,11 +31,15 @@ if (!class_exists('\\RdPostOrder\\App\\Libraries\\Loader')) {
             foreach ($it as $file) {
                 $this_file_classname = '\\RdPostOrder' . str_replace([$this_plugin_dir, '.php', '/'], ['', '', '\\'], $file);
                 if (class_exists($this_file_classname)) {
-                    $ControllerClass = new $this_file_classname();
-                    if (method_exists($ControllerClass, 'registerHooks')) {
-                        $ControllerClass->registerHooks();
+                    $testController = new \ReflectionClass($this_file_classname);
+                    if (!$testController->isAbstract()) {
+                        $ControllerClass = new $this_file_classname();
+                        if (method_exists($ControllerClass, 'registerHooks')) {
+                            $ControllerClass->registerHooks();
+                        }
+                        unset($ControllerClass);
                     }
-                    unset($ControllerClass);
+                    unset($testController);
                 }
                 unset($this_file_classname);
             }// endforeach;

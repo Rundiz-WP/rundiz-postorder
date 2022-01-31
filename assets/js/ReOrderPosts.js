@@ -497,7 +497,7 @@ class RdPostOrderReOrder {
 
         if ($('.post-reorder-table tbody').hasClass('ui-sortable')) {
             if (RdPostOrderObj.debug === 'true') {
-                console.log('The list table sortable is already activate.');
+                console.log('The list table sortable is already activate. exit function.');
             }
             return true;
         }

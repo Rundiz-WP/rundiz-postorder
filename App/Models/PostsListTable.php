@@ -129,9 +129,11 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
                     . $this->columnTitleDisplayPostStatus($item)
                     . '</strong>';
             $output .= '<div class="row-actions">'
-                    . '<a href="' . admin_url('post.php?post=' . $item->ID . '&amp;action=edit') . '">' . __('Edit') . '</a>'
-                    . ' | <a href="#move-up,' . $item->ID . '" onclick="return RdPostOrderReOrder.ajaxReOrder(\'up\', \'' . $item->ID . '\');"><i class="fa fa-sort-asc fa-fw"></i> ' . __('Move up', 'rd-postorder') . '</a>'
-                    . ' | <a href="#move-down,' . $item->ID . '" onclick="return RdPostOrderReOrder.ajaxReOrder(\'down\', \'' . $item->ID . '\');"><i class="fa fa-sort-desc fa-fw"></i> ' . __('Move down', 'rd-postorder') . '</a>';
+                    . '<a href="#move-up,' . $item->ID . '" onclick="return RdPostOrderReOrder.ajaxReOrder(\'up\', \'' . $item->ID . '\');"><i class="fa fa-sort-asc fa-fw"></i> ' . __('Move up', 'rd-postorder') . '</a>'
+                    . ' | <a href="#move-down,' . $item->ID . '" onclick="return RdPostOrderReOrder.ajaxReOrder(\'down\', \'' . $item->ID . '\');"><i class="fa fa-sort-desc fa-fw"></i> ' . __('Move down', 'rd-postorder') . '</a>'
+                    . ' | <a href="' . admin_url('post.php?post=' . $item->ID . '&amp;action=edit') . '">' . __('Edit') . '</a>'
+                    . ' | <a href="' . home_url('?p=' . $item->ID) . '">' . __('View') . '</a>'
+                    ;
             $output .= '</div>';
             return $output;
         }// column_title

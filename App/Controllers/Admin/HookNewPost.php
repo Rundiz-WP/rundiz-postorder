@@ -14,38 +14,28 @@ if (!class_exists('\\RdPostOrder\\App\\Controlers\\Admin\\HookNewPost')) {
         /**
          * Admin users saving the post.
          * 
-         * @link https://codex.wordpress.org/Plugin_API/Action_Reference/wp_insert_post Referrer.
-         * @global \wpdb $wpdb
-         * @param integer $post_id
+         * @link https://codex.wordpress.org/Plugin_API/Action_Reference/wp_insert_post Reference.
+         * @param int $post_id
          * @param object $post
-         * @param boolean $update
+         * @param bool $update
          */
         public function hookInsertPostAction($post_id, $post, $update)
         {
             if (
-                is_object($post) 
+                is_numeric($post_id)
+                && is_object($post) 
                 && isset($post->post_status) && in_array($post->post_status, $this->allowed_order_post_status) 
                 && isset($post->menu_order) && $post->menu_order == '0' 
                 && isset($post->post_type) && $post->post_type == 'post' 
             ) {
                 // if this save is first time, whatever it status is.
-                global $wpdb;
+                $PostOrder = new \RdPostOrder\App\Models\PostOrder();
+                $result = $PostOrder->setNewPostOrderNumber($post_id);
+                unset($PostOrder);
 
-                // get new menu_order number (new post is latest menu_order+1).
-                $sql = 'SELECT `post_status`, `menu_order`, `post_type` FROM `' . $wpdb->posts . '`'
-                    . ' WHERE `post_type` = \'post\''
-                    . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
-                    . ' ORDER BY `menu_order` DESC';
-                $LastPost = $wpdb->get_row($sql);
-                unset($sql);
-                if (is_object($LastPost) && isset($LastPost->menu_order)) {
-                    $menu_order = bcadd($LastPost->menu_order, 1);
-                } else {
-                    $menu_order = 1;
+                if (is_array($result)) {
+                    $menu_order = $result['menu_order'];
                 }
-                unset($LastPost);
-
-                $wpdb->update($wpdb->posts, ['menu_order' => $menu_order], ['ID' => $post_id], ['%d'], ['%d']);
 
                 \RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder hookInsertPostAction() method was called. Admin is saving new post. The new `menu_order` value is ' . $menu_order . ' and the post `ID` is ' . $post_id . '.');
             }
@@ -57,9 +47,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controlers\\Admin\\HookNewPost')) {
          */
         public function registerHooks()
         {
-            if (is_admin()) {
-                add_action('wp_insert_post', [$this, 'hookInsertPostAction'], 10, 3);
-            }
+            add_action('wp_insert_post', [$this, 'hookInsertPostAction'], 10, 3);
         }// registerHooks
 
 

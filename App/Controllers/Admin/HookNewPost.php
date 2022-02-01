@@ -35,9 +35,17 @@ if (!class_exists('\\RdPostOrder\\App\\Controlers\\Admin\\HookNewPost')) {
 
                 if (is_array($result)) {
                     $menu_order = $result['menu_order'];
+                    $updated = $result['updated'];
+                    $updatedScheduled = $result['updatedScheduled'];
                 }
+                unset($result);
 
-                \RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder hookInsertPostAction() method was called. Admin is saving new post. The new `menu_order` value is ' . $menu_order . ' and the post `ID` is ' . $post_id . '.');
+                \RdPostOrder\App\Libraries\Debug::writeLog(
+                    'Debug: RundizPostOrder hookInsertPostAction() method was called. Admin is saving new post. The new `menu_order` value is ' . $menu_order . 
+                        ' and the post `ID` is ' . $post_id . '.' .
+                        ' updated: ' . var_export($updated, true) . '; updated scheduled posts: ' . var_export($updatedScheduled, true) . '.'
+                );
+                unset($menu_order, $updated, $updatedScheduled);
             }
         }// hookInsertPostAction
 

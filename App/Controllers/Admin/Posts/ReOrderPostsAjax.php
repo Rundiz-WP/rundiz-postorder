@@ -36,10 +36,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                     wp_die();
                 }
 
-                $paged = (isset($_POST['paged']) ? intval($_POST['paged']) : null);
-                if (!is_numeric($paged)) {
-                    $paged = null;
-                }
+                \RdPostOrder\App\Libraries\Input::static_setPaged();
                 global $wpdb;
 
                 // get all posts order by current menu_order (even it contain wrong order number but keep most of current order).
@@ -65,8 +62,6 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                 $output['save_result'] = true;
 
                 // get list table for re-render and client side.
-                $_GET['paged'] = $paged;
-                unset($paged);
                 ob_start();
                 $PostsListTable = new \RdPostOrder\App\Models\PostsListTable([
                     'screen' => sanitize_text_field($this->getHookName()),
@@ -109,10 +104,12 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                     wp_die();
                 }
 
+                \RdPostOrder\App\Libraries\Input::static_setPaged();
+
                 $move_to = (isset($_POST['move_to']) ? $_POST['move_to'] : null);
                 $postID = (isset($_POST['postID']) ? intval($_POST['postID']) : null);
                 $menu_order = (isset($_POST['menu_order']) ? intval($_POST['menu_order']) : null);
-                $paged = (isset($_POST['paged']) ? intval($_POST['paged']) : null);
+                $paged = $_GET['paged'];
 
                 if ($menu_order <= 0) {
                     $output['form_result_class'] = 'notice-error';
@@ -132,6 +129,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                     wp_send_json($output, 400);
                     wp_die();
                 }
+                unset($paged);
 
                 // sort and save process -------------------------------------------------------
                 global $wpdb;
@@ -206,8 +204,6 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                 // end update to db. ----------------------------
 
                 // get list table for re-render and client side.
-                $_GET['paged'] = $paged;
-                unset($paged);
                 ob_start();
                 $PostsListTable = new \RdPostOrder\App\Models\PostsListTable([
                     'screen' => sanitize_text_field($this->getHookName()),
@@ -356,10 +352,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                     wp_die();
                 }
 
-                $paged = (isset($_POST['paged']) ? intval($_POST['paged']) : null);
-                if (!is_numeric($paged)) {
-                    $paged = null;
-                }
+                \RdPostOrder\App\Libraries\Input::static_setPaged();
                 global $wpdb;
 
                 // get all posts order by current menu_order (even it contain wrong order number but keep most of current order).
@@ -385,8 +378,6 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                 $output['save_result'] = true;
 
                 // get list table for re-render and client side.
-                $_GET['paged'] = $paged;
-                unset($paged);
                 ob_start();
                 $PostsListTable = new \RdPostOrder\App\Models\PostsListTable([
                     'screen' => sanitize_text_field($this->getHookName()),
@@ -428,8 +419,9 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                     wp_die();
                 }
 
+                \RdPostOrder\App\Libraries\Input::static_setPaged();
+
                 $menu_orders = (isset($_POST['menu_order']) ? $_POST['menu_order'] : []);
-                $paged = (isset($_POST['paged']) ? intval($_POST['paged']) : null);
                 global $wpdb;
 
                 if (!is_array($menu_orders) || empty($menu_orders)) {
@@ -456,8 +448,6 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                 $output['save_result'] = true;
 
                 // get list table for re-render and client side.
-                $_GET['paged'] = $paged;
-                unset($paged);
                 ob_start();
                 $PostsListTable = new \RdPostOrder\App\Models\PostsListTable([
                     'screen' => sanitize_text_field($this->getHookName()),

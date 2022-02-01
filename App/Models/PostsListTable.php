@@ -23,6 +23,19 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
 
 
         /**
+         * Class constructor.
+         * 
+         * @param array $args
+         */
+        public function __construct($args = [])
+        {
+            parent::__construct($args);
+
+            $this->screen->post_type = 'post';
+        }// __construct
+
+
+        /**
          * Column checkbox.
          * 
          * @param object $item
@@ -280,6 +293,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
          * prepare data and items
          * 
          * @global \wpdb $wpdb
+         * @global \WP_Query $wp_query
          * @param integer $user_id
          */
         public function prepare_items()
@@ -289,11 +303,29 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
             $hidden = [];
             $this->_column_headers = [$columns, $hidden];
 
-            global $wpdb;
+            global $wpdb, $wp_query;
             $wpdb->show_errors();
 
-            $per_page = 20;
-            $current_page = $this->get_pagenum();
+            wp_edit_posts_query([
+                'post_type' => $this->screen->post_type,
+                'orderby' => 'menu_order',
+                'order' => 'DESC',
+                'show_sticky' => '',
+            ]);
+
+            $post_type = $this->screen->post_type;
+            $per_page = $this->get_items_per_page('edit_' . $post_type . '_per_page');
+            $per_page = apply_filters('edit_posts_per_page', $per_page, $post_type);
+
+            $total_items = $wp_query->found_posts;
+            if (isset($wp_query->posts) && is_array($wp_query->posts)) {
+                $results = $wp_query->posts;
+            } else {
+                $results = [];
+            }
+
+            // list posts for previous version.
+            /*$current_page = $this->get_pagenum();
 
             // connect db and list data.
             // get *total* items
@@ -311,7 +343,8 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
             $sql .= ' ORDER BY `menu_order` DESC';
             $sql .= ' LIMIT ' . (($current_page - 1) * $per_page) . ', ' . $per_page;
             $results = $wpdb->get_results($sql, OBJECT_K);
-            unset($sql);
+            unset($sql);*/
+            // end list posts for previous version.
 
             // create pagination
             $this->set_pagination_args([

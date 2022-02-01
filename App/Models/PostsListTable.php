@@ -110,7 +110,10 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
         {
             switch ($column_name) {
                 case 'author':
-                    return '<a href="' . admin_url('user-edit.php?user_id=' . $item->post_author) . '">' . $item->display_name . '</a>';
+                    $user = get_userdata($item->post_author);
+                    $displayName = (isset($user->display_name) ? $user->display_name : $item->post_author);
+                    unset($user);
+                    return '<a href="' . admin_url('user-edit.php?user_id=' . $item->post_author) . '">' . $displayName . '</a>';
                 case 'categories':
                     $taxonomy = 'category';
                     return $this->columnTaxonomyLink($taxonomy, $item);

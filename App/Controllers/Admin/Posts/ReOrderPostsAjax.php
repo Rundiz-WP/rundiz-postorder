@@ -30,11 +30,10 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
 
             if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
-                    status_header(403);
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Please reload this page and try again.', 'rd-postorder');
-                    echo wp_json_encode($output);
-                    exit;
+                    wp_send_json($output, 403);
+                    wp_die();
                 }
 
                 $paged = (isset($_POST['paged']) ? intval($_POST['paged']) : null);
@@ -80,7 +79,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
 
                 if (isset($output)) {
                     // response
-                    echo wp_json_encode($output);
+                    nocache_headers();
+                    wp_send_json($output);
                 }
             }
 
@@ -103,11 +103,10 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
 
             if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
-                    status_header(403);
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Please reload this page and try again.', 'rd-postorder');
-                    echo wp_json_encode($output);
-                    exit;
+                    wp_send_json($output, 403);
+                    wp_die();
                 }
 
                 $move_to = (isset($_POST['move_to']) ? $_POST['move_to'] : null);
@@ -116,11 +115,10 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                 $paged = (isset($_POST['paged']) ? intval($_POST['paged']) : null);
 
                 if ($menu_order <= 0) {
-                    status_header(500);
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Error! Unable to re-order the posts due the the currently order number is incorrect. Please click on &quot;Re-number all posts&quot; button to re-number all the posts.', 'rd-postorder');
-                    echo wp_json_encode($output);
-                    exit;
+                    wp_send_json($output, 500);
+                    wp_die();
                 }
 
                 if (
@@ -129,11 +127,10 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                     empty($menu_order) ||
                     empty($paged)
                 ) {
-                    status_header(400);
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Unable to re-order the post. The js form did not send required data to re-order. Please reload the page and try again.', 'rd-postorder');
-                    echo wp_json_encode($output);
-                    exit;
+                    wp_send_json($output, 400);
+                    wp_die();
                 }
 
                 // sort and save process -------------------------------------------------------
@@ -223,7 +220,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
 
                 if (isset($output)) {
                     // response
-                    echo wp_json_encode($output);
+                    nocache_headers();
+                    wp_send_json($output);
                 }
                 // end sort and save process --------------------------------------------------
             }
@@ -247,11 +245,10 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
 
             if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
-                    status_header(403);
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Please reload this page and try again.', 'rd-postorder');
-                    echo wp_json_encode($output);
-                    exit;
+                    wp_send_json($output, 403);
+                    wp_die();
                 }
 
                 $postIDs = (isset($_POST['postID']) ? $_POST['postID'] : []);
@@ -262,19 +259,17 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                     // max menu_order is 0 or lower. 
                     // this maybe because admin delete some middle items (not first and last) and it is not re-arrange the order numbers until it gets 0 or minus (not sure but i think it is impossible).
                     // show error to prevent the unwanted result and let the admin/author reset number of all posts order instead.
-                    status_header(500);
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Error! Unable to re-order the posts due the the currently order number is incorrect. Please click on &quot;Re-number all posts&quot; button to re-number all the posts.', 'rd-postorder');
-                    echo wp_json_encode($output);
-                    exit;
+                    wp_send_json($output, 500);
+                    wp_die();
                 }
 
                 if ((!is_array($postIDs) || empty($postIDs)) || (!is_array($menu_orders) || empty($menu_orders))) {
-                    status_header(400);
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Unable to re-order the posts. The js form did not send any data to re-order. Please reload the page and try again.', 'rd-postorder');
-                    echo wp_json_encode($output);
-                    exit;
+                    wp_send_json($output, 400);
+                    wp_die();
                 }
 
                 // sort and save process -------------------------------------------------------
@@ -331,7 +326,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                 unset($data);
 
                 // response
-                echo wp_json_encode($output);
+                nocache_headers();
+                wp_send_json($output);
                 // end sort and save process --------------------------------------------------
             }
 
@@ -354,11 +350,10 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
 
             if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
-                    status_header(403);
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Please reload this page and try again.', 'rd-postorder');
-                    echo wp_json_encode($output);
-                    exit;
+                    wp_send_json($output, 403);
+                    wp_die();
                 }
 
                 $paged = (isset($_POST['paged']) ? intval($_POST['paged']) : null);
@@ -404,7 +399,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
 
                 if (isset($output)) {
                     // response
-                    echo wp_json_encode($output);
+                    nocache_headers();
+                    wp_send_json($output);
                 }
             }
 
@@ -426,11 +422,10 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
 
             if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
-                    status_header(403);
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Please reload this page and try again.', 'rd-postorder');
-                    echo wp_json_encode($output);
-                    exit;
+                    wp_send_json($output, 403);
+                    wp_die();
                 }
 
                 $menu_orders = (isset($_POST['menu_order']) ? $_POST['menu_order'] : []);
@@ -438,11 +433,10 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                 global $wpdb;
 
                 if (!is_array($menu_orders) || empty($menu_orders)) {
-                    status_header(400);
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Unable to re-order the posts. The js form did not send any data to re-order. Please reload the page and try again.', 'rd-postorder');
-                    echo wp_json_encode($output);
-                    exit;
+                    wp_send_json($output, 400);
+                    wp_die();
                 }
 
                 foreach ($menu_orders as $a_post_id => $a_menu_order) {
@@ -476,7 +470,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
 
                 if (isset($output)) {
                     // response
-                    echo wp_json_encode($output);
+                    nocache_headers();
+                    wp_send_json($output);
                 }
             }
 

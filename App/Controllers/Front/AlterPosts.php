@@ -1,9 +1,9 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers;
+namespace RdPostOrder\App\Controllers\Front;
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\AlterPosts')) {
+if (!class_exists('\\RdPostOrder\\App\\Controllers\\Front\\AlterPosts')) {
     /**
      * This controller will be working on front end to alter list post query.
      */
@@ -33,6 +33,11 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\AlterPosts')) {
                     unset($rd_postorder_admin_is_working);
                 }
             } else {
+                if (!$query->is_main_query()) {
+                    // if not main query (such as widget recent posts).
+                    return ;
+                }
+
                 $is_disable_customorder = $this->isDisableCustomOrder();
 
                 if (isset($is_disable_customorder) && $is_disable_customorder !== true) {

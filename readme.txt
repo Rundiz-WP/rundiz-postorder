@@ -16,11 +16,15 @@ This plugin allow you to re-arrange the post order as you wish.
 
 Re-arrange or re-order the posts but not interfere with sticky posts. Make your web sites different.
 
-You can re-order the single post (move up/down) or multiple posts (sortable items). Move up or down action is very helpful when you have many posts and many pages to display and you want the old post to list up to the top.
+You can re-order by one step (move up/down) or multiple steps (sortable items - drag and drop).
+Re-order across the page by drag and drop to the top or bottom and then use move up and down to make it re-order across the page.
 
 You can also disable custom post order in some category or all everywhere by adding `rd_postorder_is_working` and `rd_postorder_admin_is_working` filters and its value is boolean.
 OR!!
-You can disable custom post order in front page, categories in the settings menu. That's very easy.
+You can do that in the settings menu. That's very easy.
+
+Polylang or multilingual supported.<br>
+In the new version, you can use language switcher to switch and list only posts on selected language and then re-order them.
 
 It's clean!<br>
 My plugins are always restore everything to its default value and cleanup. I love clean db and don't let my plugins left junk in your db too.
@@ -33,7 +37,7 @@ PHP 5.5 or higher<br>
 WordPress 4.6.0 or higher
 
 == Installation ==
-1. Upload "rd-postorder" folder to the "/wp-content/plugins/" directory.
+1. Upload "rundiz-postorder" folder to the "/wp-content/plugins/" directory.
 2. Activate the plugin through the "Plugins" menu in WordPress.
 3. Done.
 
@@ -41,11 +45,14 @@ WordPress 4.6.0 or higher
 = Is multisite support? =
 Yes, of course.
 
+= Is multilingual support? =
+Yes, it is supported Polylang plugin for list the posts only selected language or all languages. For the other multilingual plugins, it should work too.
+
 = Support for re-order the pages or custom post type? =
-No, it doesn't support for now.
+No, it doesn't support custom post type.
 
 = Does it gonna be mess if I uninstall this plugin? =
-No, on uninstallation or delete the plugin, it will be reset the *menu_order* to zero which is WordPress default value for post content.
+No, on uninstall or delete the plugin, it will be reset the *menu_order* to zero (0) which is WordPress default value for post content.
 
 = How to disable custom order in some category? =
 Create your plugin and conditions whatever you want such as `is_category(['your','category','id','or','name'])` and then add this code `add_filter('rd_postorder_is_working', '__return_false');` to disable custom order in the categories you choose.

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-01-31T23:50:58+07:00\n"
+"POT-Creation-Date: 2022-02-01T18:23:06+07:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: rd-postorder\n"
@@ -36,37 +36,37 @@ msgstr ""
 msgid "http://rundiz.com"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:31
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:29
 msgid "Re-order by dragging"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:36
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:34
 msgid "Re-order over next/previous pages"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:41
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:39
 msgid "Manually change order number"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:46
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:44
 msgid "Re-number and reset"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:51
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:49
 msgid "Please note that sticky post can be re-order here but the results will remain on top on the front untill it is unstick."
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:63
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:61
 #: App/Views/admin/Posts/reOrderPosts_listPostsAction_v.php:2
 msgid "Re-order posts"
 msgstr ""
 
 #: App/Controllers/Admin/Posts/ReOrderPosts.php:164
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:35
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:108
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:252
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:359
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:431
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:34
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:102
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:245
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:350
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:417
 msgid "Please reload this page and try again."
 msgstr ""
 
@@ -82,25 +82,25 @@ msgstr ""
 msgid "The previous XHR is currently working, please wait few seconds and try again."
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:65
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:204
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:328
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:389
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:461
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:61
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:199
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:319
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:377
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:447
 msgid "Update completed"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:121
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:267
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:116
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:259
 msgid "Error! Unable to re-order the posts due the the currently order number is incorrect. Please click on &quot;Re-number all posts&quot; button to re-number all the posts."
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:134
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:128
 msgid "Unable to re-order the post. The js form did not send required data to re-order. Please reload the page and try again."
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:275
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:443
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:266
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:429
 msgid "Unable to re-order the posts. The js form did not send any data to re-order. Please reload the page and try again."
 msgstr ""
 
@@ -108,32 +108,32 @@ msgstr ""
 msgid "Post order has been reset successfully."
 msgstr ""
 
-#: App/Models/PostsListTable.php:132
+#: App/Models/PostsListTable.php:148
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:6
 msgid "Move up"
 msgstr ""
 
-#: App/Models/PostsListTable.php:133
+#: App/Models/PostsListTable.php:149
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:7
 msgid "Move down"
 msgstr ""
 
-#: App/Models/PostsListTable.php:241
+#: App/Models/PostsListTable.php:257
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:6
 msgid "Re-number all posts"
 msgstr ""
 
-#: App/Models/PostsListTable.php:242
+#: App/Models/PostsListTable.php:258
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:14
 msgid "Reset all order"
 msgstr ""
 
-#: App/Models/PostsListTable.php:243
+#: App/Models/PostsListTable.php:259
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:10
 msgid "Save all changes on order numbers"
 msgstr ""
 
-#: App/Models/PostsListTable.php:261
+#: App/Models/PostsListTable.php:277
 msgid "Order"
 msgstr ""
 

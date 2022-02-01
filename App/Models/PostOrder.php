@@ -93,7 +93,8 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
          * @return false|array Return `false` on failure, `array` on success.<br>
          *      The associative array keys are:<br>
          *          `menu_order` (int) post order number.<br>
-         *          `updated` (int) number of rows updated.
+         *          `updated` (int) number of rows updated.<br>
+         *          `updatedScheduled` (int) number of rows updated for scheduled posts.<br>
          */
         public function setNewPostOrderNumber($post_id)
         {

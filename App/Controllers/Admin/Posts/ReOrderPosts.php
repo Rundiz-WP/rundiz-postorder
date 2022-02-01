@@ -89,6 +89,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
             $output['PostsListTable'] = $PostsListTable;
             unset($PostsListTable);
 
+            nocache_headers();
+
             // load views for displaying
             $Loader = new \RdPostOrder\App\Libraries\Loader();
             $Loader->loadView('admin/Posts/reOrderPosts_listPostsAction_v', $output);

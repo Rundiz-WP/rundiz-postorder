@@ -2,10 +2,10 @@
 Contributors: okvee
 Tags: posts, order, sort, re-arrange, re arrange, rearrange, re_arrange, sortable, sort posts, order posts
 Tested up to: 5.9
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: MIT
 License URI: https://opensource.org/licenses/MIT
-Requires at least: 4.6.0
+Requires at least: 4.7.0
 Requires PHP: 5.5
 
 Re-order posts to what you want.
@@ -70,6 +70,25 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.0.3 =
+2022-02-01
+
+* Removed no need check requirement, already checked on WP core.
+* Remove donation link.
+* Fix activate/uninstall process.
+* Add network settings (multisite).
+* Move PHP files into sub folders. Each sub folder represent admin menu.
+* Update JS of re-order page to class that supported in newer web browser.
+* Add view link (to front page) in re-order posts page.
+* Move ajax actions to its controller.
+* Move admin help tab contents to views file.
+* Use `wp_send_json` instead of `echo` and `wp_die` instead of `exit`.
+* Fix call to hook `wp_insert_post`.
+* Update hook new post class to always update scheduled posts number.
+* Make Polylang supported (on selected language and list posts).
+* Fix alter post on front pages main query only.
+* Update translation.
+
 = 1.0.2 =
 2021-12-14
 

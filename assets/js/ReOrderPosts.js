@@ -30,6 +30,7 @@ class RdPostOrderReOrder {
                 if (typeof(response.list_table_updated) !== 'undefined') {
                     let list_table_html = $(response.list_table_updated).filter('.post-reorder-table')[0].outerHTML;
                     $('.post-reorder-table').replaceWith(list_table_html);
+                    this.reActiveTableToggleRow();
                 }
             }
         }
@@ -706,6 +707,22 @@ class RdPostOrderReOrder {
             jQuery(this).closest('.notice').remove();
         });
     }// reActiveDismissable
+
+
+    /**
+     * Re-active table toggle row.
+     * 
+     * @private This function was called from `ajaxReNumberAll()`, `ajaxReOrder()`, `ajaxResetAllPostsOrder()`, `ajaxSaveAllNumbersChanged()`.
+     * @returns {undefined}
+     */
+    reActiveTableToggleRow() {
+        let $ = jQuery.noConflict();
+
+        // copy from wp-admin/js/common.js
+        $('tbody').on('click', '.toggle-row', function() {
+            $(this).closest('tr').toggleClass('is-expanded');
+        });
+    }// reActiveTableToggleRow
 
 
 }// RdPostOrderReOrder

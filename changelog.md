@@ -1,5 +1,19 @@
 # Change log
 
+## Version 1.0.x
+
+### 1.0.1
+2019-03-07
+
+* Update WPListTable class to work with WP 5.1+.
+
+### 1.0.0
+2019-01-23
+
+* Fix PHP required version.
+* Update required at least (WordPress).
+* Moved previous version change log to changelog.md file.
+
 ## Version 0.x
 
 ### 0.9.1

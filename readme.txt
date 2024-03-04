@@ -1,7 +1,7 @@
 === Rundiz PostOrder ===
 Contributors: okvee
-Tags: posts, order, sort, re-arrange, re arrange, rearrange, re_arrange, sortable, sort posts, order posts
-Tested up to: 6.1
+Tags: posts, order, sort, re-arrange, sortable
+Tested up to: 6.5
 Stable tag: 1.0.3
 License: MIT
 License URI: https://opensource.org/licenses/MIT

@@ -218,7 +218,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Front\\AlterPosts')) {
          */
         public function registerHooks()
         {
-            add_action('pre_get_posts', [$this, 'alterListPostAction']);
+            add_action('pre_get_posts', [$this, 'alterListPostAction'], 20);
 
             add_filter('get_previous_post_where', [$this, 'alterPreviousPostWhere'], 10, 5);
             add_filter('get_previous_post_sort', [$this, 'alterPreviousPostSort'], 10, 2);

@@ -2,6 +2,11 @@
 
 ## Version 1.0.x
 
+### 1.0.2
+2021-12-14
+
+* Update WPListTable class based on WordPress 5.8.2.
+
 ### 1.0.1
 2019-03-07
 

@@ -1,8 +1,8 @@
 === Rundiz PostOrder ===
 Contributors: okvee
 Tags: posts, order, sort, re-arrange, sortable
-Tested up to: 6.5
-Stable tag: 1.0.3
+Tested up to: 6.6
+Stable tag: 1.0.4
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 Requires at least: 4.7.0
@@ -70,6 +70,11 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.0.4 =
+2024-07-01
+
+* Update priority for hook `pre_get_posts` to be lower (higher number) to let other plugins hook work with this plugin either.
+
 = 1.0.3 =
 2022-02-01
 
@@ -88,8 +93,3 @@ Please note that to hook into this filter in the theme some times it might not w
 * Make Polylang supported (on selected language and list posts).
 * Fix alter post on front pages main query only.
 * Update translation.
-
-= 1.0.2 =
-2021-12-14
-
-* Update WPListTable class based on WordPress 5.8.2.

@@ -62,10 +62,12 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
             $stickies = get_option('sticky_posts');
             if (!empty($stickies)) {
                 $stickiesPlaceholders = array_fill(0, count($stickies), '%d');
-                $sql = 'SELECT `ID`, `menu_order` FROM `' . $wpdb->posts . '` WHERE `ID` IN (' . implode(', ', $stickiesPlaceholders) . ')';
+                $sql = 'SELECT `ID`, `menu_order` FROM `' . $wpdb->posts . '` WHERE ';
+                $sql .= ' `post_type` = %s';
+                $sql .= ' AND `ID` IN (' . implode(', ', $stickiesPlaceholders) . ')';
                 $sql .= ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')';
                 $sql .= ' ORDER BY `post_date` DESC';
-                $prepared = $wpdb->prepare($sql, $stickies);
+                $prepared = $wpdb->prepare($sql, array_merge([\RdPostOrder\App\Models\PostOrder::POST_TYPE], $stickies));
                 $stickyPosts = $wpdb->get_results($prepared);
                 unset($prepared, $sql);
             }

@@ -1,8 +1,8 @@
 === Rundiz PostOrder ===
 Contributors: okvee
 Tags: posts, order, sort, re-arrange, sortable
-Tested up to: 6.6
-Stable tag: 1.0.4
+Tested up to: 6.8
+Stable tag: 1.0.5
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 Requires at least: 4.7.0
@@ -70,6 +70,12 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.0.5 =
+2024-12-11
+
+* Update reset/restart numbering all posts order.
+    Use default WordPress front page order including sticky at the top, and all other post statuses.
+
 = 1.0.4 =
 2024-07-01
 

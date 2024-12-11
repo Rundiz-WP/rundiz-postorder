@@ -42,13 +42,13 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
 
 
         /**
-         * Reset `menu_order` column on `posts` table to zero (its default value).
+         * Set `menu_order` column on `posts` table to zero (its default value).
          * 
          * This will be use on uninstall or reset all posts order on multi-site admin settings.
          * 
          * @global \wpdb $wpdb WordPress DB class.
          */
-        public function resetPosts()
+        public function setMenuOrderToZero()
         {
           global $wpdb;
 
@@ -79,7 +79,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
                 unset($row);
             }
             unset($results);
-        }// resetPosts
+        }// setMenuOrderToZero
 
 
         /**

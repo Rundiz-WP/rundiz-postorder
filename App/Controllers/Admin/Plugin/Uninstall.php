@@ -37,7 +37,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Uninstall')) 
 
             // reset order number in `posts` table.
             $PostOrder = new \RdPostOrder\App\Models\PostOrder();
-            $PostOrder->resetPosts();
+            $PostOrder->setMenuOrderToZero();
             unset($PostOrder);
 
             // remove option related to this plugin.

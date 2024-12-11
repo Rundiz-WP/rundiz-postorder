@@ -51,6 +51,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\MultisiteSe
 
                 $resetPostOrders = filter_input(INPUT_POST, 'rd-postorder-remove-order-numbers', FILTER_SANITIZE_NUMBER_INT);
                 if ($resetPostOrders == '1') {
+                    // if setting to remove order numbers (reset post orders).
+                    // reset post orders on all site.
                     global $wpdb;
 
                     $blog_ids = $wpdb->get_col('SELECT blog_id FROM '.$wpdb->blogs);
@@ -62,7 +64,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\MultisiteSe
                         foreach ($blog_ids as $blog_id) {
                             switch_to_blog($blog_id);
                             // reset post order.
-                            $PostOrder->resetPosts();
+                            $PostOrder->setMenuOrderToZero();
                         }// endforeach;
                         unset($PostOrder);
                     }

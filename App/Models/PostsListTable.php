@@ -31,7 +31,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
         {
             parent::__construct($args);
 
-            $this->screen->post_type = 'post';
+            $this->screen->post_type = \RdPostOrder\App\Models\PostOrder::POST_TYPE;
         }// __construct
 
 
@@ -171,7 +171,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
                 $outlink = [];
                 foreach ($terms as $term) {
                     $label = esc_html(sanitize_term_field('name', $term->name, $term->term_id, $taxonomy, 'display'));
-                    $outlink[] = '<a href="' . admin_url('term.php?taxonomy=' . $taxonomy . '&amp;tag_ID=' . $term->term_id . '&amp;post_type=post') . '">' . $label . '</a>';
+                    $outlink[] = '<a href="' . admin_url('term.php?taxonomy=' . $taxonomy . '&amp;tag_ID=' . $term->term_id . '&amp;post_type=' . \RdPostOrder\App\Models\PostOrder::POST_TYPE) . '">' . $label . '</a>';
                 }// endforeach;
                 unset($term);
 

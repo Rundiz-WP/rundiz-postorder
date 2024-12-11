@@ -64,7 +64,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Front\\AlterPosts')) {
             $is_disable_customorder = $this->isDisableCustomOrder();
 
             if (isset($is_disable_customorder) && $is_disable_customorder !== true) {
-                if (isset($post->post_type) && $post->post_type == 'post') {
+                if (isset($post->post_type) && $post->post_type == \RdPostOrder\App\Models\PostOrder::POST_TYPE) {
                     $orderby = 'ORDER BY p.menu_order ASC LIMIT 1';
                 }
             }
@@ -91,7 +91,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Front\\AlterPosts')) {
             $is_disable_customorder = $this->isDisableCustomOrder();
 
             if (isset($is_disable_customorder) && $is_disable_customorder !== true) {
-                if (isset($post->post_type) && $post->post_type == 'post') {
+                if (isset($post->post_type) && $post->post_type == \RdPostOrder\App\Models\PostOrder::POST_TYPE) {
                     $where = str_replace('p.post_date > \''.$post->post_date.'\'', 'p.menu_order > \''.$post->menu_order.'\'', $where);
                 }
             }
@@ -115,7 +115,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Front\\AlterPosts')) {
             $is_disable_customorder = $this->isDisableCustomOrder();
 
             if (isset($is_disable_customorder) && $is_disable_customorder !== true) {
-                if (isset($post->post_type) && $post->post_type == 'post') {
+                if (isset($post->post_type) && $post->post_type == \RdPostOrder\App\Models\PostOrder::POST_TYPE) {
                     $orderby = 'ORDER BY p.menu_order DESC LIMIT 1';
                 }
             }
@@ -142,7 +142,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Front\\AlterPosts')) {
             $is_disable_customorder = $this->isDisableCustomOrder();
 
             if (isset($is_disable_customorder) && $is_disable_customorder !== true) {
-                if (isset($post->post_type) && $post->post_type == 'post') {
+                if (isset($post->post_type) && $post->post_type == \RdPostOrder\App\Models\PostOrder::POST_TYPE) {
                     $where = str_replace('p.post_date < \''.$post->post_date.'\'', 'p.menu_order < \''.$post->menu_order.'\'', $where);
                 }
             }

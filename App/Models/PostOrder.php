@@ -16,6 +16,12 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
 
 
         /**
+         * @var string Working on post type.
+         */
+        const POST_TYPE = 'post';
+
+
+        /**
          * Get latest menu order number.
          * 
          * @global \wpdb $wpdb WordPress DB class.
@@ -27,7 +33,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
 
             // get new menu_order number (new post is latest menu_order+1).
             $sql = 'SELECT `post_status`, `menu_order`, `post_type` FROM `' . $wpdb->posts . '`'
-                . ' WHERE `post_type` = \'post\''
+                . ' WHERE `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                 . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                 . ' ORDER BY `menu_order` DESC LIMIT 0, 1';
             $LastPost = $wpdb->get_row($sql);
@@ -60,7 +66,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
                     '`post_status`, ' . 
                     '`post_type`' . 
                     ' FROM `' . $wpdb->posts . '`' . 
-                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'post\'' . 
+                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\'' . 
                     ' AND `' . $wpdb->posts . '`.`post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')' . 
                     ' ORDER BY `' . $wpdb->posts . '`.`post_date` ASC',
                 OBJECT
@@ -149,7 +155,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
 
             // get scheduled posts by order ascending (for increase from latest order +1 each).
             $sql = 'SELECT `ID`, `post_date`, `post_date_gmt`, `post_status`, `menu_order`, `post_type` FROM `' . $wpdb->posts . '`'
-                . ' WHERE `post_type` = \'post\''
+                . ' WHERE `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                 . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                 . ' AND (`post_date` > \'%s\' OR `post_date_gmt` > \'%s\')'
                 . ' ORDER BY `menu_order` ASC';

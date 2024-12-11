@@ -26,7 +26,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controlers\\Admin\\Posts\\HookNewPost')) 
                 && is_object($post) 
                 && isset($post->post_status) && in_array($post->post_status, $this->allowed_order_post_status) 
                 && isset($post->menu_order) && $post->menu_order == '0' 
-                && isset($post->post_type) && $post->post_type == 'post' 
+                && isset($post->post_type) && $post->post_type == \RdPostOrder\App\Models\PostOrder::POST_TYPE 
             ) {
                 // if this save is first time, whatever it status is.
                 $PostOrder = new \RdPostOrder\App\Models\PostOrder();

@@ -41,7 +41,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
 
                 // get all posts order by current menu_order (even it contain wrong order number but keep most of current order).
                 $sql = 'SELECT `ID`, `post_status`, `menu_order`, `post_type` FROM `' . $wpdb->posts . '`'
-                    . ' WHERE `post_type` = \'post\''
+                    . ' WHERE `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                     . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                     . ' ORDER BY `menu_order` DESC';
                 $result = $wpdb->get_results($sql, OBJECT_K);
@@ -148,7 +148,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                 if ($move_to === 'up') {
                     $sql = 'SELECT `ID`, `menu_order`, `post_type`, `post_status` FROM `' . $wpdb->posts . '`'
                         . ' WHERE `menu_order` > \'%d\''
-                        . ' AND `post_type` = \'post\''
+                        . ' AND `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                         . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                         . ' ORDER BY `menu_order` ASC';
                     $sql = $wpdb->prepare($sql, $menu_order);
@@ -157,7 +157,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                 } elseif ($move_to === 'down') {
                     $sql = 'SELECT `ID`, `menu_order`, `post_type`, `post_status` FROM `' . $wpdb->posts . '`'
                         . ' WHERE `menu_order` < \'%d\''
-                        . ' AND `post_type` = \'post\''
+                        . ' AND `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                         . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                         . ' ORDER BY `menu_order` DESC';
                     $sql = $wpdb->prepare($sql, $menu_order);
@@ -357,7 +357,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
 
                 // get all posts order by current menu_order (even it contain wrong order number but keep most of current order).
                 $sql = 'SELECT `ID`, `post_date`, `post_status`, `menu_order`, `post_type` FROM `' . $wpdb->posts . '`'
-                    . ' WHERE `post_type` = \'post\''
+                    . ' WHERE `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                     . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                     . ' ORDER BY `post_date` DESC';
                 $result = $wpdb->get_results($sql, OBJECT_K);

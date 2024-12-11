@@ -353,24 +353,9 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                 }
 
                 \RdPostOrder\App\Libraries\Input::static_setPaged();
-                global $wpdb;
-
-                // get all posts order by current menu_order (even it contain wrong order number but keep most of current order).
-                $sql = 'SELECT `ID`, `post_date`, `post_status`, `menu_order`, `post_type` FROM `' . $wpdb->posts . '`'
-                    . ' WHERE `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
-                    . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
-                    . ' ORDER BY `post_date` DESC';
-                $result = $wpdb->get_results($sql, OBJECT_K);
-                unset($sql);
-                if (is_array($result)) {
-                    $i_count = count($result);
-                    foreach ($result as $row) {
-                        $wpdb->update($wpdb->posts, ['menu_order' => $i_count], ['ID' => $row->ID], ['%d'], ['%d']);
-                        $i_count--;
-                    }
-                    unset($i_count, $row);
-                }
-                unset($result);
+                $PostOrderM = new \RdPostOrder\App\Models\PostOrder();
+                $PostOrderM->resetAllPostsOrder();
+                unset($PostOrderM);
 
                 // done update menu_order numbers
                 $output['form_result_class'] = 'notice-success';

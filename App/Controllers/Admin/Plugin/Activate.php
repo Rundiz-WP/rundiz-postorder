@@ -102,38 +102,10 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate')) {
             // the example code above will not be use as explained.
 
             // add order number into `posts` table.
-            $results = $wpdb->get_results(
-                'SELECT ' . 
-                    '`ID`, ' . 
-                    '`post_date`, ' . 
-                    '`post_name`, ' . 
-                    '`post_status`, ' .
-                    '`menu_order`, ' .
-                    '`post_type`' . 
-                    ' FROM `' . $wpdb->posts . '`' . 
-                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'post\'' . 
-                    ' AND `' . $wpdb->posts . '`.`post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')' . 
-                    ' ORDER BY `' . $wpdb->posts . '`.`post_date` ASC',// get the oldest for number 1st to display at last page.
-                    // the scheduled for future post has the `post_date` as scheduled date.
-                OBJECT
-            );
-            if (is_array($results)) {
-                $i_count = 1;
-                foreach ($results as $row) {
-                    if ($row->menu_order == '0') {
-                        $wpdb->update(
-                            $wpdb->posts,
-                            ['menu_order' => $i_count],
-                            ['ID' => $row->ID],
-                            ['%d'],
-                            ['%d']
-                        );
-                    }
-                    $i_count++;
-                }// endforeach;
-                unset($i_count, $row);
-            }
-            unset($results);
+            \RdPostOrder\App\Libraries\Input::static_setPaged();
+            $PostOrderM = new \RdPostOrder\App\Models\PostOrder();
+            $PostOrderM->resetAllPostsOrder(true);
+            unset($PostOrderM);
 
             // add option related to this plugin (if not exists).
             $plugin_option = get_option($this->main_option_name);

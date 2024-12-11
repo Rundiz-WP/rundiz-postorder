@@ -48,6 +48,92 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
 
 
         /**
+         * Reset or restart all posts order to be based on WordPress default post order on front page.
+         * 
+         * @since 1.0.5
+         * @global \wpdb $wpdb WordPress DB class.
+         * @param bool $updateOnlyMenuOrderZero Set to `true` to update only if menu order is zero. This is good for first activation that prevent a mess while deactivate then activate. Default is `false`.
+         * @return int|false Return `false` on failure, return number of rows found and updated which can be zero.
+         */
+        public function resetAllPostsOrder($updateOnlyMenuOrderZero = false)
+        {
+            global $wpdb;
+            // get sticky posts by its default order based on front page. ---------------
+            $stickies = get_option('sticky_posts');
+            if (!empty($stickies)) {
+                $stickiesPlaceholders = array_fill(0, count($stickies), '%d');
+                $sql = 'SELECT `ID`, `menu_order` FROM `' . $wpdb->posts . '` WHERE `ID` IN (' . implode(', ', $stickiesPlaceholders) . ')';
+                $sql .= ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')';
+                $sql .= ' ORDER BY `post_date` DESC';
+                $prepared = $wpdb->prepare($sql, $stickies);
+                $stickyPosts = $wpdb->get_results($prepared);
+                unset($prepared, $sql);
+            }
+            unset($stickies);
+            // end get sticky posts by its default order based on front page. -----------
+
+            // get all the rest posts by its default order based on front page. ----------
+            $sql = 'SELECT `ID`, `menu_order` FROM `' . $wpdb->posts . '` WHERE ';
+            $sql .= ' `post_type` = %s';
+            $sql .= ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')';
+            if (!empty($stickiesPlaceholders) && isset($stickyPosts) && is_array($stickyPosts) && !empty($stickyPosts)) {
+                $sql .= ' AND `ID` NOT IN (' . implode(', ', $stickiesPlaceholders) . ')';
+            }
+            $sql .= ' ORDER BY `post_date` DESC';
+            $values = [\RdPostOrder\App\Models\PostOrder::POST_TYPE];
+            if (isset($stickyPosts) && is_iterable($stickyPosts)) {
+                foreach ($stickyPosts as $stickyPost) {
+                    $values[] = $stickyPost->ID;
+                }// endforeach; stickies
+                unset($stickyPost);
+            }// endif;
+            $prepared = $wpdb->prepare($sql, $values);
+            $postsResult = $wpdb->get_results($prepared);
+            unset($prepared, $sql, $values);
+            // end get all the rest posts by its default order based on front page. ------
+
+            // merge sticky posts to the beginning of before normal posts.
+            if (isset($stickyPosts) && is_array($stickyPosts)) {
+                $allPosts = array_merge($stickyPosts, $postsResult);
+            } else {
+                $allPosts = $postsResult;
+            }
+            unset($postsResult, $stickyPosts);
+
+            if (!is_array($allPosts)) {
+                return false;
+            }
+
+            $i_count = count($allPosts);
+            $updated = 0;
+            foreach ($allPosts as $row) {
+                if (
+                    (
+                        true === $updateOnlyMenuOrderZero && '0' === strval($row->menu_order)
+                    ) ||
+                    false === $updateOnlyMenuOrderZero
+                ) {
+                    $updateResult = $wpdb->update(
+                        $wpdb->posts, 
+                        ['menu_order' => $i_count], 
+                        ['ID' => $row->ID], 
+                        ['%d'], 
+                        ['%d']
+                    );
+                    if (false !== $updateResult) {
+                        ++$updated;
+                    }
+                }// endif; update only menu order is 0.
+                --$i_count;
+            }// endforeach; all posts
+            unset($i_count, $row);
+            unset($allPosts);
+
+            return $updated;
+        }// resetAllPostsOrder
+
+
+        /**
          * Set `menu_order` column on `posts` table to zero (its default value).
          * 
          * This will be use on uninstall or reset all posts order on multi-site admin settings.

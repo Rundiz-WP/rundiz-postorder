@@ -1,9 +1,9 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers\Front;
+namespace RdPostOrder\App\Controllers\Common;
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Front\\AlterPosts')) {
+if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
     /**
      * This controller will be working on front end to alter list post query.
      */

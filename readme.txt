@@ -2,7 +2,7 @@
 Contributors: okvee
 Tags: posts, order, sort, re-arrange, sortable
 Tested up to: 6.8
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 Requires at least: 4.7.0
@@ -70,6 +70,10 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.0.6 =
+2025-01-13
+* Update alter post query and add new setting to disable custom order on admin pages.
+
 = 1.0.5 =
 2024-12-11
 
@@ -80,22 +84,3 @@ Please note that to hook into this filter in the theme some times it might not w
 2024-07-01
 
 * Update priority for hook `pre_get_posts` to be lower (higher number) to let other plugins hook work with this plugin either.
-
-= 1.0.3 =
-2022-02-01
-
-* Removed no need check requirement, already checked on WP core.
-* Remove donation link.
-* Fix activate/uninstall process.
-* Add network settings (multisite).
-* Move PHP files into sub folders. Each sub folder represent admin menu.
-* Update JS of re-order page to class that supported in newer web browser.
-* Add view link (to front page) in re-order posts page.
-* Move ajax actions to its controller.
-* Move admin help tab contents to views file.
-* Use `wp_send_json` instead of `echo` and `wp_die` instead of `exit`.
-* Fix call to hook `wp_insert_post`.
-* Update hook new post class to always update scheduled posts number.
-* Make Polylang supported (on selected language and list posts).
-* Fix alter post on front pages main query only.
-* Update translation.

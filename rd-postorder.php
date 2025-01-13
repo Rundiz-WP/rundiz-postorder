@@ -3,7 +3,7 @@
  * Plugin Name: Rundiz PostOrder
  * Plugin URI: https://rundiz.com/?p=319
  * Description: Re-order posts to what you want.
- * Version: 1.0.5
+ * Version: 1.0.6
  * Requires at least: 4.7.0
  * Requires PHP: 5.5
  * Author: Vee Winch

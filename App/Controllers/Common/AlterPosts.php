@@ -22,15 +22,15 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
         public function alterListPostAction($query)
         {
             if (is_admin()) {
-                if (isset($query->query['post_type']) && $query->query['post_type'] == 'post' && !isset($_GET['orderby']) && !isset($_GET['order'])) {
-                    $rd_postorder_admin_is_working = apply_filters('rd_postorder_admin_is_working', true);
+                if (isset($query->query['post_type']) && 'post' == $query->query['post_type'] && !isset($_GET['orderby']) && !isset($_GET['order'])) {
+                    $is_disable_customorder_admin = $this->isDisableCustomOrder('admin');
 
-                    if (isset($rd_postorder_admin_is_working) && $rd_postorder_admin_is_working === true) {
+                    if (isset($is_disable_customorder_admin) && true !== $is_disable_customorder_admin) {
                         $query->set('orderby', 'menu_order');
                         $query->set('order', 'DESC');
                     }
 
-                    unset($rd_postorder_admin_is_working);
+                    unset($is_disable_customorder_admin);
                 }
             } else {
                 if (!$query->is_main_query()) {
@@ -40,7 +40,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
 
                 $is_disable_customorder = $this->isDisableCustomOrder();
 
-                if (isset($is_disable_customorder) && $is_disable_customorder !== true) {
+                if (isset($is_disable_customorder) && true !== $is_disable_customorder) {
                     $query->set('orderby', 'menu_order');
                     $query->set('order', 'DESC');
                 }
@@ -63,9 +63,9 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
         {
             $is_disable_customorder = $this->isDisableCustomOrder();
 
-            if (isset($is_disable_customorder) && $is_disable_customorder !== true) {
-                if (isset($post->post_type) && $post->post_type == \RdPostOrder\App\Models\PostOrder::POST_TYPE) {
-                    $orderby = 'ORDER BY p.menu_order ASC LIMIT 1';
+            if (isset($is_disable_customorder) && true !== $is_disable_customorder) {
+                if (isset($post->post_type) && \RdPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
+                    $order_by = 'ORDER BY p.menu_order ASC LIMIT 1';
                 }
             }
 
@@ -90,8 +90,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
         {
             $is_disable_customorder = $this->isDisableCustomOrder();
 
-            if (isset($is_disable_customorder) && $is_disable_customorder !== true) {
-                if (isset($post->post_type) && $post->post_type == \RdPostOrder\App\Models\PostOrder::POST_TYPE) {
+            if (isset($is_disable_customorder) && true !== $is_disable_customorder) {
+                if (isset($post->post_type) && \RdPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
                     $where = str_replace('p.post_date > \''.$post->post_date.'\'', 'p.menu_order > \''.$post->menu_order.'\'', $where);
                 }
             }
@@ -114,9 +114,9 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
         {
             $is_disable_customorder = $this->isDisableCustomOrder();
 
-            if (isset($is_disable_customorder) && $is_disable_customorder !== true) {
-                if (isset($post->post_type) && $post->post_type == \RdPostOrder\App\Models\PostOrder::POST_TYPE) {
-                    $orderby = 'ORDER BY p.menu_order DESC LIMIT 1';
+            if (isset($is_disable_customorder) && true !== $is_disable_customorder) {
+                if (isset($post->post_type) && \RdPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
+                    $order_by = 'ORDER BY p.menu_order DESC LIMIT 1';
                 }
             }
 
@@ -141,8 +141,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
         {
             $is_disable_customorder = $this->isDisableCustomOrder();
 
-            if (isset($is_disable_customorder) && $is_disable_customorder !== true) {
-                if (isset($post->post_type) && $post->post_type == \RdPostOrder\App\Models\PostOrder::POST_TYPE) {
+            if (isset($is_disable_customorder) && true !== $is_disable_customorder) {
+                if (isset($post->post_type) && \RdPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
                     $where = str_replace('p.post_date < \''.$post->post_date.'\'', 'p.menu_order < \''.$post->menu_order.'\'', $where);
                 }
             }
@@ -156,30 +156,56 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
          * Check that is there any filter hooks to disable custom order.<br>
          * Also check that is this plugin was set to disable in settings page.
          * 
-         * @return boolean Return true if it was set to disable, otherwise return false.
+         * @param string $checkFor Check for which part. Acceptable value is `front`, `admin`.
+         * @return boolean Return `true` if it was set to disable, otherwise return `false`.
          */
-        protected function isDisableCustomOrder()
+        protected function isDisableCustomOrder($checkFor = 'front')
         {
-            $rd_postorder_is_working = apply_filters('rd_postorder_is_working', true);
-
-            if ($rd_postorder_is_working !== true) {
-                // disable by plugin hooks (filter).
-                return true;
-            }
-
-            unset($rd_postorder_is_working);
+            // check by using hook (filters). ----------------
+            if ('front' === $checkFor) {
+                $rd_postorder_is_working = apply_filters('rd_postorder_is_working', true);
+                if (true !== $rd_postorder_is_working) {
+                    // disable by plugin hooks (filter).
+                    return true;
+                }
+                unset($rd_postorder_is_working);
+            } elseif ('admin' === $checkFor) {
+                $rd_postorder_admin_is_working = apply_filters('rd_postorder_admin_is_working', true);
+                if (true !== $rd_postorder_admin_is_working) {
+                    // disable by plugin hooks (filter).
+                    return true;
+                }
+                unset($rd_postorder_admin_is_working);
+            }// endif; $checkFor
+            // end check by using hook (filters). ------------
 
             $plugin_options = get_option($this->main_option_name);
 
             if (is_array($plugin_options)) {
-                if (is_front_page() || is_home()) {
+                // @link https://developer.wordpress.org/themes/basics/conditional-tags/ Conditional tags for check is admin or front pages etc.
+                if (is_admin()) {
+                    // if in admin pages.
                     if (
-                        array_key_exists('disable_customorder_frontpage', $plugin_options) && 
-                        $plugin_options['disable_customorder_frontpage'] == '1'
+                        array_key_exists('disable_customorder_adminpage', $plugin_options) &&
+                        '1' === $plugin_options['disable_customorder_adminpage']
                     ) {
+                        // if setting to disabled on admin pages.
                         return true;
                     }
-                } elseif (is_category()) {
+                } elseif (is_front_page() || is_home() || is_singular()) {
+                    // if in front or home pages.
+                    // `is_singluar()` is for make it work with `get_[next|previous]_post_[where|sort]` hooks. 
+                    // if front, or home pages setting is disabled then single post should disabled also.
+                    if (
+                        array_key_exists('disable_customorder_frontpage', $plugin_options) && 
+                        '1' === $plugin_options['disable_customorder_frontpage']
+                    ) {
+                        // if setting to disabled on front pages.
+                        return true;
+                    }
+                }// endif; is_admin() or not.
+
+                if (is_category()) {
                     // get current category id.
                     $this_category = get_the_category();
                     if (!is_object($this_category) && is_array($this_category)) {
@@ -188,7 +214,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
                     $this_category_id = (isset($this_category->term_id) ? $this_category->term_id : 0);
                     unset($this_category);
 
-                    if ($this_category_id === 0) {
+                    if (0 === $this_category_id) {
                         // if found no category.
                         // @link https://wordpress.stackexchange.com/questions/59476/get-current-category-id-php In case that website post don't select any category then this is the last chance.
                         $this_category = get_queried_object();
@@ -205,8 +231,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
                     ) {
                         return true;
                     }
-                }
-            }
+                }// endif; is home, front, category...
+            }// endif; plugin options are array.
 
             unset($plugin_options);
             return false;

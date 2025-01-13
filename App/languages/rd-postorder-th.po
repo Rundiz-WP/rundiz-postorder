@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rundiz PostOrder\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rundiz-postorder\n"
-"POT-Creation-Date: 2022-02-01T18:23:06+07:00\n"
-"PO-Revision-Date: 2022-02-01 18:23+0700\n"
+"POT-Creation-Date: 2025-01-13T21:50:29+07:00\n"
+"PO-Revision-Date: 2025-01-13 21:50+0700\n"
 "Last-Translator: Vee W.\n"
 "Language-Team: \n"
 "Language: th_TH\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;_n_noop;_nx_noop;translate_nooped_plural;esc_html__;esc_html_e;"
@@ -20,23 +20,28 @@ msgstr ""
 "X-Poedit-SearchPath-1: ..\n"
 
 #. Plugin Name of the plugin
-#: App/Controllers/Admin/Settings/MultisiteSettings.php:23 App/Controllers/Admin/Settings/Settings.php:23
+#: rd-postorder.php App/Controllers/Admin/Settings/MultisiteSettings.php:23
+#: App/Controllers/Admin/Settings/Settings.php:23
 msgid "Rundiz PostOrder"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: rd-postorder.php
 msgid "https://rundiz.com/?p=319"
 msgstr ""
 
 #. Description of the plugin
+#: rd-postorder.php
 msgid "Re-order posts to what you want."
 msgstr "จัดเรียงโพสต์ตามที่คุณต้องการ."
 
 #. Author of the plugin
+#: rd-postorder.php
 msgid "Vee Winch"
 msgstr ""
 
 #. Author URI of the plugin
+#: rd-postorder.php
 msgid "http://rundiz.com"
 msgstr ""
 
@@ -68,27 +73,27 @@ msgstr ""
 msgid "Re-order posts"
 msgstr "จัดเรียงโพสต์"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:164 App/Controllers/Admin/Posts/ReOrderPostsAjax.php:34
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:168 App/Controllers/Admin/Posts/ReOrderPostsAjax.php:34
 #: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:102 App/Controllers/Admin/Posts/ReOrderPostsAjax.php:245
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:350 App/Controllers/Admin/Posts/ReOrderPostsAjax.php:417
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:350 App/Controllers/Admin/Posts/ReOrderPostsAjax.php:402
 msgid "Please reload this page and try again."
 msgstr "กรุณาโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:167
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:171
 msgid "Are you sure?"
 msgstr "คุณแน่ใจหรือไม่?"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:168
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:172
 msgid "Are you sure to doing this? (This may slow down your server if you have too many posts.)"
 msgstr "คุณแน่ใจหรือไม่ที่จะทำสิ่งนี้? (นี่อาจทำให้เซิร์ฟเวอร์ของคุณทำงานช้าลงถ้าคุณมีโพสต์จำนวนมาก.)"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:170
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:174
 msgid "The previous XHR is currently working, please wait few seconds and try again."
 msgstr "XHR ก่อนหน้านี้กำลังทำงาน, โปรดรอสักไม่กี่วินาทีแล้วลองอีกครั้ง."
 
 #: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:61 App/Controllers/Admin/Posts/ReOrderPostsAjax.php:199
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:319 App/Controllers/Admin/Posts/ReOrderPostsAjax.php:377
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:447
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:319 App/Controllers/Admin/Posts/ReOrderPostsAjax.php:362
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:432
 msgid "Update completed"
 msgstr "อัพเดทเรียบร้อยแล้ว"
 
@@ -106,13 +111,13 @@ msgid ""
 "and try again."
 msgstr "ไม่สามารถเรียงลำดับโพสต์. ฟอร์ม javascript ไม่ได้ส่งค่าที่ต้องการมาให้ในการเรียงลำดับ. โปรดโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
 
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:266 App/Controllers/Admin/Posts/ReOrderPostsAjax.php:429
+#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:266 App/Controllers/Admin/Posts/ReOrderPostsAjax.php:414
 msgid ""
 "Unable to re-order the posts. The js form did not send any data to re-order. Please reload the page and "
 "try again."
 msgstr "ไม่สามารถเรียงลำดับโพสต์. ฟอร์ม javascript ไม่ได้ส่งค่าใดๆให้ในการเรียงลำดับ. โปรดโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
 
-#: App/Controllers/Admin/Settings/MultisiteSettings.php:75
+#: App/Controllers/Admin/Settings/MultisiteSettings.php:77
 msgid "Post order has been reset successfully."
 msgstr "ลำดับของโพสต์ถูกล้างค่าเรียบร้อยแล้ว."
 
@@ -218,17 +223,46 @@ msgid "Warning! This will be affect on all sites."
 msgstr "คำเตือน! นี่จะมีผลกระทบกับเว็บไซต์ทั้งหมด."
 
 #: App/Views/admin/Settings/settings_v.php:19
-msgid "Disable on front page"
+msgid "Disable on front pages"
 msgstr "ปิดการใช้งานหน้าแรก"
 
 #: App/Views/admin/Settings/settings_v.php:23
-msgid "Disable custom post order on front page."
+msgid "Disable custom post order on front pages."
 msgstr "ปิดการจัดเรียงที่หน้าแรก."
 
-#: App/Views/admin/Settings/settings_v.php:28 App/Views/admin/Settings/settings_v.php:32
+#: App/Views/admin/Settings/settings_v.php:26
+msgid "This included front or home page."
+msgstr "นี่จะรวมถึงหน้าหลักหรือหน้าแรก."
+
+#: App/Views/admin/Settings/settings_v.php:31 App/Views/admin/Settings/settings_v.php:35
 msgid "Disable on categories"
 msgstr "ปิดการใช้งานบนหมวดหมู่"
 
-#: App/Views/admin/Settings/settings_v.php:30
+#: App/Views/admin/Settings/settings_v.php:33
 msgid "Please tick on the check box of category you want to disable custom post order."
 msgstr "โปรดติ๊กบนเช็คบ็อกส์ของหมวดหมู่ที่คุณต้องการปิดใช้การจัดเรียง."
+
+#: App/Views/admin/Settings/settings_v.php:61
+msgid ""
+"This setting affect on both admin and front, or home pages but admin or front pages custom post order must "
+"be enabled."
+msgstr "การตั้งค่านี้มีผลกระทบกับทั้งหน้าผู้ดูแลและหน้าหลักหรือหน้าแรก แต่การเรียงลำดับเองของหน้าผู้ดูแลหรือหน้าแรกจะต้องเปิดใช้งาน."
+
+#: App/Views/admin/Settings/settings_v.php:66
+msgid "Disable on admin pages"
+msgstr "ปิดการใช้งานหน้าผู้ดูแล"
+
+#: App/Views/admin/Settings/settings_v.php:70
+msgid "Disable custom post order on admin pages."
+msgstr "ปิดการจัดเรียงที่หน้าผู้ดูแล."
+
+#: App/Views/admin/Settings/settings_v.php:71
+msgid "Please note that this will not disable on admin re-order posts page."
+msgstr "โปรดทราบว่านี่จะไม่ปิดการใช้งานหน้าเรียงลำดับโพสต์สำหรับผู้ดูแล."
+
+#~ msgid ""
+#~ "This included home or front page, category page, tag page, any taxonomy page, single post, single page, "
+#~ "attachment page, author page, date page, archive page, search result page, 404 page, feed, preview."
+#~ msgstr ""
+#~ "นี่จะรวมถึงหน้าแรกหรือหน้าหลัก, หน้าหมวดหมู่, หน้าแท็ก, หน้าแบ่งประเภทใดๆ, หน้าโพสต์, หน้าเพจ, หน้าไฟล์แนบ, หน้าผู้เขียน, "
+#~ "หน้าวันที่, หน้าคลัง, หน้าผลการค้นหา, หน้า 404, ฟีด, หน้าตัวอย่าง."

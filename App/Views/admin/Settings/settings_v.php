@@ -16,12 +16,15 @@
         <table class="form-table">
             <tbody>
                 <tr>
-                    <th scope="row"><?php _e('Disable on front page', 'rd-postorder'); ?></th>
+                    <th scope="row"><?php _e('Disable on front pages', 'rd-postorder'); ?></th>
                     <td>
                         <label for="disable_customorder_frontpage">
                             <input id="disable_customorder_frontpage" type="checkbox" name="disable_customorder_frontpage" value="1"<?php checked((isset($options['disable_customorder_frontpage']) ? $options['disable_customorder_frontpage'] : null), '1'); ?>>
-                            <?php _e('Disable custom post order on front page.', 'rd-postorder'); ?> 
+                            <?php _e('Disable custom post order on front pages.', 'rd-postorder'); ?> 
                         </label>
+                        <p class="description"><?php 
+                            _e('This included front or home page.', 'rd-postorder');
+                        ?></p>
                     </td>
                 </tr>
                 <tr>
@@ -54,6 +57,19 @@
                             unset($categories);
                             ?> 
                         </fieldset>
+                        <p class="description"><?php 
+                            _e('This setting affect on both admin and front, or home pages but admin or front pages custom post order must be enabled.', 'rd-postorder');
+                        ?></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php _e('Disable on admin pages', 'rd-postorder'); ?></th>
+                    <td>
+                        <label for="disable_customorder_adminpage">
+                            <input id="disable_customorder_adminpage" type="checkbox" name="disable_customorder_adminpage" value="1"<?php checked((isset($options['disable_customorder_adminpage']) ? $options['disable_customorder_adminpage'] : null), '1'); ?>>
+                            <?php _e('Disable custom post order on admin pages.', 'rd-postorder'); ?> 
+                            <?php _e('Please note that this will not disable on admin re-order posts page.', 'rd-postorder'); ?> 
+                        </label>
                     </td>
                 </tr>
             </tbody>

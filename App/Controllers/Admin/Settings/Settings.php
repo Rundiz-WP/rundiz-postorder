@@ -78,8 +78,9 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\Settings'))
                 }
 
                 $data = [];
-                $data['disable_customorder_frontpage'] = (isset($_POST['disable_customorder_frontpage']) && $_POST['disable_customorder_frontpage'] == '1' ? '1' : null);
+                $data['disable_customorder_frontpage'] = (isset($_POST['disable_customorder_frontpage']) && '1' === $_POST['disable_customorder_frontpage'] ? '1' : null);
                 $data['disable_customorder_categories'] = (isset($_POST['disable_customorder_categories']) && is_array($_POST['disable_customorder_categories']) ? $_POST['disable_customorder_categories'] : []);
+                $data['disable_customorder_adminpage'] = (isset($_POST['disable_customorder_adminpage']) && '1' === $_POST['disable_customorder_adminpage'] ? '1' : null);
                 // validate selected categories.
                 foreach ($data['disable_customorder_categories'] as $index => $eachCategory) {
                     if (!is_numeric($eachCategory)) {

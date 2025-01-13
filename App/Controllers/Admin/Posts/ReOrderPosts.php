@@ -104,7 +104,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
          */
         public function redirectNiceUrl()
         {
-            if (isset($_GET['page']) && $_GET['page'] == static::MENU_SLUG) {
+            if (isset($_GET['page']) && static::MENU_SLUG == $_GET['page']) {
                 // redirect to show nice URL
                 $not_showing_queries = ['_wpnonce', '_wp_http_referer', 'menu_order'];
                 if (is_array($_REQUEST)) {
@@ -116,7 +116,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
                     }// endforeach;
                     unset($name, $value);
 
-                    if (isset($needs_redirect) && $needs_redirect === true) {
+                    if (isset($needs_redirect) && true === $needs_redirect) {
                         $new_url = admin_url('edit.php') . '?';
                         $new_query = [];
                         foreach ($_REQUEST as $name => $value) {

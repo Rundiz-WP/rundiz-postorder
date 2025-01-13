@@ -59,7 +59,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
             $output = '';
 
             if (isset($item->post_date)) {
-                if ($item->post_date == '0000-00-00 00:00:00') {
+                if ('0000-00-00 00:00:00' == $item->post_date) {
                     $t_time = __('Unpublished');
                     $h_time = $t_time;
                     $time_diff = 0;
@@ -79,9 +79,9 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
             }
 
             if (isset($item->post_status)) {
-                if ($item->post_status == 'publish') {
+                if ('publish' == $item->post_status) {
                     $output .= __('Published');
-                } elseif ($item->post_status == 'future') {
+                } elseif ('future' == $item->post_status) {
                     if ($time_diff > 0) {
                         $output .= '<strong class="error-message">' . __('Missed schedule') . '</strong>';
                     } else {
@@ -197,19 +197,19 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
                 $post_states['protected'] = __('Password protected');
             }
             if (isset($item->post_status)) {
-                if ($item->post_status == 'future') {
+                if ('future' == $item->post_status) {
                     $post_states['future'] = __('Scheduled');
                 }
-                if ($item->post_status == 'draft') {
+                if ('draft' == $item->post_status) {
                     $post_states['draft'] = __('Draft');
                 }
-                if ($item->post_status == 'pending') {
+                if ('pending' == $item->post_status) {
                     $post_states['pending'] = __('Pending');
                 }
-                if ($item->post_status == 'private') {
+                if ('private' == $item->post_status) {
                     $post_states['private'] = __('Private');
                 }
-                if ($item->post_status == 'trash') {
+                if ('trash' == $item->post_status) {
                     $post_states['trash'] = __('Trash');
                 }
                 if (is_sticky($item->ID)) {

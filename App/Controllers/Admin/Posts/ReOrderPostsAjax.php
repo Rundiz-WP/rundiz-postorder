@@ -119,7 +119,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                 }
 
                 if (
-                    ($move_to !== 'up' && $move_to !== 'down') ||
+                    ('up' !== $move_to && 'down' !== $move_to) ||
                     empty($postID) ||
                     empty($menu_order) ||
                     empty($paged)
@@ -145,7 +145,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                 unset($Posts);
 
                 // get value of menu_order next to this selected item.
-                if ($move_to === 'up') {
+                if ('up' === $move_to) {
                     $sql = 'SELECT `ID`, `menu_order`, `post_type`, `post_status` FROM `' . $wpdb->posts . '`'
                         . ' WHERE `menu_order` > \'%d\''
                         . ' AND `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
@@ -154,7 +154,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAj
                     $sql = $wpdb->prepare($sql, $menu_order);
                     $Posts = $wpdb->get_row($sql);
                     unset($sql);
-                } elseif ($move_to === 'down') {
+                } elseif ('down' === $move_to) {
                     $sql = 'SELECT `ID`, `menu_order`, `post_type`, `post_status` FROM `' . $wpdb->posts . '`'
                         . ' WHERE `menu_order` < \'%d\''
                         . ' AND `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''

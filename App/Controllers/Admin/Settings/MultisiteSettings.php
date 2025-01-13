@@ -50,7 +50,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\MultisiteSe
                 }
 
                 $resetPostOrders = filter_input(INPUT_POST, 'rd-postorder-remove-order-numbers', FILTER_SANITIZE_NUMBER_INT);
-                if ($resetPostOrders == '1') {
+                if ('1' === strval($resetPostOrders)) {
                     // if setting to remove order numbers (reset post orders).
                     // reset post orders on all site.
                     global $wpdb;

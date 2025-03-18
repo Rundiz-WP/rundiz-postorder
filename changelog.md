@@ -2,6 +2,17 @@
 
 ## Version 1.0.x
 
+### 1.0.5
+2024-12-11
+
+* Update reset/restart numbering all posts order.
+    Use default WordPress front page order including sticky at the top, and all other post statuses.
+
+### 1.0.4
+2024-07-01
+
+* Update priority for hook `pre_get_posts` to be lower (higher number) to let other plugins hook work with this plugin either.
+
 ### 1.0.3
 2022-02-01
 

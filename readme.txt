@@ -2,7 +2,7 @@
 Contributors: okvee
 Tags: posts, order, sort, re-arrange, sortable
 Tested up to: 6.8
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 Requires at least: 4.7.0
@@ -70,17 +70,11 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.0.7 =
+2025-03-18
+
+* Update load text domain to be inside `init` hook.
+
 = 1.0.6 =
 2025-01-13
 * Update alter post query and add new setting to disable custom order on admin pages.
-
-= 1.0.5 =
-2024-12-11
-
-* Update reset/restart numbering all posts order.
-    Use default WordPress front page order including sticky at the top, and all other post statuses.
-
-= 1.0.4 =
-2024-07-01
-
-* Update priority for hook `pre_get_posts` to be lower (higher number) to let other plugins hook work with this plugin either.

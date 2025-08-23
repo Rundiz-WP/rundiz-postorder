@@ -3,6 +3,7 @@
 
 namespace RdPostOrder\App\Controllers\Admin\Posts;
 
+
 if (!class_exists('\\RdPostOrder\\App\\Controlers\\Admin\\Posts\\HookNewPost')) {
     class HookNewPost implements \RdPostOrder\App\Controllers\ControllerInterface
     {

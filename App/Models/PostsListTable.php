@@ -3,6 +3,7 @@
 
 namespace RdPostOrder\App\Models;
 
+
 if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
     /**
      * List data into table.

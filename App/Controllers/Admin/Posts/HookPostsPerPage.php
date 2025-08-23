@@ -1,4 +1,10 @@
 <?php
+/**
+ * Hook to alter posts per page for re-order admin page.
+ * 
+ * @package rd-postoder
+ * @since 1.0.8
+ */
 
 
 namespace RdPostOrder\App\Controllers\Admin\Posts;

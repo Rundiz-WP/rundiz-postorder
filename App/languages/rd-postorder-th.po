@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rundiz PostOrder\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rundiz-postorder\n"
-"POT-Creation-Date: 2025-08-23T23:21:56+07:00\n"
-"PO-Revision-Date: 2025-08-23 23:23+0700\n"
+"POT-Creation-Date: 2025-08-24T01:08:09+07:00\n"
+"PO-Revision-Date: 2025-08-24 01:08+0700\n"
 "Last-Translator: Vee W.\n"
 "Language-Team: \n"
 "Language: th_TH\n"
@@ -20,15 +20,15 @@ msgstr ""
 "X-Poedit-SearchPath-1: ..\n"
 
 #. Plugin Name of the plugin
-#: rd-postorder.php App/Controllers/Admin/Settings/MultisiteSettings.php:23
-#: App/Controllers/Admin/Settings/Settings.php:23
+#: rd-postorder.php App/Controllers/Admin/Settings/MultisiteSettings.php:26
+#: App/Controllers/Admin/Settings/Settings.php:26
 msgid "Rundiz PostOrder"
-msgstr ""
+msgstr "Rundiz PostOrder"
 
 #. Plugin URI of the plugin
 #: rd-postorder.php
 msgid "https://rundiz.com/?p=319"
-msgstr ""
+msgstr "https://rundiz.com/?p=319"
 
 #. Description of the plugin
 #: rd-postorder.php
@@ -38,12 +38,12 @@ msgstr "จัดเรียงโพสต์ตามที่คุณต้
 #. Author of the plugin
 #: rd-postorder.php
 msgid "Vee Winch"
-msgstr ""
+msgstr "Vee Winch"
 
 #. Author URI of the plugin
 #: rd-postorder.php
-msgid "http://rundiz.com"
-msgstr ""
+msgid "https://rundiz.com"
+msgstr "https://rundiz.com"
 
 #: App/Controllers/Admin/Posts/ReOrderPosts.php:30
 msgid "Re-order by dragging"
@@ -79,7 +79,8 @@ msgstr "จัดเรียงโพสต์"
 msgid "Please reload this page and try again."
 msgstr "กรุณาโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:172
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:172 App/Controllers/Admin/Settings/MultisiteSettings.php:145
+#: App/Controllers/Admin/Settings/Settings.php:86
 msgid "Are you sure?"
 msgstr "คุณแน่ใจหรือไม่?"
 
@@ -117,9 +118,18 @@ msgid ""
 "try again."
 msgstr "ไม่สามารถเรียงลำดับโพสต์. ฟอร์ม javascript ไม่ได้ส่งค่าใดๆให้ในการเรียงลำดับ. โปรดโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
 
-#: App/Controllers/Admin/Settings/MultisiteSettings.php:77
+#: App/Controllers/Admin/Settings/MultisiteSettings.php:145
+#: App/Views/admin/Settings/multisiteSettings_v.php:17
+msgid "Warning! This will be affect on all sites."
+msgstr "คำเตือน! นี่จะมีผลกระทบกับเว็บไซต์ทั้งหมด."
+
+#: App/Controllers/Admin/Settings/Traits/SettingsTrait.php:33
 msgid "Post order has been reset successfully."
 msgstr "ลำดับของโพสต์ถูกล้างค่าเรียบร้อยแล้ว."
+
+#: App/Controllers/Admin/Settings/Traits/SettingsTrait.php:53
+msgid "Post order has been reset to zero successfully."
+msgstr "ลำดับของโพสต์ถูกล้างค่าไปเป็นศูนย์เรียบร้อยแล้ว."
 
 #: App/Models/PostsListTable.php:149 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:6
 msgid "Move up"
@@ -216,17 +226,13 @@ msgstr "ตั้งค่า Rundiz PostOrder"
 msgid "This settings page is for manage all sites."
 msgstr "หน้าตั้งค่านี้สำหรับจัดการกับทุกเว็บไซต์."
 
-#: App/Views/admin/Settings/multisiteSettings_v.php:20
-msgid "Remove order numbers"
-msgstr "เอาเลขลำดับออกทั้งหมด"
+#: App/Views/admin/Settings/multisiteSettings_v.php:19 App/Views/admin/Settings/settings_v.php:79
+msgid "Reset post orders to their original value."
+msgstr "ล้างค่าลำดับโพสต์เป็นค่าแรกเริ่ม."
 
-#: App/Views/admin/Settings/multisiteSettings_v.php:24
-msgid "Check this box to remove all post orders number and reset them to its original value."
-msgstr "เช็คที่กล่องนี้เพื่อล้างค่าลำดับโพสต์ทั้งหมดและรีเซ็ตเป็นค่าเดิม."
-
-#: App/Views/admin/Settings/multisiteSettings_v.php:26
-msgid "Warning! This will be affect on all sites."
-msgstr "คำเตือน! นี่จะมีผลกระทบกับเว็บไซต์ทั้งหมด."
+#: App/Views/admin/Settings/multisiteSettings_v.php:20 App/Views/admin/Settings/settings_v.php:80
+msgid "Reset post orders to zero. (WordPress default.)"
+msgstr "ล้างค่าลำดับโพสต์เป็นศูนย์. (ค่าเริ่มต้นของเวิร์ดเพรส.)"
 
 #: App/Views/admin/Settings/settings_v.php:19
 msgid "Disable on front pages"
@@ -265,6 +271,12 @@ msgstr "ปิดการจัดเรียงที่หน้าผู้
 #: App/Views/admin/Settings/settings_v.php:71
 msgid "Please note that this will not disable on admin re-order posts page."
 msgstr "โปรดทราบว่านี่จะไม่ปิดการใช้งานหน้าเรียงลำดับโพสต์สำหรับผู้ดูแล."
+
+#~ msgid "Remove order numbers"
+#~ msgstr "เอาเลขลำดับออกทั้งหมด"
+
+#~ msgid "Check this box to remove all post orders number and reset them to its original value."
+#~ msgstr "เช็คที่กล่องนี้เพื่อล้างค่าลำดับโพสต์ทั้งหมดและรีเซ็ตเป็นค่าเดิม."
 
 #~ msgid ""
 #~ "This included home or front page, category page, tag page, any taxonomy page, single post, single page, "

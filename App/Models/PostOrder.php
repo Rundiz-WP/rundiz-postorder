@@ -153,6 +153,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
          * 
          * This will be use on uninstall or reset all posts order on multi-site admin settings.
          * 
+         * @since 1.0.8 Renamed from `setMenuOrderToZero()`.
          * @global \wpdb $wpdb WordPress DB class.
          */
         public function setMenuOrderToOriginal()
@@ -194,6 +195,48 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
             }
             unset($results);
         }// setMenuOrderToOriginal
+
+
+        /**
+         * Set `menu_order` column on `posts` table to its ZERO.
+         * 
+         * This will be use on admin settings.
+         * 
+         * @since 1.0.8
+         * @global \wpdb $wpdb WordPress DB class.
+         */
+        public function setMenuOrderToZero()
+        {
+          global $wpdb;
+
+          $results = $wpdb->get_results(
+                'SELECT ' . 
+                    '`ID`, ' . 
+                    '`post_date`, ' . 
+                    '`post_name`, ' . 
+                    '`post_status`, ' . 
+                    '`post_type`' . 
+                    ' FROM `' . $wpdb->posts . '`' . 
+                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\'' . 
+                    ' AND `' . $wpdb->posts . '`.`post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')' . 
+                    ' ORDER BY `' . $wpdb->posts . '`.`post_date` ASC',
+                OBJECT
+            );
+
+            if (is_array($results)) {
+                foreach ($results as $row) {
+                    $wpdb->update(
+                        $wpdb->posts,
+                        ['menu_order' => 0],
+                        ['ID' => $row->ID],
+                        ['%d'],
+                        ['%d']
+                    );
+                }// endforeach;
+                unset($row);
+            }
+            unset($results);
+        }// setMenuOrderToZero
 
 
         /**

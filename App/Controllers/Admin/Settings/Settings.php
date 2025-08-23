@@ -14,15 +14,37 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\Settings'))
         use \RdPostOrder\App\AppTrait;
 
 
+        use Traits\SettingsTrait;
+
+
         /**
          * Admin menu.<br>
          * Add sub menus in this method.
          */
         public function adminMenuAction()
         {
-            $hook = add_options_page(__('Rundiz PostOrder', 'rd-postorder'), __('Rundiz PostOrder', 'rd-postorder'), 'manage_options', 'rd-postorder-settings', [$this, 'settingsPageAction']);
-            unset($hook);
+            $hookSuffix = add_options_page(__('Rundiz PostOrder', 'rd-postorder'), __('Rundiz PostOrder', 'rd-postorder'), 'manage_options', 'rd-postorder-settings', [$this, 'settingsPageAction']);
+
+            if (is_string($hookSuffix)) {
+                add_action('load-' . $hookSuffix, [$this, 'callEnqueueHook']);
+            }
+
+            unset($hookSuffix);
         }// adminMenuAction
+
+
+        /**
+         * Allow code/WordPress to call hook `admin_enqueue_scripts` 
+         * then `wp_register_script()`, `wp_localize_script()`, `wp_enqueue_script()` functions will be working fine later.
+         * 
+         * This method was called from `adminMenuAction()` on hook `load-$suffix`.
+         * 
+         * @link https://wordpress.stackexchange.com/a/76420/41315 Original source code.
+         */
+        public function callEnqueueHook()
+        {
+            add_action('admin_enqueue_scripts', [$this, 'registerScripts']);
+        }// callEnqueueHook
 
 
         /**
@@ -34,6 +56,38 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\Settings'))
                 add_action('admin_menu', [$this, 'adminMenuAction']);
             }
         }// registerHooks
+
+
+        /**
+         * Enqueue scripts and styles.
+         */
+        public function registerScripts()
+        {
+            wp_enqueue_style(
+                'rd-postorder-settings-page',
+                plugin_dir_url(RDPOSTORDER_FILE) . 'assets/css/Admin/Settings/settings.css',
+                [],
+                RDPOSTORDER_VERSION
+            );
+
+            wp_register_script(
+                'rd-postorder-settings-page',
+                plugin_dir_url(RDPOSTORDER_FILE) . 'assets/js/Admin/Settings/settings.js',
+                [],
+                RDPOSTORDER_VERSION,
+                [
+                    'in_footer' => true,
+                ]
+            );
+            wp_localize_script(
+                'rd-postorder-settings-page',
+                'RdPostOrderSettingsObj',
+                [
+                    'txtAreYouSure' => __('Are you sure?', 'rd-postorder'),
+                ]
+            );
+            wp_enqueue_script('rd-postorder-settings-page');
+        }// registerScripts
 
 
         /**
@@ -77,23 +131,36 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\Settings'))
                     wp_nonce_ays('-1');
                 }
 
-                $data = [];
-                $data['disable_customorder_frontpage'] = (isset($_POST['disable_customorder_frontpage']) && '1' === $_POST['disable_customorder_frontpage'] ? '1' : null);
-                $data['disable_customorder_categories'] = (isset($_POST['disable_customorder_categories']) && is_array($_POST['disable_customorder_categories']) ? $_POST['disable_customorder_categories'] : []);
-                $data['disable_customorder_adminpage'] = (isset($_POST['disable_customorder_adminpage']) && '1' === $_POST['disable_customorder_adminpage'] ? '1' : null);
-                // validate selected categories.
-                foreach ($data['disable_customorder_categories'] as $index => $eachCategory) {
-                    if (!is_numeric($eachCategory)) {
-                        unset($data['disable_customorder_categories'][$index]);
-                    }
-                }// endforeach;
-                unset($eachCategory, $index);
+                $btnAct = sanitize_text_field(wp_unslash(filter_input(INPUT_POST, 'btn-act')));
+                if ('reset-menu-order-to-original' === $btnAct) {
+                    $resetResult = $this->resetPostOrdersToOriginal();
+                    $output = array_merge($output, $resetResult);
+                    unset($resetResult);
+                } elseif ('reset-menu-order-to-zero' === $btnAct) {
+                    $resetResult = $this->resetPostOrdersToZero();
+                    $output = array_merge($output, $resetResult);
+                    unset($resetResult);
+                } else {
+                    // normal save form process. --------------------------------------
+                    $data = [];
+                    $data['disable_customorder_frontpage'] = (isset($_POST['disable_customorder_frontpage']) && '1' === $_POST['disable_customorder_frontpage'] ? '1' : null);
+                    $data['disable_customorder_categories'] = (isset($_POST['disable_customorder_categories']) && is_array($_POST['disable_customorder_categories']) ? $_POST['disable_customorder_categories'] : []);
+                    $data['disable_customorder_adminpage'] = (isset($_POST['disable_customorder_adminpage']) && '1' === $_POST['disable_customorder_adminpage'] ? '1' : null);
+                    // validate selected categories.
+                    foreach ($data['disable_customorder_categories'] as $index => $eachCategory) {
+                        if (!is_numeric($eachCategory)) {
+                            unset($data['disable_customorder_categories'][$index]);
+                        }
+                    }// endforeach;
+                    unset($eachCategory, $index);
 
-                update_option($this->main_option_name, $data);
+                    update_option($this->main_option_name, $data);
 
-                $output['form_result_class'] = 'notice-success';
-                $output['form_result_msg'] =  __('Settings saved.');
-            }
+                    $output['form_result_class'] = 'notice-success';
+                    $output['form_result_msg'] =  __('Settings saved.');
+                }// endif; `btn-act`.
+                unset($btnAct);
+            }// endif; method POST.
 
             // get all options
             $output['options'] = get_option($this->main_option_name);

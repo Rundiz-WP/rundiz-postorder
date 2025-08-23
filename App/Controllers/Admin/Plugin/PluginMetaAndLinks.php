@@ -50,33 +50,30 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMetaAnd
             add_filter('plugin_action_links_' . plugin_basename(RDPOSTORDER_FILE), [$this, 'actionLinks'], 10, 4);
             add_filter('network_admin_plugin_action_links_' . plugin_basename(RDPOSTORDER_FILE), [$this, 'actionLinks'], 10, 4);
             // add filter to row meta. (in plugin page below description) Version xx | By xxx | View details | xxxRowMetaxxx | xxxRowMetaxxx
-            add_filter('plugin_row_meta', [$this, 'rowMeta'], 10, 2);
+            add_filter('plugin_row_meta', [$this, 'rowMeta'], 10, 4);
         }// registerHooks
 
 
         /**
          * add links to row meta that is in plugin page under plugin description.
          * 
+         * @link https://developer.wordpress.org/reference/hooks/plugin_row_meta/ Document.
          * @staticvar string $plugin the plugin file name.
-         * @param array $links current meta links
-         * @param string $file the plugin file name for checking.
+         * @param array $plugin_meta An array of the plugin’s metadata, including the version, author, author URI, and plugin URI.
+         * @param string $plugin_file Path to the plugin file relative to the plugins directory.
+         * @param array $plugin_data An array of plugin data.
+         * @param string $status Status filter currently applied to the plugin list.
          * @return array return modified links.
          */
-        public function rowMeta($links, $file)
+        public function rowMeta(array $plugin_meta, $plugin_file, array $plugin_data, $status)
         {
-            static $plugin;
-
-            if (!isset($plugin)) {
-                $plugin = plugin_basename(RDPOSTORDER_FILE);
+            if (plugin_basename(RDPOSTORDER_FILE) === $plugin_file) {
+                // $prepend_meta[] = 'prepend';
+                // $plugin_meta = array_merge($prepend_meta, $plugin_meta);
+                // unset($prepend_meta);
             }
 
-            if ($plugin === $file) {
-                //$new_link[] = '<a href="" target=""></a>';
-                //$links = array_merge($links, $new_link);
-                //unset($new_link);
-            }
-
-            return $links;
+            return $plugin_meta;
         }// rowMeta
 
 

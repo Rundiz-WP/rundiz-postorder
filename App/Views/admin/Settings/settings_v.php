@@ -75,5 +75,9 @@
             </tbody>
         </table>
         <?php submit_button(); ?> 
+        <p>
+            <button class="button button-danger" type="submit" name="btn-act" value="reset-menu-order-to-original"><?php _e('Reset post orders to their original value.', 'rd-postorder'); ?></button>
+            <button class="button button-danger" type="submit" name="btn-act" value="reset-menu-order-to-zero"><?php _e('Reset post orders to zero. (WordPress default.)', 'rd-postorder'); ?></button>
+        </p>
     </form>
 </div>

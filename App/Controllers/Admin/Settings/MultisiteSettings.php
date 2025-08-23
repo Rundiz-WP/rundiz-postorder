@@ -15,13 +15,36 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\MultisiteSe
         use \RdPostOrder\App\AppTrait;
 
 
+        use Traits\SettingsTrait;
+
+
         /**
          * Add menu to network admin page.
          */
         public function adminMenuAction()
         {
-            add_submenu_page('settings.php', __('Rundiz PostOrder', 'rd-postorder'), __('Rundiz PostOrder', 'rd-postorder'), 'manage_network_plugins', 'rd-postorder-networksettings', [$this, 'networkSettingsPageAction'], 10);
+            $hookSuffix = add_submenu_page('settings.php', __('Rundiz PostOrder', 'rd-postorder'), __('Rundiz PostOrder', 'rd-postorder'), 'manage_network_plugins', 'rd-postorder-networksettings', [$this, 'networkSettingsPageAction'], 10);
+
+            if (is_string($hookSuffix)) {
+                add_action('load-' . $hookSuffix, [$this, 'callEnqueueHook']);
+            }
+
+            unset($hookSuffix);
         }// adminMenuAction
+
+
+        /**
+         * Allow code/WordPress to call hook `admin_enqueue_scripts` 
+         * then `wp_register_script()`, `wp_localize_script()`, `wp_enqueue_script()` functions will be working fine later.
+         * 
+         * This method was called from `adminMenuAction()` on hook `load-$suffix`.
+         * 
+         * @link https://wordpress.stackexchange.com/a/76420/41315 Original source code.
+         */
+        public function callEnqueueHook()
+        {
+            add_action('admin_enqueue_scripts', [$this, 'registerScripts']);
+        }// callEnqueueHook
 
 
         /**
@@ -49,37 +72,32 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\MultisiteSe
                     wp_nonce_ays('-1');
                 }
 
-                $resetPostOrders = filter_input(INPUT_POST, 'rd-postorder-remove-order-numbers', FILTER_SANITIZE_NUMBER_INT);
-                if ('1' === strval($resetPostOrders)) {
-                    // if setting to remove order numbers (reset post orders).
-                    // reset post orders on all site.
-                    global $wpdb;
+                global $wpdb;
+                $btnAct = sanitize_text_field(wp_unslash(filter_input(INPUT_POST, 'btn-act')));
+                $blog_ids = $wpdb->get_col('SELECT blog_id FROM '.$wpdb->blogs);
+                $original_blog_id = get_current_blog_id();
 
-                    $blog_ids = $wpdb->get_col('SELECT blog_id FROM '.$wpdb->blogs);
-                    $original_blog_id = get_current_blog_id();
+                if (is_array($blog_ids)) {
+                    foreach ($blog_ids as $blog_id) {
+                        switch_to_blog($blog_id);
+                        if ('reset-menu-order-to-original' === $btnAct) {
+                            $resetResult = $this->resetPostOrdersToOriginal();
+                            $output = array_merge($output, $resetResult);
+                            unset($resetResult);
+                        } elseif ('reset-menu-order-to-zero' === $btnAct) {
+                            $resetResult = $this->resetPostOrdersToZero();
+                            $output = array_merge($output, $resetResult);
+                            unset($resetResult);
+                        }// endif; `btn-act`.
+                    }// endforeach;
+                    unset($blog_id);
+                }// endif; $blog_ids
 
-                    if (is_array($blog_ids)) {
-                        // loop thru each sites to do activate action.
-                        $PostOrder = new \RdPostOrder\App\Models\PostOrder();
-                        foreach ($blog_ids as $blog_id) {
-                            switch_to_blog($blog_id);
-                            // reset post order.
-                            $PostOrder->setMenuOrderToOriginal();
-                            // delete post meta that this plugin use to store its original value.
-                            delete_post_meta_by_key(\RdPostOrder\App\Models\PostOrder::POST_META_ORIG_MENUORDER_NAME);
-                        }// endforeach;
-                        unset($PostOrder);
-                    }
-
-                    // switch back to current site.
-                    switch_to_blog($original_blog_id);
-                    unset($blog_id, $blog_ids, $original_blog_id);
-
-                    $output['form_result_class'] = 'notice-success';
-                    $output['form_result_msg'] =  __('Post order has been reset successfully.', 'rd-postorder');
-                }// endif reset post order.
-                unset($resetPostOrders);
-            }
+                unset($btnAct);
+                // switch back to current site.
+                switch_to_blog($original_blog_id);
+                unset($blog_ids, $original_blog_id);
+            }// endif; method POST.
 
             // get all options
             $output['options'] = get_option($this->main_option_name);
@@ -97,6 +115,38 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\MultisiteSe
         {
             add_action('network_admin_menu', [$this, 'adminMenuAction']);
         }// registerHooks
+
+
+        /**
+         * Enqueue scripts and styles.
+         */
+        public function registerScripts()
+        {
+            wp_enqueue_style(
+                'rd-postorder-settings-page',
+                plugin_dir_url(RDPOSTORDER_FILE) . 'assets/css/Admin/Settings/settings.css',
+                [],
+                RDPOSTORDER_VERSION
+            );
+
+            wp_register_script(
+                'rd-postorder-settings-page',
+                plugin_dir_url(RDPOSTORDER_FILE) . 'assets/js/Admin/Settings/settings.js',
+                [],
+                RDPOSTORDER_VERSION,
+                [
+                    'in_footer' => true,
+                ]
+            );
+            wp_localize_script(
+                'rd-postorder-settings-page',
+                'RdPostOrderSettingsObj',
+                [
+                    'txtAreYouSure' => __('Are you sure?', 'rd-postorder') . "\n" . __('Warning! This will be affect on all sites.', 'rd-postorder'),
+                ]
+            );
+            wp_enqueue_script('rd-postorder-settings-page');
+        }// registerScripts
 
 
     }

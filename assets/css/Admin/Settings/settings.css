@@ -1,0 +1,25 @@
+
+
+.button.button-danger {
+    background-color: #dc3232;
+    border-color: #dc3232;
+    color: #fff;
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.button.button-danger:hover,
+.button.button-danger:focus {
+    background-color: #c82333;
+    border-color: #c82333;
+    color: #fff;
+}
+
+.txt-white-box {
+    background-color: #fff;
+    padding: 2px 3px;
+}
+.txt-danger {
+    color: #f00;
+}

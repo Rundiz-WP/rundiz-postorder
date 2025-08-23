@@ -2,16 +2,16 @@
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: Rundiz PostOrder 1.0.6dev-20250113\n"
+"Project-Id-Version: Rundiz PostOrder 1.0.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rundiz-postorder\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-13T21:50:29+07:00\n"
+"POT-Creation-Date: 2025-08-23T23:21:56+07:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0-alpha-7bd887a\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: rd-postorder\n"
 
 #. Plugin Name of the plugin
@@ -41,32 +41,32 @@ msgstr ""
 msgid "http://rundiz.com"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:29
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:30
 msgid "Re-order by dragging"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:34
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:35
 msgid "Re-order over next/previous pages"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:39
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:40
 msgid "Manually change order number"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:44
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:45
 msgid "Re-number and reset"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:49
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:50
 msgid "Please note that sticky post can be re-order here but the results will remain on top on the front untill it is unstick."
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:61
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:62
 #: App/Views/admin/Posts/reOrderPosts_listPostsAction_v.php:2
 msgid "Re-order posts"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:168
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:169
 #: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:34
 #: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:102
 #: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:245
@@ -75,15 +75,15 @@ msgstr ""
 msgid "Please reload this page and try again."
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:171
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:172
 msgid "Are you sure?"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:172
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:173
 msgid "Are you sure to doing this? (This may slow down your server if you have too many posts.)"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:174
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:175
 msgid "The previous XHR is currently working, please wait few seconds and try again."
 msgstr ""
 
@@ -113,37 +113,38 @@ msgstr ""
 msgid "Post order has been reset successfully."
 msgstr ""
 
-#: App/Models/PostsListTable.php:148
+#: App/Models/PostsListTable.php:149
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:6
 msgid "Move up"
 msgstr ""
 
-#: App/Models/PostsListTable.php:149
+#: App/Models/PostsListTable.php:150
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:7
 msgid "Move down"
 msgstr ""
 
-#: App/Models/PostsListTable.php:257
+#: App/Models/PostsListTable.php:258
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:6
 msgid "Re-number all posts"
 msgstr ""
 
-#: App/Models/PostsListTable.php:258
+#: App/Models/PostsListTable.php:259
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:14
 msgid "Reset all order"
 msgstr ""
 
-#: App/Models/PostsListTable.php:259
+#: App/Models/PostsListTable.php:260
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:10
 msgid "Save all changes on order numbers"
 msgstr ""
 
-#: App/Models/PostsListTable.php:277
+#: App/Models/PostsListTable.php:278
 msgid "Order"
 msgstr ""
 
 #. translators: %1$s: The re-order icon.
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_01.php:4
+#, php-format
 msgid "Put your cursor on the row you want to re-order and drag at the up/down icon (%1$s)."
 msgstr ""
 
@@ -153,11 +154,13 @@ msgstr ""
 
 #. translators: %1$s Esc keyboard.
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_01.php:11
+#, php-format
 msgid "To cancel re-order while dragging, please press %1$s on your keyboard."
 msgstr ""
 
 #. translators: %1$s Move up command; %2$s Move down command.
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:5
+#, php-format
 msgid "To re-order a post over next or previous pages, move your cursor on the row you want to re-order and click on %1$s or %2$s."
 msgstr ""
 
@@ -175,16 +178,19 @@ msgstr ""
 
 #. translators: %1$s The word save all changes on order numbers on select action; %2$s Apply text on button.
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:9
+#, php-format
 msgid "Once you okay with those numbers, please select %1$s from bulk actions and click %2$s."
 msgstr ""
 
 #. translators: %1$s re-number all posts text.
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:5
+#, php-format
 msgid "The %1$s action will be re-arrange numbers respectively on all posts in current listing order."
 msgstr ""
 
 #. translators: %1$s reset all order
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:13
+#, php-format
 msgid "The %1$s action will be reset the number on all posts order by date. It is the default order by WordPress core."
 msgstr ""
 
@@ -202,7 +208,7 @@ msgid "Remove order numbers"
 msgstr ""
 
 #: App/Views/admin/Settings/multisiteSettings_v.php:24
-msgid "Check this box to remove all post orders number and reset them to zero."
+msgid "Check this box to remove all post orders number and reset them to its original value."
 msgstr ""
 
 #: App/Views/admin/Settings/multisiteSettings_v.php:26

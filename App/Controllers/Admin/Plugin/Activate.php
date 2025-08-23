@@ -25,7 +25,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate')) {
 
             \RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder activateAction() method was called.');
 
-            if (is_multisite()) {
+            if (is_multisite() && is_network_admin()) {
+                // if multi site enabled and activate plugin from network admin page (using Network Activate).
                 $blog_ids = $wpdb->get_col('SELECT blog_id FROM '.$wpdb->blogs);
                 $original_blog_id = get_current_blog_id();
 

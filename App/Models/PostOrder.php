@@ -16,6 +16,12 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
 
 
         /**
+         * @var string Original menu order value in post meta name to keep its original value safe.
+         */
+        const POST_META_ORIG_MENUORDER_NAME = '_rd-postorder-original-menu-order';
+
+
+        /**
          * @var string Working on post type.
          */
         const POST_TYPE = 'post';
@@ -109,6 +115,12 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
             $i_count = count($allPosts);
             $updated = 0;
             foreach ($allPosts as $row) {
+                $originalMenuOrderVal = get_post_meta($row->ID, static::POST_META_ORIG_MENUORDER_NAME, true);
+                if ('' === $originalMenuOrderVal || is_null($originalMenuOrderVal) || false === $originalMenuOrderVal) {
+                    // if never saved before.
+                    update_post_meta($row->ID, static::POST_META_ORIG_MENUORDER_NAME, intval($row->menu_order));
+                }
+
                 if (
                     (
                         true === $updateOnlyMenuOrderZero && '0' === strval($row->menu_order)
@@ -128,7 +140,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
                 }// endif; update only menu order is 0.
                 --$i_count;
             }// endforeach; all posts
-            unset($i_count, $row);
+            unset($i_count, $originalMenuOrderVal, $row);
             unset($allPosts);
 
             return $updated;
@@ -136,13 +148,14 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
 
 
         /**
-         * Set `menu_order` column on `posts` table to zero (its default value).
+         * Set `menu_order` column on `posts` table to its original value.<br>
+         * If original value is not exists then use zero.
          * 
          * This will be use on uninstall or reset all posts order on multi-site admin settings.
          * 
          * @global \wpdb $wpdb WordPress DB class.
          */
-        public function setMenuOrderToZero()
+        public function setMenuOrderToOriginal()
         {
           global $wpdb;
 
@@ -162,18 +175,25 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
 
             if (is_array($results)) {
                 foreach ($results as $row) {
+                    $originalMenuOrderValue = get_post_meta($row->ID, static::POST_META_ORIG_MENUORDER_NAME, true);
+                    if (is_string($originalMenuOrderValue) || is_int($originalMenuOrderValue) || is_float($originalMenuOrderValue)) {
+                        $originalMenuOrderValue = intval($originalMenuOrderValue);
+                    } else {
+                        $originalMenuOrderValue = 0;
+                    }
+
                     $wpdb->update(
                         $wpdb->posts,
-                        ['menu_order' => 0],
+                        ['menu_order' => $originalMenuOrderValue],
                         ['ID' => $row->ID],
                         ['%d'],
                         ['%d']
                     );
                 }// endforeach;
-                unset($row);
+                unset($originalMenuOrderValue, $row);
             }
             unset($results);
-        }// setMenuOrderToZero
+        }// setMenuOrderToOriginal
 
 
         /**

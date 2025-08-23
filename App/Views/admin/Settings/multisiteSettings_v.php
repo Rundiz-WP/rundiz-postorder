@@ -21,7 +21,7 @@
                     <td>
                         <label>
                             <input id="rd-postorder-remove-order-numbers" type="checkbox" name="rd-postorder-remove-order-numbers" value="1">
-                            <?php _e('Check this box to remove all post orders number and reset them to zero.', 'rd-postorder'); ?> 
+                            <?php _e('Check this box to remove all post orders number and reset them to its original value.', 'rd-postorder'); ?> 
                         </label>
                         <p style="background-color: #fff; color: #f00; padding: 2px 3px;"><?php _e('Warning! This will be affect on all sites.', 'rd-postorder'); ?></p>
                     </td>

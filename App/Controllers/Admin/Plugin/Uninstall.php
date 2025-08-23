@@ -37,8 +37,11 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Uninstall')) 
 
             // reset order number in `posts` table.
             $PostOrder = new \RdPostOrder\App\Models\PostOrder();
-            $PostOrder->setMenuOrderToZero();
+            $PostOrder->setMenuOrderToOriginal();
             unset($PostOrder);
+
+            // delete post meta that this plugin use to store its original value.
+            delete_post_meta_by_key(\RdPostOrder\App\Models\PostOrder::POST_META_ORIG_MENUORDER_NAME);
 
             // remove option related to this plugin.
             delete_option($this->main_option_name);

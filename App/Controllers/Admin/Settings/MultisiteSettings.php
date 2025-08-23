@@ -64,7 +64,9 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\MultisiteSe
                         foreach ($blog_ids as $blog_id) {
                             switch_to_blog($blog_id);
                             // reset post order.
-                            $PostOrder->setMenuOrderToZero();
+                            $PostOrder->setMenuOrderToOriginal();
+                            // delete post meta that this plugin use to store its original value.
+                            delete_post_meta_by_key(\RdPostOrder\App\Models\PostOrder::POST_META_ORIG_MENUORDER_NAME);
                         }// endforeach;
                         unset($PostOrder);
                     }

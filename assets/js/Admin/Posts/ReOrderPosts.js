@@ -24,6 +24,7 @@ class RdPostOrderReOrder {
         this.#listenClickExpandCollapseTableRow();
         this.#listenClickReOrderPerItem();
 
+        this.#listenKeyEnterOnMenuOrder();
         this.#listenKeyEnterOnPageNumberInputResetBulkActions();
         this.#listenKeyEscCancelSortable();
 
@@ -187,7 +188,7 @@ class RdPostOrderReOrder {
     /**
      * Re-order posts by drag & drop.
      * 
-     * This method was a callback from `#enablePostSortable()`.
+     * This method was called from `#enablePostSortable()`.
      * 
      * @since 1.0.9 Renamed from `ajaxUpdateSortItems()`.
      * @param {string} sorted_items_serialize_values Serialized sortable values created by jQuery UI.
@@ -831,8 +832,36 @@ class RdPostOrderReOrder {
 
 
     /**
+     * Listen enter key press on menu order input.
+     * 
+     * This method was called from `constructor()`.
+     * 
+     * @returns {undefined}
+     */
+    #listenKeyEnterOnMenuOrder() {
+        document.addEventListener('keydown', (event) => {
+            if (event.key.toLowerCase() === 'enter') {
+                const thisTarget = event.currentTarget.activeElement;
+                if (thisTarget.classList.contains('menu_order_value')) {
+                    // if current enter element is menu order input.
+                    event.preventDefault();
+
+                    if (RdPostOrderObj.debug === 'true') {
+                        console.debug('[rundiz postorder]: User press enter on menu order input field. Prevented default.');
+                    }
+
+                    alert(RdPostOrderObj.txtPleaseSelectSaveAllChanges);
+                }
+            }// endif; key down is enter.
+        });
+    }// #listenKeyEnterOnMenuOrder
+
+
+    /**
      * Listen enter key press on current page input.<br>
      * This will be reset all select bulk actions to beginning because it is going to next/previous page, not submit action.
+     * 
+     * This method was called from `constructor()`.
      * 
      * @since 1.0.9 Renamed from `listenEnterKeyPressOnPageNumberInput()`.
      * @returns {undefined}
@@ -859,6 +888,8 @@ class RdPostOrderReOrder {
 
     /**
      * Listen escape key press to cancel sortable.
+     * 
+     * This method was called from `constructor()`.
      * 
      * @since 1.0.9 Renamed from `listenEscKeyPress()`.
      * @see `#enablePostSortable()` for more details about why not to use `.sortable('cancel')`.

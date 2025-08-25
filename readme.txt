@@ -2,7 +2,7 @@
 Contributors: okvee
 Tags: posts, order, sort, re-arrange, sortable
 Tested up to: 6.9
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 Requires at least: 4.7.0
@@ -70,6 +70,12 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.0.9 =
+2025-08-xx
+
+* Fix re-order AJAX return incorrect number of table rows.
+* Update prevent enter key on post order number field.
+
 = 1.0.8 =
 2025-08-24
 

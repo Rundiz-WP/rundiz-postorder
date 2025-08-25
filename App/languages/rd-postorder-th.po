@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rundiz PostOrder\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rundiz-postorder\n"
-"POT-Creation-Date: 2025-08-25T18:31:37+07:00\n"
-"PO-Revision-Date: 2025-08-25 18:31+0700\n"
+"POT-Creation-Date: 2025-08-25T18:44:32+07:00\n"
+"PO-Revision-Date: 2025-08-25 18:45+0700\n"
 "Last-Translator: Vee W.\n"
 "Language-Team: \n"
 "Language: th_TH\n"
@@ -47,7 +47,7 @@ msgstr "https://rundiz.com"
 
 #: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:36 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:104
 #: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:247 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:352
-#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:404 App/Controllers/Admin/Posts/ReOrderPosts.php:184
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:404 App/Controllers/Admin/Posts/ReOrderPosts.php:185
 msgid "Please reload this page and try again."
 msgstr "กรุณาโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
 
@@ -115,6 +115,10 @@ msgid "Are you sure to doing this? (This may slow down your server if you have t
 msgstr "คุณแน่ใจหรือไม่ที่จะทำสิ่งนี้? (นี่อาจทำให้เซิร์ฟเวอร์ของคุณทำงานช้าลงถ้าคุณมีโพสต์จำนวนมาก.)"
 
 #: App/Controllers/Admin/Posts/ReOrderPosts.php:183
+msgid "Please select save all changes and then press apply button."
+msgstr "กรุณาเลือกบันทึกการเปลี่ยนแปลงตัวเลขทั้งหมด แล้วกดปุ่มนำไปใช้."
+
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:184
 msgid "The previous XHR is currently working, please wait few seconds and try again."
 msgstr "XHR ก่อนหน้านี้กำลังทำงาน, โปรดรอสักไม่กี่วินาทีแล้วลองอีกครั้ง."
 

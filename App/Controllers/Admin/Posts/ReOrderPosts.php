@@ -180,6 +180,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
                     'txtConfirm' => __('Are you sure?', 'rd-postorder'),
                     'txtConfirmReorderAll' => __('Are you sure to doing this? (This may slow down your server if you have too many posts.)', 'rd-postorder'),
                     'txtDismissNotice' => __('Dismiss this notice.'),
+                    'txtPleaseSelectSaveAllChanges' => __('Please select save all changes and then press apply button.', 'rd-postorder'),
                     'txtPreviousXhrWorking' => __('The previous XHR is currently working, please wait few seconds and try again.', 'rd-postorder'),
                     'txtReloadPageTryAgain' => __('Please reload this page and try again.', 'rd-postorder'),
                 ]

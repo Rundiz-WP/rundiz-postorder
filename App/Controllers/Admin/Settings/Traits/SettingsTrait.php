@@ -2,7 +2,7 @@
 /**
  * Settings trait.
  * 
- * @package rd-postorder
+ * @package rundiz-postorder
  * @since 1.0.8
  */
 

@@ -2,7 +2,7 @@
 /**
  * Hook to alter posts per page for re-order admin page.
  * 
- * @package rd-postoder
+ * @package rundiz-postorder
  * @since 1.0.8
  */
 

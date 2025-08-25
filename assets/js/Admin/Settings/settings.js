@@ -1,7 +1,7 @@
 /**
  * Settings JS for Admin > Settings > Rundiz Post Order settings page.
  * 
- * @package rd-postorder
+ * @package rundiz-postorder
  * @since 1.0.8
  */
 

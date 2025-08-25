@@ -2,14 +2,14 @@
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: Rundiz PostOrder 1.0.7\n"
+"Project-Id-Version: Rundiz PostOrder 1.0.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rundiz-postorder\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-24T01:08:09+07:00\n"
+"POT-Creation-Date: 2025-08-25T18:31:37+07:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: rd-postorder\n"
@@ -41,6 +41,37 @@ msgstr ""
 msgid "https://rundiz.com"
 msgstr ""
 
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:36
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:104
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:247
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:352
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:404
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:184
+msgid "Please reload this page and try again."
+msgstr ""
+
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:63
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:201
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:321
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:364
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:434
+msgid "Update completed"
+msgstr ""
+
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:118
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:261
+msgid "Error! Unable to re-order the posts due the the currently order number is incorrect. Please click on &quot;Re-number all posts&quot; button to re-number all the posts."
+msgstr ""
+
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:130
+msgid "Unable to re-order the post. The js form did not send required data to re-order. Please reload the page and try again."
+msgstr ""
+
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:268
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:416
+msgid "Unable to re-order the posts. The js form did not send any data to re-order. Please reload the page and try again."
+msgstr ""
+
 #: App/Controllers/Admin/Posts/ReOrderPosts.php:30
 msgid "Re-order by dragging"
 msgstr ""
@@ -66,49 +97,18 @@ msgstr ""
 msgid "Re-order posts"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:169
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:34
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:102
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:245
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:350
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:402
-msgid "Please reload this page and try again."
-msgstr ""
-
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:172
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:180
 #: App/Controllers/Admin/Settings/MultisiteSettings.php:145
 #: App/Controllers/Admin/Settings/Settings.php:86
 msgid "Are you sure?"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:173
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:181
 msgid "Are you sure to doing this? (This may slow down your server if you have too many posts.)"
 msgstr ""
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:175
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:183
 msgid "The previous XHR is currently working, please wait few seconds and try again."
-msgstr ""
-
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:61
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:199
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:319
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:362
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:432
-msgid "Update completed"
-msgstr ""
-
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:116
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:259
-msgid "Error! Unable to re-order the posts due the the currently order number is incorrect. Please click on &quot;Re-number all posts&quot; button to re-number all the posts."
-msgstr ""
-
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:128
-msgid "Unable to re-order the post. The js form did not send required data to re-order. Please reload the page and try again."
-msgstr ""
-
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:266
-#: App/Controllers/Admin/Posts/ReOrderPostsAjax.php:414
-msgid "Unable to re-order the posts. The js form did not send any data to re-order. Please reload the page and try again."
 msgstr ""
 
 #: App/Controllers/Admin/Settings/MultisiteSettings.php:145
@@ -124,33 +124,33 @@ msgstr ""
 msgid "Post order has been reset to zero successfully."
 msgstr ""
 
-#: App/Models/PostsListTable.php:149
-#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:6
-msgid "Move up"
-msgstr ""
-
-#: App/Models/PostsListTable.php:150
-#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:7
-msgid "Move down"
-msgstr ""
-
-#: App/Models/PostsListTable.php:258
+#: App/Models/PostsListTable.php:239
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:6
 msgid "Re-number all posts"
 msgstr ""
 
-#: App/Models/PostsListTable.php:259
+#: App/Models/PostsListTable.php:240
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:14
 msgid "Reset all order"
 msgstr ""
 
-#: App/Models/PostsListTable.php:260
+#: App/Models/PostsListTable.php:241
 #: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:10
 msgid "Save all changes on order numbers"
 msgstr ""
 
-#: App/Models/PostsListTable.php:278
+#: App/Models/PostsListTable.php:259
 msgid "Order"
+msgstr ""
+
+#: App/Models/PostsListTable.php:295
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:6
+msgid "Move up"
+msgstr ""
+
+#: App/Models/PostsListTable.php:300
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:7
+msgid "Move down"
 msgstr ""
 
 #. translators: %1$s: The re-order icon.

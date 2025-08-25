@@ -145,13 +145,6 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
                     . '</a>'
                     . $this->columnTitleDisplayPostStatus($item)
                     . '</strong>';
-            $output .= '<div class="row-actions">'
-                    . '<a href="#move-up,' . $item->ID . '" onclick="return RdPostOrderReOrder.ajaxReOrder(\'up\', \'' . $item->ID . '\');"><i class="fa fa-sort-asc fa-fw"></i> ' . __('Move up', 'rd-postorder') . '</a>'
-                    . ' | <a href="#move-down,' . $item->ID . '" onclick="return RdPostOrderReOrder.ajaxReOrder(\'down\', \'' . $item->ID . '\');"><i class="fa fa-sort-desc fa-fw"></i> ' . __('Move down', 'rd-postorder') . '</a>'
-                    . ' | <a href="' . admin_url('post.php?post=' . $item->ID . '&amp;action=edit') . '">' . __('Edit') . '</a>'
-                    . ' | <a href="' . home_url('?p=' . $item->ID) . '">' . __('View') . '</a>'
-                    ;
-            $output .= '</div>';
             return $output;
         }// column_title
 
@@ -236,18 +229,6 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
 
 
         /**
-         * Display buttons at bulk actions position.
-         * 
-         * @param strnig $which
-         */
-        /*protected function bulk_actions($which = '')
-        {
-            echo '<a class="button re-number-all" onclick="return ajaxReNumberAll();" title="' . __('Click on this button to re-number all the posts in current listing order.', 'rd-postorder') . '"><i class="fa fa-sort-numeric-desc"></i> ' . __('Re-number all posts', 'rd-postorder') . '</a>';
-            echo ' <a class="button reset-all-posts" onclick="return ajaxResetAllPostsOrder();" title="' . __('Click on this button to reset all the posts order by date.', 'rd-postorder') . '"><i class="fa fa-refresh"></i> ' . __('Reset all order', 'rd-postorder') . '</a>';
-        }// bulk_actions*/
-
-
-        /**
          * Get bulk actions.
          * 
          * @return array
@@ -291,6 +272,61 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
         {
             return array('widefat', 'fixed', 'striped', 'post-reorder-table');
         }// get_table_classes
+
+
+        /**
+         * {@inheritDoc}
+         * 
+         * @since 1.0.9 Move row actions from inside `column_title()` to here.
+         */
+        protected function handle_row_actions($item, $column_name, $primary)
+        {
+            if ($primary !== $column_name) {
+                return '';
+            }
+
+            $title = _draft_or_post_title();
+            $post_type_object = get_post_type_object($item->post_type);
+            $actions = [];
+
+            $actions['moveup'] = '<a class="rd-postorder-reorder-action-per-item" href="#move-up,' . $item->ID . '" 
+                    data-rd-postorder-action="up" 
+                >'
+                . '<i class="fa fa-sort-asc fa-fw"></i> ' . __('Move up', 'rd-postorder') 
+                . '</a>';
+            $actions['movedown'] = '<a class="rd-postorder-reorder-action-per-item" href="#move-down,' . $item->ID . '" 
+                    data-rd-postorder-action="down" 
+                >'
+                . '<i class="fa fa-sort-desc fa-fw"></i> ' . __('Move down', 'rd-postorder')
+                . '</a>';
+
+            if (current_user_can('edit_post', $item->ID) && 'trash' !== $item->post_status) {
+                // edit link copied from wp-admin/includes/class-wp-posts-list-table.php
+                $actions['edit'] = sprintf(
+                    '<a href="%s" aria-label="%s">%s</a>',
+                    get_edit_post_link($item->ID),
+                    /* translators: %s: Post title. */
+                    esc_attr(sprintf(__('Edit &#8220;%s&#8221;'), $title)),
+                    __('Edit')
+                );
+            }
+
+            if (is_post_type_viewable($post_type_object)) {
+                if ('trash' !== $item->post_status) {
+                    // view link copied from wp-admin/includes/class-wp-posts-list-table.php
+                    $actions['view'] = sprintf(
+                            '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
+                            get_permalink($item->ID),
+                            /* translators: %s: Post title. */
+                            esc_attr(sprintf(__('View &#8220;%s&#8221;'), $title)),
+                            __('View')
+                    );
+                }
+            }
+
+            unset($post_type_object, $title);
+            return $this->row_actions($actions);
+        }// handle_row_actions
 
 
         /**
@@ -367,7 +403,11 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
          */
         public function single_row($item)
         {
-            echo '<tr id="postID-' . $item->ID . '" class="post-' . $item->ID . ' menu_order-' . $item->menu_order . ' post-item-row">';
+            echo '<tr id="postID-' . $item->ID . '" 
+                class="post-' . $item->ID . ' menu_order-' . $item->menu_order . ' post-item-row" 
+                data-rd-postorder-post-id="' . $item->ID . '" 
+                data-rd-postorder-menu-order="' . $item->menu_order . '"
+            >';
             $this->single_row_columns($item);
             echo '</tr>';
         }// single_row

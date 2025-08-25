@@ -152,27 +152,36 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
          */
         public function registerScripts()
         {
-            $pluginData = get_plugin_data(RDPOSTORDER_FILE);
-            $pluginVersion = (isset($pluginData['Version']) ? $pluginData['Version'] : false);
-            unset($pluginData);
-
             // to name font awesome handle as `plugin-name-prefix-font-awesome4` is to prevent conflict with other plugins that maybe use older version but same handle that cause some newer icons in this plugin disappears.
             wp_enqueue_style('rd-postorder-font-awesome4', plugin_dir_url(RDPOSTORDER_FILE) . 'assets/css/font-awesome.min.css', [], '4.7.0');
-            wp_enqueue_style('rd-postorder-ReOrderPosts-css', plugin_dir_url(RDPOSTORDER_FILE) . 'assets/css/ReOrderPosts.css', [], $pluginVersion);
+            wp_enqueue_style('rd-postorder-ReOrderPosts-css', plugin_dir_url(RDPOSTORDER_FILE) . 'assets/css/Admin/Posts/ReOrderPosts.css', [], RDPOSTORDER_VERSION);
 
-            wp_enqueue_script('rd-postorder-ReOrderPosts-js', plugin_dir_url(RDPOSTORDER_FILE) . 'assets/js/ReOrderPosts.js', ['jquery', 'jquery-ui-core', 'jquery-ui-sortable', 'jquery-touch-punch', 'jquery-query'], $pluginVersion, true);
+            wp_enqueue_script(
+                'rd-postorder-ReOrderPosts-js', 
+                plugin_dir_url(RDPOSTORDER_FILE) . 'assets/js/Admin/Posts/ReOrderPosts.js', 
+                [
+                    'jquery-query',
+                    'jquery-ui-core', 
+                    'jquery-ui-sortable', 
+                    'jquery-touch-punch', 
+                ], 
+                RDPOSTORDER_VERSION, 
+                [
+                    'in_footer' => true,
+                ]
+            );
             wp_localize_script(
                 'rd-postorder-ReOrderPosts-js',
                 'RdPostOrderObj',
                 [
                     'ajaxnonce' => wp_create_nonce('rdPostOrderReOrderPostsAjaxNonce'),
-                    'ajaxnonce_error_message' => __('Please reload this page and try again.', 'rd-postorder'),
                     'debug' => (defined('WP_DEBUG') && WP_DEBUG === true ? 'true' : 'false'),
                     'hookName' => $this->hookName,
                     'txtConfirm' => __('Are you sure?', 'rd-postorder'),
                     'txtConfirmReorderAll' => __('Are you sure to doing this? (This may slow down your server if you have too many posts.)', 'rd-postorder'),
                     'txtDismissNotice' => __('Dismiss this notice.'),
                     'txtPreviousXhrWorking' => __('The previous XHR is currently working, please wait few seconds and try again.', 'rd-postorder'),
+                    'txtReloadPageTryAgain' => __('Please reload this page and try again.', 'rd-postorder'),
                 ]
             );
         }// registerScripts

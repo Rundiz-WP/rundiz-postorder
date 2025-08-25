@@ -71,7 +71,7 @@ Please note that to hook into this filter in the theme some times it might not w
 
 == Changelog ==
 = 1.0.9 =
-2025-08-xx
+2025-08-25
 
 * Fix re-order AJAX return incorrect number of table rows.
 * Update prevent enter key on post order number field.

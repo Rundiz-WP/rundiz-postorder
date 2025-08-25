@@ -23,13 +23,32 @@ if (!class_exists('\\RdPostOrder\\App\\Controlers\\Admin\\Posts\\HookPostsPerPag
          */
         public function hookPostsPerPage($posts_per_page, $post_type)
         {
+            // allowed AJAX actions to use custom posts per page.
+            $allowedActions = [
+                'RdPostOrderReOrderPost',
+                'RdPostOrderReNumberAll',
+                'RdPostOrderResetAllPostsOrder',
+                'RdPostOrderSaveAllNumbersChanged',
+            ];
+
             if (
-                is_admin() && 
-                isset($_GET['page']) && 
-                ReOrderPosts::MENU_SLUG === $_GET['page']
+                is_admin() && // must always in admin pages AND ...
+                (
+                    (
+                        isset($_GET['page']) && 
+                        ReOrderPosts::MENU_SLUG === $_GET['page']
+                    ) ||// contains ?page matched this plugin menu slug. OR
+                    (
+                        wp_doing_ajax() &&
+                        isset($_REQUEST['action']) &&
+                        in_array($_REQUEST['action'], $allowedActions)
+                    )// is AJAX and in allowed actions in this plugin.
+                )
             ) {
                 $posts_per_page = 50;
             }
+
+            unset($allowedActions);
             return $posts_per_page;
         }// hookPostsPerPage
 

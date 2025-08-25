@@ -1,5 +1,7 @@
 <?php
 /**
+ * @since 1.0.9 Renamed from ReOrderPostsAjax.php to AjaxReOrderPosts.php
+ * @package rundiz-postorder
  * @license http://opensource.org/licenses/MIT MIT
  */
 
@@ -7,11 +9,11 @@
 namespace RdPostOrder\App\Controllers\Admin\Posts;
 
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPostsAjax')) {
+if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPosts')) {
     /**
      * Ajax tasks for re-order posts.
      */
-    class ReOrderPostsAjax extends AbstractReOrderPosts
+    class AjaxReOrderPosts extends AbstractReOrderPosts
     {
 
 

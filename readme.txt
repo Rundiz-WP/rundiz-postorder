@@ -72,6 +72,7 @@ Please note that to hook into this filter in the theme some times it might not w
 == Changelog ==
 = 1.0.8 =
 2025-08-24
+
 * Update listing to 50 for easier re-order.
 * Update to save the original value of posts `menu_order` and restore on uninstall or use settings page.
 * Add reset original, reset zero to settings page on per site, and main network site.
@@ -83,4 +84,5 @@ Please note that to hook into this filter in the theme some times it might not w
 
 = 1.0.6 =
 2025-01-13
+
 * Update alter post query and add new setting to disable custom order on admin pages.

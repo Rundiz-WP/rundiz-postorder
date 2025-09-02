@@ -68,9 +68,11 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMetaAnd
         public function rowMeta(array $plugin_meta, $plugin_file, array $plugin_data, $status)
         {
             if (plugin_basename(RDPOSTORDER_FILE) === $plugin_file) {
-                // $prepend_meta[] = 'prepend';
-                // $plugin_meta = array_merge($prepend_meta, $plugin_meta);
-                // unset($prepend_meta);
+                $after_link = [];
+
+                $after_link[] = '<a href="https://rundiz.com/en/donate" target="donate">' . __('Donate', 'rd-postorder') . '</a>';
+                $plugin_meta = array_merge($plugin_meta, $after_link);
+                unset($after_link);
             }
 
             return $plugin_meta;

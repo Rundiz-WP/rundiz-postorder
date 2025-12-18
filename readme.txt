@@ -1,8 +1,8 @@
 === Rundiz PostOrder ===
 Contributors: okvee
 Tags: posts, order, sort, re-arrange, sortable
-Tested up to: 6.9
-Stable tag: 1.0.9
+Tested up to: 7.0
+Stable tag: 1.0.10
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 Requires at least: 4.7.0
@@ -32,6 +32,7 @@ My plugins are always restore everything to its default value and cleanup. I lov
 This project is maintain by <a href="https://rundiz.com" target="author_site">Rundiz.com</a>. Feel free to rate and comments.  
 Please <a href="https://rundiz.com/en/donate" target="donate">donate</a> to support the developer.
 
+Tested up to PHP 8.5.
 
 == Installation ==
 1. Upload "rundiz-postorder" folder to the "/wp-content/plugins/" directory.
@@ -67,6 +68,11 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.0.10 =
+2025-12-18
+
+* Minor update.
+
 = 1.0.9 =
 2025-08-25
 

@@ -7,10 +7,10 @@
  */
 
 
-namespace RdPostOrder\App\Controllers\Admin\Settings\Traits;
+namespace RundizPostOrder\App\Controllers\Admin\Settings\Traits;
 
 
-if (!trait_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\Traits\\SettingsTrait')) {
+if (!trait_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\Traits\\SettingsTrait')) {
     trait SettingsTrait
     {
 
@@ -22,15 +22,15 @@ if (!trait_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\Traits\\Sett
          */
         protected function resetPostOrdersToOriginal()
         {
-            $PostOrder = new \RdPostOrder\App\Models\PostOrder();
+            $PostOrder = new \RundizPostOrder\App\Models\PostOrder();
             $PostOrder->setMenuOrderToOriginal();
             // delete post meta that this plugin use to store their original value.
-            delete_post_meta_by_key(\RdPostOrder\App\Models\PostOrder::POST_META_ORIG_MENUORDER_NAME);
+            delete_post_meta_by_key(\RundizPostOrder\App\Models\PostOrder::POST_META_ORIG_MENUORDER_NAME);
             unset($PostOrder);
 
             $output = [];
             $output['form_result_class'] = 'notice-success';
-            $output['form_result_msg'] =  __('Post order has been reset successfully.', 'rd-postorder');
+            $output['form_result_msg'] =  __('Post order has been reset successfully.', 'rundiz-postorder');
             return $output;
         }// resetPostOrdersToOriginal
 
@@ -42,15 +42,15 @@ if (!trait_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\Traits\\Sett
          */
         protected function resetPostOrdersToZero()
         {
-            $PostOrder = new \RdPostOrder\App\Models\PostOrder();
+            $PostOrder = new \RundizPostOrder\App\Models\PostOrder();
             $PostOrder->setMenuOrderToZero();
             // delete post meta that this plugin use to store their original value.
-            delete_post_meta_by_key(\RdPostOrder\App\Models\PostOrder::POST_META_ORIG_MENUORDER_NAME);
+            delete_post_meta_by_key(\RundizPostOrder\App\Models\PostOrder::POST_META_ORIG_MENUORDER_NAME);
             unset($PostOrder);
 
             $output = [];
             $output['form_result_class'] = 'notice-success';
-            $output['form_result_msg'] =  __('Post order has been reset to zero successfully.', 'rd-postorder');
+            $output['form_result_msg'] =  __('Post order has been reset to zero successfully.', 'rundiz-postorder');
             return $output;
         }// resetPostOrdersToZero
 

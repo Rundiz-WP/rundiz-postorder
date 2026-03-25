@@ -1,10 +1,10 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers\Admin\Posts;
+namespace RundizPostOrder\App\Controllers\Admin\Posts;
 
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')) {
+if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')) {
     /**
      * This controller will be working as re-order the posts page.
      */
@@ -27,27 +27,27 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
 
             $screen->add_help_tab([
                 'id' => 'rd-postorder_reorder-posts-helptab1',
-                'title' => __('Re-order by dragging', 'rd-postorder'),
+                'title' => __('Re-order by dragging', 'rundiz-postorder'),
                 'content' => $this->Loader->getLoadView('admin/Posts/ReOrderPosts/adminHelpTab_01'),
             ]);
             $screen->add_help_tab([
                 'id' => 'rd-postorder_reorder-posts-helptab2',
-                'title' => __('Re-order over next/previous pages', 'rd-postorder'),
+                'title' => __('Re-order over next/previous pages', 'rundiz-postorder'),
                 'content' => $this->Loader->getLoadView('admin/Posts/ReOrderPosts/adminHelpTab_02'),
             ]);
             $screen->add_help_tab([
                 'id' => 'rd-postorder_reorder-posts-helptab3',
-                'title' => __('Manually change order number', 'rd-postorder'),
+                'title' => __('Manually change order number', 'rundiz-postorder'),
                 'content' => $this->Loader->getLoadView('admin/Posts/ReOrderPosts/adminHelpTab_03'),
             ]);
             $screen->add_help_tab([
                 'id' => 'rd-postorder_reorder-posts-helptab4',
-                'title' => __('Re-number and reset', 'rd-postorder'),
+                'title' => __('Re-number and reset', 'rundiz-postorder'),
                 'content' => $this->Loader->getLoadView('admin/Posts/ReOrderPosts/adminHelpTab_04'),
             ]);
 
             $sidebar_html = $screen->get_help_sidebar();
-            $sidebar_content = '<i class="fa fa-info-circle fa-fw"></i> ' . __('Please note that sticky post can be re-order here but the results will remain on top on the front untill it is unstick.', 'rd-postorder');
+            $sidebar_content = '<i class="fa fa-info-circle fa-fw"></i> ' . __('Please note that sticky post can be re-order here but the results will remain on top on the front untill it is unstick.', 'rundiz-postorder');
             $screen->set_help_sidebar($sidebar_html . $sidebar_content);
             unset($sidebar_content, $sidebar_html);
         }// adminHelpTab
@@ -59,7 +59,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
          */
         public function adminMenuAction()
         {
-            $hook = add_posts_page(__('Re-order posts', 'rd-postorder'), __('Re-order posts', 'rd-postorder'), 'edit_others_posts', static::MENU_SLUG, [$this, 'listPostsAction']);
+            $hook = add_posts_page(__('Re-order posts', 'rundiz-postorder'), __('Re-order posts', 'rundiz-postorder'), 'edit_others_posts', static::MENU_SLUG, [$this, 'listPostsAction']);
             $this->hookName = $hook;
             // redirect to nice URL if there are un-necessary query string in it.
             add_action('load-' . $hook, [$this, 'redirectNiceUrl']);
@@ -85,7 +85,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
             $output = [];
 
             // list the posts
-            $PostsListTable = new \RdPostOrder\App\Models\PostsListTable();
+            $PostsListTable = new \RundizPostOrder\App\Models\PostsListTable();
             $PostsListTable->prepare_items();
             $output['PostsListTable'] = $PostsListTable;
             unset($PostsListTable);
@@ -93,7 +93,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
             nocache_headers();
 
             // load views for displaying
-            $Loader = new \RdPostOrder\App\Libraries\Loader();
+            $Loader = new \RundizPostOrder\App\Libraries\Loader();
             $Loader->loadView('admin/Posts/reOrderPosts_listPostsAction_v', $output);
             unset($Loader, $output);
         }// listPostsAction
@@ -153,19 +153,19 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
         public function registerScripts()
         {
             // to name font awesome handle as `plugin-name-prefix-font-awesome4` is to prevent conflict with other plugins that maybe use older version but same handle that cause some newer icons in this plugin disappears.
-            wp_enqueue_style('rd-postorder-font-awesome4', plugin_dir_url(RDPOSTORDER_FILE) . 'assets/css/font-awesome.min.css', [], '4.7.0');
-            wp_enqueue_style('rd-postorder-ReOrderPosts-css', plugin_dir_url(RDPOSTORDER_FILE) . 'assets/css/Admin/Posts/ReOrderPosts.css', [], RDPOSTORDER_VERSION);
+            wp_enqueue_style('rd-postorder-font-awesome4', plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/css/font-awesome.min.css', [], '4.7.0');
+            wp_enqueue_style('rd-postorder-ReOrderPosts-css', plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/css/Admin/Posts/ReOrderPosts.css', [], RUNDIZPOSTORDER_VERSION);
 
             wp_enqueue_script(
                 'rd-postorder-ReOrderPosts-js', 
-                plugin_dir_url(RDPOSTORDER_FILE) . 'assets/js/Admin/Posts/ReOrderPosts.js', 
+                plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/js/Admin/Posts/ReOrderPosts.js', 
                 [
                     'jquery-query',
                     'jquery-ui-core', 
                     'jquery-ui-sortable', 
                     'jquery-touch-punch', 
                 ], 
-                RDPOSTORDER_VERSION, 
+                RUNDIZPOSTORDER_VERSION, 
                 [
                     'in_footer' => true,
                 ]
@@ -177,12 +177,12 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPosts')
                     'ajaxnonce' => wp_create_nonce('rdPostOrderReOrderPostsAjaxNonce'),
                     'debug' => (defined('WP_DEBUG') && WP_DEBUG === true ? 'true' : 'false'),
                     'hookName' => $this->hookName,
-                    'txtConfirm' => __('Are you sure?', 'rd-postorder'),
-                    'txtConfirmReorderAll' => __('Are you sure to doing this? (This may slow down your server if you have too many posts.)', 'rd-postorder'),
+                    'txtConfirm' => __('Are you sure?', 'rundiz-postorder'),
+                    'txtConfirmReorderAll' => __('Are you sure to doing this? (This may slow down your server if you have too many posts.)', 'rundiz-postorder'),
                     'txtDismissNotice' => __('Dismiss this notice.'),
-                    'txtPleaseSelectSaveAllChanges' => __('Please select save all changes and then press apply button.', 'rd-postorder'),
-                    'txtPreviousXhrWorking' => __('The previous XHR is currently working, please wait few seconds and try again.', 'rd-postorder'),
-                    'txtReloadPageTryAgain' => __('Please reload this page and try again.', 'rd-postorder'),
+                    'txtPleaseSelectSaveAllChanges' => __('Please select save all changes and then press apply button.', 'rundiz-postorder'),
+                    'txtPreviousXhrWorking' => __('The previous XHR is currently working, please wait few seconds and try again.', 'rundiz-postorder'),
+                    'txtReloadPageTryAgain' => __('Please reload this page and try again.', 'rundiz-postorder'),
                 ]
             );
         }// registerScripts

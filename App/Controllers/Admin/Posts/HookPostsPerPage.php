@@ -7,11 +7,11 @@
  */
 
 
-namespace RdPostOrder\App\Controllers\Admin\Posts;
+namespace RundizPostOrder\App\Controllers\Admin\Posts;
 
 
-if (!class_exists('\\RdPostOrder\\App\\Controlers\\Admin\\Posts\\HookPostsPerPage')) {
-    class HookPostsPerPage implements \RdPostOrder\App\Controllers\ControllerInterface
+if (!class_exists('\\RundizPostOrder\\App\\Controlers\\Admin\\Posts\\HookPostsPerPage')) {
+    class HookPostsPerPage implements \RundizPostOrder\App\Controllers\ControllerInterface
     {
 
 

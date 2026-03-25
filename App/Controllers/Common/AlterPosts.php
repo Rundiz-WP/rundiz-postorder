@@ -1,17 +1,17 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers\Common;
+namespace RundizPostOrder\App\Controllers\Common;
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
+if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
     /**
      * This controller will be working on front end to alter list post query.
      */
-    class AlterPosts implements \RdPostOrder\App\Controllers\ControllerInterface
+    class AlterPosts implements \RundizPostOrder\App\Controllers\ControllerInterface
     {
 
 
-        use \RdPostOrder\App\AppTrait;
+        use \RundizPostOrder\App\AppTrait;
 
 
         /**
@@ -64,7 +64,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
             $is_disable_customorder = $this->isDisableCustomOrder();
 
             if (isset($is_disable_customorder) && true !== $is_disable_customorder) {
-                if (isset($post->post_type) && \RdPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
+                if (isset($post->post_type) && \RundizPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
                     $order_by = 'ORDER BY p.menu_order ASC LIMIT 1';
                 }
             }
@@ -91,7 +91,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
             $is_disable_customorder = $this->isDisableCustomOrder();
 
             if (isset($is_disable_customorder) && true !== $is_disable_customorder) {
-                if (isset($post->post_type) && \RdPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
+                if (isset($post->post_type) && \RundizPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
                     $where = str_replace('p.post_date > \''.$post->post_date.'\'', 'p.menu_order > \''.$post->menu_order.'\'', $where);
                 }
             }
@@ -115,7 +115,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
             $is_disable_customorder = $this->isDisableCustomOrder();
 
             if (isset($is_disable_customorder) && true !== $is_disable_customorder) {
-                if (isset($post->post_type) && \RdPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
+                if (isset($post->post_type) && \RundizPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
                     $order_by = 'ORDER BY p.menu_order DESC LIMIT 1';
                 }
             }
@@ -142,7 +142,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
             $is_disable_customorder = $this->isDisableCustomOrder();
 
             if (isset($is_disable_customorder) && true !== $is_disable_customorder) {
-                if (isset($post->post_type) && \RdPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
+                if (isset($post->post_type) && \RundizPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
                     $where = str_replace('p.post_date < \''.$post->post_date.'\'', 'p.menu_order < \''.$post->menu_order.'\'', $where);
                 }
             }

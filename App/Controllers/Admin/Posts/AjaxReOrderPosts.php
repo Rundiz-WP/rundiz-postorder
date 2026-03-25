@@ -6,10 +6,10 @@
  */
 
 
-namespace RdPostOrder\App\Controllers\Admin\Posts;
+namespace RundizPostOrder\App\Controllers\Admin\Posts;
 
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPosts')) {
+if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPosts')) {
     /**
      * Ajax tasks for re-order posts.
      */
@@ -33,17 +33,17 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
             if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
                     $output['form_result_class'] = 'notice-error';
-                    $output['form_result_msg'] = __('Please reload this page and try again.', 'rd-postorder');
+                    $output['form_result_msg'] = __('Please reload this page and try again.', 'rundiz-postorder');
                     wp_send_json($output, 403);
                     wp_die();
                 }
 
-                \RdPostOrder\App\Libraries\Input::static_setPaged();
+                \RundizPostOrder\App\Libraries\Input::static_setPaged();
                 global $wpdb;
 
                 // get all posts order by current menu_order (even it contain wrong order number but keep most of current order).
                 $sql = 'SELECT `ID`, `post_status`, `menu_order`, `post_type` FROM `' . $wpdb->posts . '`'
-                    . ' WHERE `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
+                    . ' WHERE `post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                     . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                     . ' ORDER BY `menu_order` DESC';
                 $result = $wpdb->get_results($sql, OBJECT_K);
@@ -60,12 +60,12 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
 
                 // done update menu_order numbers
                 $output['form_result_class'] = 'notice-success';
-                $output['form_result_msg'] = __('Update completed', 'rd-postorder');
+                $output['form_result_msg'] = __('Update completed', 'rundiz-postorder');
                 $output['save_result'] = true;
 
                 // get list table for re-render and client side.
                 ob_start();
-                $PostsListTable = new \RdPostOrder\App\Models\PostsListTable([
+                $PostsListTable = new \RundizPostOrder\App\Models\PostsListTable([
                     'screen' => sanitize_text_field($this->getHookName()),
                 ]);
                 $PostsListTable->prepare_items();
@@ -101,12 +101,12 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
             if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
                     $output['form_result_class'] = 'notice-error';
-                    $output['form_result_msg'] = __('Please reload this page and try again.', 'rd-postorder');
+                    $output['form_result_msg'] = __('Please reload this page and try again.', 'rundiz-postorder');
                     wp_send_json($output, 403);
                     wp_die();
                 }
 
-                \RdPostOrder\App\Libraries\Input::static_setPaged();
+                \RundizPostOrder\App\Libraries\Input::static_setPaged();
 
                 $move_to = (isset($_POST['move_to']) ? $_POST['move_to'] : null);
                 $postID = (isset($_POST['postID']) ? intval($_POST['postID']) : null);
@@ -115,7 +115,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
 
                 if ($menu_order <= 0) {
                     $output['form_result_class'] = 'notice-error';
-                    $output['form_result_msg'] = __('Error! Unable to re-order the posts due the the currently order number is incorrect. Please click on &quot;Re-number all posts&quot; button to re-number all the posts.', 'rd-postorder');
+                    $output['form_result_msg'] = __('Error! Unable to re-order the posts due the the currently order number is incorrect. Please click on &quot;Re-number all posts&quot; button to re-number all the posts.', 'rundiz-postorder');
                     wp_send_json($output, 500);
                     wp_die();
                 }
@@ -127,7 +127,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
                     empty($paged)
                 ) {
                     $output['form_result_class'] = 'notice-error';
-                    $output['form_result_msg'] = __('Unable to re-order the post. The js form did not send required data to re-order. Please reload the page and try again.', 'rd-postorder');
+                    $output['form_result_msg'] = __('Unable to re-order the post. The js form did not send required data to re-order. Please reload the page and try again.', 'rundiz-postorder');
                     wp_send_json($output, 400);
                     wp_die();
                 }
@@ -150,7 +150,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
                 if ('up' === $move_to) {
                     $sql = 'SELECT `ID`, `menu_order`, `post_type`, `post_status` FROM `' . $wpdb->posts . '`'
                         . ' WHERE `menu_order` > \'%d\''
-                        . ' AND `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
+                        . ' AND `post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                         . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                         . ' ORDER BY `menu_order` ASC';
                     $sql = $wpdb->prepare($sql, $menu_order);
@@ -159,7 +159,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
                 } elseif ('down' === $move_to) {
                     $sql = 'SELECT `ID`, `menu_order`, `post_type`, `post_status` FROM `' . $wpdb->posts . '`'
                         . ' WHERE `menu_order` < \'%d\''
-                        . ' AND `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
+                        . ' AND `post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                         . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                         . ' ORDER BY `menu_order` DESC';
                     $sql = $wpdb->prepare($sql, $menu_order);
@@ -198,7 +198,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
                 }
 
                 $output['form_result_class'] = 'notice-success';
-                $output['form_result_msg'] = __('Update completed', 'rd-postorder');
+                $output['form_result_msg'] = __('Update completed', 'rundiz-postorder');
                 $output['save_result'] = true;
                 $output['rows_updated'] = $rowsUpdated;
 
@@ -207,7 +207,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
 
                 // get list table for re-render and client side.
                 ob_start();
-                $PostsListTable = new \RdPostOrder\App\Models\PostsListTable([
+                $PostsListTable = new \RundizPostOrder\App\Models\PostsListTable([
                     'screen' => sanitize_text_field($this->getHookName()),
                 ]);
                 $PostsListTable->prepare_items();
@@ -244,7 +244,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
             if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
                     $output['form_result_class'] = 'notice-error';
-                    $output['form_result_msg'] = __('Please reload this page and try again.', 'rd-postorder');
+                    $output['form_result_msg'] = __('Please reload this page and try again.', 'rundiz-postorder');
                     wp_send_json($output, 403);
                     wp_die();
                 }
@@ -258,14 +258,14 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
                     // this maybe because admin delete some middle items (not first and last) and it is not re-arrange the order numbers until it gets 0 or minus (not sure but i think it is impossible).
                     // show error to prevent the unwanted result and let the admin/author reset number of all posts order instead.
                     $output['form_result_class'] = 'notice-error';
-                    $output['form_result_msg'] = __('Error! Unable to re-order the posts due the the currently order number is incorrect. Please click on &quot;Re-number all posts&quot; button to re-number all the posts.', 'rd-postorder');
+                    $output['form_result_msg'] = __('Error! Unable to re-order the posts due the the currently order number is incorrect. Please click on &quot;Re-number all posts&quot; button to re-number all the posts.', 'rundiz-postorder');
                     wp_send_json($output, 500);
                     wp_die();
                 }
 
                 if ((!is_array($postIDs) || empty($postIDs)) || (!is_array($menu_orders) || empty($menu_orders))) {
                     $output['form_result_class'] = 'notice-error';
-                    $output['form_result_msg'] = __('Unable to re-order the posts. The js form did not send any data to re-order. Please reload the page and try again.', 'rd-postorder');
+                    $output['form_result_msg'] = __('Unable to re-order the posts. The js form did not send any data to re-order. Please reload the page and try again.', 'rundiz-postorder');
                     wp_send_json($output, 400);
                     wp_die();
                 }
@@ -318,7 +318,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
                 }
                 // end update to db. -------------
                 $output['form_result_class'] = 'notice-success';
-                $output['form_result_msg'] = __('Update completed', 'rd-postorder');
+                $output['form_result_msg'] = __('Update completed', 'rundiz-postorder');
                 $output['save_result'] = true;
                 $output['re_ordered_data'] = $data;
                 unset($data);
@@ -349,24 +349,24 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
             if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
                     $output['form_result_class'] = 'notice-error';
-                    $output['form_result_msg'] = __('Please reload this page and try again.', 'rd-postorder');
+                    $output['form_result_msg'] = __('Please reload this page and try again.', 'rundiz-postorder');
                     wp_send_json($output, 403);
                     wp_die();
                 }
 
-                \RdPostOrder\App\Libraries\Input::static_setPaged();
-                $PostOrderM = new \RdPostOrder\App\Models\PostOrder();
+                \RundizPostOrder\App\Libraries\Input::static_setPaged();
+                $PostOrderM = new \RundizPostOrder\App\Models\PostOrder();
                 $PostOrderM->resetAllPostsOrder();
                 unset($PostOrderM);
 
                 // done update menu_order numbers
                 $output['form_result_class'] = 'notice-success';
-                $output['form_result_msg'] = __('Update completed', 'rd-postorder');
+                $output['form_result_msg'] = __('Update completed', 'rundiz-postorder');
                 $output['save_result'] = true;
 
                 // get list table for re-render and client side.
                 ob_start();
-                $PostsListTable = new \RdPostOrder\App\Models\PostsListTable([
+                $PostsListTable = new \RundizPostOrder\App\Models\PostsListTable([
                     'screen' => sanitize_text_field($this->getHookName()),
                 ]);
                 $PostsListTable->prepare_items();
@@ -401,19 +401,19 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
             if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
                     $output['form_result_class'] = 'notice-error';
-                    $output['form_result_msg'] = __('Please reload this page and try again.', 'rd-postorder');
+                    $output['form_result_msg'] = __('Please reload this page and try again.', 'rundiz-postorder');
                     wp_send_json($output, 403);
                     wp_die();
                 }
 
-                \RdPostOrder\App\Libraries\Input::static_setPaged();
+                \RundizPostOrder\App\Libraries\Input::static_setPaged();
 
                 $menu_orders = (isset($_POST['menu_order']) ? $_POST['menu_order'] : []);
                 global $wpdb;
 
                 if (!is_array($menu_orders) || empty($menu_orders)) {
                     $output['form_result_class'] = 'notice-error';
-                    $output['form_result_msg'] = __('Unable to re-order the posts. The js form did not send any data to re-order. Please reload the page and try again.', 'rd-postorder');
+                    $output['form_result_msg'] = __('Unable to re-order the posts. The js form did not send any data to re-order. Please reload the page and try again.', 'rundiz-postorder');
                     wp_send_json($output, 400);
                     wp_die();
                 }
@@ -431,12 +431,12 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrderPos
 
                 // done update menu_order numbers
                 $output['form_result_class'] = 'notice-success';
-                $output['form_result_msg'] = __('Update completed', 'rd-postorder');
+                $output['form_result_msg'] = __('Update completed', 'rundiz-postorder');
                 $output['save_result'] = true;
 
                 // get list table for re-render and client side.
                 ob_start();
-                $PostsListTable = new \RdPostOrder\App\Models\PostsListTable([
+                $PostsListTable = new \RundizPostOrder\App\Models\PostsListTable([
                     'screen' => sanitize_text_field($this->getHookName()),
                 ]);
                 $PostsListTable->prepare_items();

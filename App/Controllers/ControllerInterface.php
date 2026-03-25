@@ -8,9 +8,9 @@
  */
 
 
-namespace RdPostOrder\App\Controllers;
+namespace RundizPostOrder\App\Controllers;
 
-if (!interface_exists('\\RdPostOrder\\App\\Controllers\\ControllerInterface')) {
+if (!interface_exists('\\RundizPostOrder\\App\\Controllers\\ControllerInterface')) {
     /**
      * The controller interface that have required methods to register hooks, and more.<br>
      * Implement this interface only when you want to have hooks into WP core.

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace RdPostOrder\App\Models;
+namespace RundizPostOrder\App\Models;
 
 
-if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
+if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
     /**
      * List data into table.
      * Warning! Do not modify method name because they are extended from WP_List_Table class of WordPress. Changing the method name may cause program error.
@@ -20,7 +20,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
     {
 
 
-        use \RdPostOrder\App\AppTrait;
+        use \RundizPostOrder\App\AppTrait;
 
 
         /**
@@ -32,7 +32,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
         {
             parent::__construct($args);
 
-            $this->screen->post_type = \RdPostOrder\App\Models\PostOrder::POST_TYPE;
+            $this->screen->post_type = \RundizPostOrder\App\Models\PostOrder::POST_TYPE;
         }// __construct
 
 
@@ -165,7 +165,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
                 $outlink = [];
                 foreach ($terms as $term) {
                     $label = esc_html(sanitize_term_field('name', $term->name, $term->term_id, $taxonomy, 'display'));
-                    $outlink[] = '<a href="' . admin_url('term.php?taxonomy=' . $taxonomy . '&amp;tag_ID=' . $term->term_id . '&amp;post_type=' . \RdPostOrder\App\Models\PostOrder::POST_TYPE) . '">' . $label . '</a>';
+                    $outlink[] = '<a href="' . admin_url('term.php?taxonomy=' . $taxonomy . '&amp;tag_ID=' . $term->term_id . '&amp;post_type=' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE) . '">' . $label . '</a>';
                 }// endforeach;
                 unset($term);
 
@@ -236,9 +236,9 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
         protected function get_bulk_actions()
         {
             return [
-                'renumber_all' => __('Re-number all posts', 'rd-postorder'), 
-                'reset_all' => __('Reset all order', 'rd-postorder'),
-                'save_all_numbers_changed' => __('Save all changes on order numbers', 'rd-postorder'),
+                'renumber_all' => __('Re-number all posts', 'rundiz-postorder'), 
+                'reset_all' => __('Reset all order', 'rundiz-postorder'),
+                'save_all_numbers_changed' => __('Save all changes on order numbers', 'rundiz-postorder'),
             ];
         }// get_bulk_actions
 
@@ -256,7 +256,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
                 'author' => __('Author'),
                 'categories' => __('Categories'),
                 'tags' => __('Tags'),
-                'order' => __('Order', 'rd-postorder'),
+                'order' => __('Order', 'rundiz-postorder'),
                 'date' => __( 'Date' ),
             ];
             return $columns;
@@ -292,12 +292,12 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostsListTable')) {
             $actions['moveup'] = '<a class="rd-postorder-reorder-action-per-item" href="#move-up,' . $item->ID . '" 
                     data-rd-postorder-action="up" 
                 >'
-                . '<i class="fa fa-sort-asc fa-fw"></i> ' . __('Move up', 'rd-postorder') 
+                . '<i class="fa fa-sort-asc fa-fw"></i> ' . __('Move up', 'rundiz-postorder') 
                 . '</a>';
             $actions['movedown'] = '<a class="rd-postorder-reorder-action-per-item" href="#move-down,' . $item->ID . '" 
                     data-rd-postorder-action="down" 
                 >'
-                . '<i class="fa fa-sort-desc fa-fw"></i> ' . __('Move down', 'rd-postorder')
+                . '<i class="fa fa-sort-desc fa-fw"></i> ' . __('Move down', 'rundiz-postorder')
                 . '</a>';
 
             if (current_user_can('edit_post', $item->ID) && 'trash' !== $item->post_status) {

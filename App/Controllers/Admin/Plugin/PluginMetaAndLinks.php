@@ -1,10 +1,10 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers\Admin\Plugin;
+namespace RundizPostOrder\App\Controllers\Admin\Plugin;
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMetaAndLinks')) {
-    class PluginMetaAndLinks implements \RdPostOrder\App\Controllers\ControllerInterface
+if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMetaAndLinks')) {
+    class PluginMetaAndLinks implements \RundizPostOrder\App\Controllers\ControllerInterface
     {
 
 
@@ -20,7 +20,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMetaAnd
             static $plugin;
 
             if (!isset($plugin)) {
-                $plugin = plugin_basename(RDPOSTORDER_FILE);
+                $plugin = plugin_basename(RUNDIZPOSTORDER_FILE);
             }
 
             if ($plugin == $plugin_file) {
@@ -47,8 +47,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMetaAnd
         public function registerHooks()
         {
             // add filter action links. this will be displayed in actions area of plugin page. for example: xxxActionLinksBefore | Activate | Edit | Delete | xxxActionLinksAfter
-            add_filter('plugin_action_links_' . plugin_basename(RDPOSTORDER_FILE), [$this, 'actionLinks'], 10, 4);
-            add_filter('network_admin_plugin_action_links_' . plugin_basename(RDPOSTORDER_FILE), [$this, 'actionLinks'], 10, 4);
+            add_filter('plugin_action_links_' . plugin_basename(RUNDIZPOSTORDER_FILE), [$this, 'actionLinks'], 10, 4);
+            add_filter('network_admin_plugin_action_links_' . plugin_basename(RUNDIZPOSTORDER_FILE), [$this, 'actionLinks'], 10, 4);
             // add filter to row meta. (in plugin page below description) Version xx | By xxx | View details | xxxRowMetaxxx | xxxRowMetaxxx
             add_filter('plugin_row_meta', [$this, 'rowMeta'], 10, 4);
         }// registerHooks
@@ -67,10 +67,10 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMetaAnd
          */
         public function rowMeta(array $plugin_meta, $plugin_file, array $plugin_data, $status)
         {
-            if (plugin_basename(RDPOSTORDER_FILE) === $plugin_file) {
+            if (plugin_basename(RUNDIZPOSTORDER_FILE) === $plugin_file) {
                 $after_link = [];
 
-                $after_link[] = '<a href="https://rundiz.com/en/donate" target="donate">' . __('Donate', 'rd-postorder') . '</a>';
+                $after_link[] = '<a href="https://rundiz.com/en/donate" target="donate">' . __('Donate', 'rundiz-postorder') . '</a>';
                 $plugin_meta = array_merge($plugin_meta, $after_link);
                 unset($after_link);
             }

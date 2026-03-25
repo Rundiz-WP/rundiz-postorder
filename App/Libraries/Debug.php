@@ -7,9 +7,9 @@
  */
 
 
-namespace RdPostOrder\App\Libraries;
+namespace RundizPostOrder\App\Libraries;
 
-if (!class_exists('\\RdPostOrder\\App\\Libraries\\Debug')) {
+if (!class_exists('\\RundizPostOrder\\App\\Libraries\\Debug')) {
     /**
      * Debug class.
      */

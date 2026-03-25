@@ -1,9 +1,14 @@
 <?php
+/**
+ * App trait.
+ * 
+ * @package rundiz-postorder
+ */
 
 
-namespace RdPostOrder\App;
+namespace RundizPostOrder\App;
 
-if (!trait_exists('\\RdPostOrder\\App\\AppTrait')) {
+if (!trait_exists('\\RundizPostOrder\\App\\AppTrait')) {
     /**
      * Main application trait for common works.
      */
@@ -13,14 +18,15 @@ if (!trait_exists('\\RdPostOrder\\App\\AppTrait')) {
 
         /**
          * Loader class into the property.
-         * @var \RdPostOrder\App\Libraries\Loader 
+         * 
+         * @var \RundizPostOrder\App\Libraries\Loader 
          */
         public $Loader;
 
 
         /**
          * @var array Allowed post status that can be change order.<br>
-         * These post status can be convert into publish or private but *auto-draft* and *inherit* is not (trash status can also be revert to publish or private).
+         *              These post status can be convert into publish or private but *auto-draft* and *inherit* is not (trash status can also be revert to publish or private).
          * @link https://wordpress.org/support/article/post-status/ Reference
          */
         protected $allowed_order_post_status = ['publish', 'future', 'draft', 'pending', 'private', 'trash'];
@@ -32,5 +38,5 @@ if (!trait_exists('\\RdPostOrder\\App\\AppTrait')) {
         public $main_option_name = 'rundiz_postorder_options';
 
 
-    }
+    }// AppTrait
 }

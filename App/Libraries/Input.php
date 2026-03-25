@@ -7,10 +7,10 @@
  */
 
 
-namespace RdPostOrder\App\Libraries;
+namespace RundizPostOrder\App\Libraries;
 
 
-if (!class_exists('\\RdPostOrder\\App\\Libraries\\Input')) {
+if (!class_exists('\\RundizPostOrder\\App\\Libraries\\Input')) {
     /**
      * Input class.
      * 

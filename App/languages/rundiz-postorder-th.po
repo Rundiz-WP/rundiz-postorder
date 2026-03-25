@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rundiz PostOrder\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rundiz-postorder\n"
-"POT-Creation-Date: 2025-09-02T14:37:47+07:00\n"
-"PO-Revision-Date: 2025-09-02 14:38+0700\n"
+"POT-Creation-Date: 2026-03-25T11:59:32+07:00\n"
+"PO-Revision-Date: 2026-03-25 11:59+0700\n"
 "Last-Translator: Vee W.\n"
 "Language-Team: \n"
 "Language: th_TH\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: "
@@ -20,28 +20,28 @@ msgstr ""
 "X-Poedit-SearchPath-1: ..\n"
 
 #. Plugin Name of the plugin
-#: rd-postorder.php App/Controllers/Admin/Settings/MultisiteSettings.php:26
+#: rundiz-postorder.php App/Controllers/Admin/Settings/MultisiteSettings.php:26
 #: App/Controllers/Admin/Settings/Settings.php:26
 msgid "Rundiz PostOrder"
 msgstr "Rundiz PostOrder"
 
 #. Plugin URI of the plugin
-#: rd-postorder.php
+#: rundiz-postorder.php
 msgid "https://rundiz.com/?p=319"
 msgstr "https://rundiz.com/?p=319"
 
 #. Description of the plugin
-#: rd-postorder.php
+#: rundiz-postorder.php
 msgid "Re-order posts to what you want."
 msgstr "จัดเรียงโพสต์ตามที่คุณต้องการ."
 
 #. Author of the plugin
-#: rd-postorder.php
+#: rundiz-postorder.php
 msgid "Vee Winch"
 msgstr "Vee Winch"
 
 #. Author URI of the plugin
-#: rd-postorder.php
+#: rundiz-postorder.php
 msgid "https://rundiz.com"
 msgstr "https://rundiz.com"
 

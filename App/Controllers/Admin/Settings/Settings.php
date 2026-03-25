@@ -1,17 +1,17 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers\Admin\Settings;
+namespace RundizPostOrder\App\Controllers\Admin\Settings;
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\Settings')) {
+if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\Settings')) {
     /**
      * This controller will be working as settings for rundiz postorder.
      */
-    class Settings implements \RdPostOrder\App\Controllers\ControllerInterface
+    class Settings implements \RundizPostOrder\App\Controllers\ControllerInterface
     {
 
 
-        use \RdPostOrder\App\AppTrait;
+        use \RundizPostOrder\App\AppTrait;
 
 
         use Traits\SettingsTrait;
@@ -23,7 +23,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\Settings'))
          */
         public function adminMenuAction()
         {
-            $hookSuffix = add_options_page(__('Rundiz PostOrder', 'rd-postorder'), __('Rundiz PostOrder', 'rd-postorder'), 'manage_options', 'rd-postorder-settings', [$this, 'settingsPageAction']);
+            $hookSuffix = add_options_page(__('Rundiz PostOrder', 'rundiz-postorder'), __('Rundiz PostOrder', 'rundiz-postorder'), 'manage_options', 'rd-postorder-settings', [$this, 'settingsPageAction']);
 
             if (is_string($hookSuffix)) {
                 add_action('load-' . $hookSuffix, [$this, 'callEnqueueHook']);
@@ -65,16 +65,16 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\Settings'))
         {
             wp_enqueue_style(
                 'rd-postorder-settings-page',
-                plugin_dir_url(RDPOSTORDER_FILE) . 'assets/css/Admin/Settings/settings.css',
+                plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/css/Admin/Settings/settings.css',
                 [],
-                RDPOSTORDER_VERSION
+                RUNDIZPOSTORDER_VERSION
             );
 
             wp_register_script(
                 'rd-postorder-settings-page',
-                plugin_dir_url(RDPOSTORDER_FILE) . 'assets/js/Admin/Settings/settings.js',
+                plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/js/Admin/Settings/settings.js',
                 [],
-                RDPOSTORDER_VERSION,
+                RUNDIZPOSTORDER_VERSION,
                 [
                     'in_footer' => true,
                 ]
@@ -83,7 +83,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\Settings'))
                 'rd-postorder-settings-page',
                 'RdPostOrderSettingsObj',
                 [
-                    'txtAreYouSure' => __('Are you sure?', 'rd-postorder'),
+                    'txtAreYouSure' => __('Are you sure?', 'rundiz-postorder'),
                 ]
             );
             wp_enqueue_script('rd-postorder-settings-page');
@@ -112,7 +112,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\Settings'))
             $categories = get_categories($args);
             unset($args);
             if (is_array($categories)) {
-                $CategoryHelper = new \RdPostOrder\App\Libraries\CategoryHelper();
+                $CategoryHelper = new \RundizPostOrder\App\Libraries\CategoryHelper();
                 $output_tree = $CategoryHelper->buildCategoryHierarchyArray($categories);
                 $output_tree_2d = [];
                 static $output_tree_2d;
@@ -165,7 +165,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Settings\\Settings'))
             // get all options
             $output['options'] = get_option($this->main_option_name);
 
-            $Loader = new \RdPostOrder\App\Libraries\Loader();
+            $Loader = new \RundizPostOrder\App\Libraries\Loader();
             $Loader->loadView('admin/Settings/settings_v', $output);
             unset($Loader, $output);
         }// settingsPageAction

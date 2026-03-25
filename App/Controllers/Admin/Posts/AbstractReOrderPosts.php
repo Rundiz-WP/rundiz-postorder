@@ -4,15 +4,15 @@
  */
 
 
-namespace RdPostOrder\App\Controllers\Admin\Posts;
+namespace RundizPostOrder\App\Controllers\Admin\Posts;
 
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Posts\\AbstractReOrderPosts')) {
-    abstract class AbstractReOrderPosts implements \RdPostOrder\App\Controllers\ControllerInterface
+if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AbstractReOrderPosts')) {
+    abstract class AbstractReOrderPosts implements \RundizPostOrder\App\Controllers\ControllerInterface
     {
 
 
-        use \RdPostOrder\App\AppTrait;
+        use \RundizPostOrder\App\AppTrait;
 
 
         /**

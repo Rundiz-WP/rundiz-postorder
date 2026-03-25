@@ -1,5 +1,5 @@
 <div class="wrap">
-    <h1><?php _e('Re-order posts', 'rd-postorder'); ?></h1>
+    <h1><?php _e('Re-order posts', 'rundiz-postorder'); ?></h1>
 
 
     <div class="form-result-placeholder"></div>

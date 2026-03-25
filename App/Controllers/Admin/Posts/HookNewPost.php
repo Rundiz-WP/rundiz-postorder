@@ -1,15 +1,15 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers\Admin\Posts;
+namespace RundizPostOrder\App\Controllers\Admin\Posts;
 
 
-if (!class_exists('\\RdPostOrder\\App\\Controlers\\Admin\\Posts\\HookNewPost')) {
-    class HookNewPost implements \RdPostOrder\App\Controllers\ControllerInterface
+if (!class_exists('\\RundizPostOrder\\App\\Controlers\\Admin\\Posts\\HookNewPost')) {
+    class HookNewPost implements \RundizPostOrder\App\Controllers\ControllerInterface
     {
 
 
-        use \RdPostOrder\App\AppTrait;
+        use \RundizPostOrder\App\AppTrait;
 
 
         /**
@@ -27,10 +27,10 @@ if (!class_exists('\\RdPostOrder\\App\\Controlers\\Admin\\Posts\\HookNewPost')) 
                 && is_object($post) 
                 && isset($post->post_status) && in_array($post->post_status, $this->allowed_order_post_status) 
                 && isset($post->menu_order) && '0' == $post->menu_order 
-                && isset($post->post_type) && \RdPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type 
+                && isset($post->post_type) && \RundizPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type 
             ) {
                 // if this save is first time, whatever it status is.
-                $PostOrder = new \RdPostOrder\App\Models\PostOrder();
+                $PostOrder = new \RundizPostOrder\App\Models\PostOrder();
                 $result = $PostOrder->setNewPostOrderNumber($post_id);
                 unset($PostOrder);
 
@@ -41,7 +41,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controlers\\Admin\\Posts\\HookNewPost')) 
                 }
                 unset($result);
 
-                \RdPostOrder\App\Libraries\Debug::writeLog(
+                \RundizPostOrder\App\Libraries\Debug::writeLog(
                     'Debug: RundizPostOrder hookInsertPostAction() method was called. Admin is saving new post. The new `menu_order` value is ' . $menu_order . 
                         ' and the post `ID` is ' . $post_id . '.' .
                         ' updated: ' . var_export($updated, true) . '; updated scheduled posts: ' . var_export($updatedScheduled, true) . '.'

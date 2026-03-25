@@ -1,6 +1,6 @@
 <div class="wrap">
-    <h1><?php _e('Rundiz PostOrder settings', 'rd-postorder'); ?></h1>
-    <p><?php _e('This settings page is for manage all sites.', 'rd-postorder'); ?></p>
+    <h1><?php _e('Rundiz PostOrder settings', 'rundiz-postorder'); ?></h1>
+    <p><?php _e('This settings page is for manage all sites.', 'rundiz-postorder'); ?></p>
 
     <?php if (isset($form_result_class) && isset($form_result_msg)) { ?> 
     <div class="<?php echo $form_result_class; ?> notice is-dismissible">
@@ -14,10 +14,10 @@
     <form id="rd-postorder-settings-form" method="post">
         <?php wp_nonce_field(); ?> 
 
-        <p class="txt-danger txt-white-box"><?php _e('Warning! This will be affect on all sites.', 'rd-postorder'); ?></p>
+        <p class="txt-danger txt-white-box"><?php _e('Warning! This will be affect on all sites.', 'rundiz-postorder'); ?></p>
         <p>
-            <button class="button button-danger" type="submit" name="btn-act" value="reset-menu-order-to-original"><?php _e('Reset post orders to their original value.', 'rd-postorder'); ?></button>
-            <button class="button button-danger" type="submit" name="btn-act" value="reset-menu-order-to-zero"><?php _e('Reset post orders to zero. (WordPress default.)', 'rd-postorder'); ?></button>
+            <button class="button button-danger" type="submit" name="btn-act" value="reset-menu-order-to-original"><?php _e('Reset post orders to their original value.', 'rundiz-postorder'); ?></button>
+            <button class="button button-danger" type="submit" name="btn-act" value="reset-menu-order-to-zero"><?php _e('Reset post orders to zero. (WordPress default.)', 'rundiz-postorder'); ?></button>
         </p>
     </form>
 </div>

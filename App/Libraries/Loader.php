@@ -7,9 +7,9 @@
  */
 
 
-namespace RdPostOrder\App\Libraries;
+namespace RundizPostOrder\App\Libraries;
 
-if (!class_exists('\\RdPostOrder\\App\\Libraries\\Loader')) {
+if (!class_exists('\\RundizPostOrder\\App\\Libraries\\Loader')) {
     /**
      * The loader class that will be use for load controllers, views, and anything...
      */
@@ -19,17 +19,17 @@ if (!class_exists('\\RdPostOrder\\App\\Libraries\\Loader')) {
 
         /**
          * Automatic look into those controllers and register to the main App class to make it works.<br>
-         * The controllers that will be register must implement RdPostOrder\App\Controllers\ControllerInterface to have registerHooks() method in it, otherwise it will be skipped.
+         * The controllers that will be register must implement RundizPostOrder\App\Controllers\ControllerInterface to have registerHooks() method in it, otherwise it will be skipped.
          */
         public function autoRegisterControllers()
         {
-            $this_plugin_dir = dirname(RDPOSTORDER_FILE);
+            $this_plugin_dir = dirname(RUNDIZPOSTORDER_FILE);
             $di = new \RecursiveDirectoryIterator($this_plugin_dir . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR . 'Controllers', \RecursiveDirectoryIterator::SKIP_DOTS);
             $it = new \RecursiveIteratorIterator($di);
             unset($di);
 
             foreach ($it as $file) {
-                $this_file_classname = '\\RdPostOrder' . str_replace([$this_plugin_dir, '.php', '/'], ['', '', '\\'], $file);
+                $this_file_classname = '\\RundizPostOrder' . str_replace([$this_plugin_dir, '.php', '/'], ['', '', '\\'], $file);
                 if (class_exists($this_file_classname)) {
                     $testController = new \ReflectionClass($this_file_classname);
                     if (!$testController->isAbstract()) {

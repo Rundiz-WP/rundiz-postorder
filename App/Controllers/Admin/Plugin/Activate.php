@@ -1,17 +1,17 @@
 <?php
 
 
-namespace RdPostOrder\App\Controllers\Admin\Plugin;
+namespace RundizPostOrder\App\Controllers\Admin\Plugin;
 
-if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate')) {
+if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate')) {
     /**
      * The controller that will be working on activate the plugin.
      */
-    class Activate implements \RdPostOrder\App\Controllers\ControllerInterface
+    class Activate implements \RundizPostOrder\App\Controllers\ControllerInterface
     {
 
 
-        use \RdPostOrder\App\AppTrait;
+        use \RundizPostOrder\App\AppTrait;
 
 
         /**
@@ -23,7 +23,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate')) {
         {
             global $wpdb;
 
-            \RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder activateAction() method was called.');
+            \RundizPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder activateAction() method was called.');
 
             if (is_multisite() && is_network_admin()) {
                 // if multi site enabled and activate plugin from network admin page (using Network Activate).
@@ -103,8 +103,8 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate')) {
             // the example code above will not be use as explained.
 
             // add order number into `posts` table.
-            \RdPostOrder\App\Libraries\Input::static_setPaged();
-            $PostOrderM = new \RdPostOrder\App\Models\PostOrder();
+            \RundizPostOrder\App\Libraries\Input::static_setPaged();
+            $PostOrderM = new \RundizPostOrder\App\Models\PostOrder();
             $PostOrderM->resetAllPostsOrder(true);
             unset($PostOrderM);
 
@@ -125,7 +125,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate')) {
         public function registerHooks()
         {
             // register activate hook
-            register_activation_hook(RDPOSTORDER_FILE, [$this, 'activateAction']);
+            register_activation_hook(RUNDIZPOSTORDER_FILE, [$this, 'activateAction']);
             // on update/upgrade plugin
             add_action('upgrader_process_complete', [$this, 'updatePlugin'], 10, 2);
         }// registerHooks
@@ -142,7 +142,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate')) {
         {
             if (is_array($hook_extra) && array_key_exists('action', $hook_extra) && array_key_exists('type', $hook_extra) && array_key_exists('plugins', $hook_extra)) {
                 if ($hook_extra['action'] == 'update' && $hook_extra['type'] == 'plugin' && is_array($hook_extra['plugins']) && !empty($hook_extra['plugins'])) {
-                    $this_plugin = plugin_basename(RDPOSTORDER_FILE);
+                    $this_plugin = plugin_basename(RUNDIZPOSTORDER_FILE);
                     foreach ($hook_extra['plugins'] as $key => $plugin) {
                         if ($this_plugin == $plugin) {
                             $this_plugin_updated = true;
@@ -152,7 +152,7 @@ if (!class_exists('\\RdPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate')) {
                     unset($key, $plugin, $this_plugin);
 
                     if (isset($this_plugin_updated) && $this_plugin_updated === true) {
-                        \RdPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder updatePlugin() method was called.');
+                        \RundizPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder updatePlugin() method was called.');
 
                         global $wpdb;
                         // do the update plugin task.

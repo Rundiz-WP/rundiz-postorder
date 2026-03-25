@@ -11,7 +11,7 @@
  */
 
 
-namespace RdPostOrder\App\Models;
+namespace RundizPostOrder\App\Models;
 
 
 /**

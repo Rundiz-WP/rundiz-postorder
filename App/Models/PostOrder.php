@@ -4,15 +4,15 @@
  */
 
 
-namespace RdPostOrder\App\Models;
+namespace RundizPostOrder\App\Models;
 
 
-if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
+if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
     class PostOrder
     {
 
 
-        use \RdPostOrder\App\AppTrait;
+        use \RundizPostOrder\App\AppTrait;
 
 
         /**
@@ -39,7 +39,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
 
             // get new menu_order number (new post is latest menu_order+1).
             $sql = 'SELECT `post_status`, `menu_order`, `post_type` FROM `' . $wpdb->posts . '`'
-                . ' WHERE `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
+                . ' WHERE `post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                 . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                 . ' ORDER BY `menu_order` DESC LIMIT 0, 1';
             $LastPost = $wpdb->get_row($sql);
@@ -73,7 +73,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
                 $sql .= ' AND `ID` IN (' . implode(', ', $stickiesPlaceholders) . ')';
                 $sql .= ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')';
                 $sql .= ' ORDER BY `post_date` DESC';
-                $prepared = $wpdb->prepare($sql, array_merge([\RdPostOrder\App\Models\PostOrder::POST_TYPE], $stickies));
+                $prepared = $wpdb->prepare($sql, array_merge([\RundizPostOrder\App\Models\PostOrder::POST_TYPE], $stickies));
                 $stickyPosts = $wpdb->get_results($prepared);
                 unset($prepared, $sql);
             }
@@ -88,7 +88,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
                 $sql .= ' AND `ID` NOT IN (' . implode(', ', $stickiesPlaceholders) . ')';
             }
             $sql .= ' ORDER BY `post_date` DESC';
-            $values = [\RdPostOrder\App\Models\PostOrder::POST_TYPE];
+            $values = [\RundizPostOrder\App\Models\PostOrder::POST_TYPE];
             if (isset($stickyPosts) && is_iterable($stickyPosts)) {
                 foreach ($stickyPosts as $stickyPost) {
                     $values[] = $stickyPost->ID;
@@ -168,7 +168,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
                     '`post_status`, ' . 
                     '`post_type`' . 
                     ' FROM `' . $wpdb->posts . '`' . 
-                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\'' . 
+                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\'' . 
                     ' AND `' . $wpdb->posts . '`.`post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')' . 
                     ' ORDER BY `' . $wpdb->posts . '`.`post_date` ASC',
                 OBJECT
@@ -217,7 +217,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
                     '`post_status`, ' . 
                     '`post_type`' . 
                     ' FROM `' . $wpdb->posts . '`' . 
-                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\'' . 
+                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\'' . 
                     ' AND `' . $wpdb->posts . '`.`post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')' . 
                     ' ORDER BY `' . $wpdb->posts . '`.`post_date` ASC',
                 OBJECT
@@ -306,7 +306,7 @@ if (!class_exists('\\RdPostOrder\\App\\Models\\PostOrder')) {
 
             // get scheduled posts by order ascending (for increase from latest order +1 each).
             $sql = 'SELECT `ID`, `post_date`, `post_date_gmt`, `post_status`, `menu_order`, `post_type` FROM `' . $wpdb->posts . '`'
-                . ' WHERE `post_type` = \'' . \RdPostOrder\App\Models\PostOrder::POST_TYPE . '\''
+                . ' WHERE `post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                 . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                 . ' AND (`post_date` > \'%s\' OR `post_date_gmt` > \'%s\')'
                 . ' ORDER BY `menu_order` ASC';

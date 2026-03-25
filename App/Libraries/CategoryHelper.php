@@ -1,9 +1,9 @@
 <?php
 
 
-namespace RdPostOrder\App\Libraries;
+namespace RundizPostOrder\App\Libraries;
 
-if (!class_exists('\\RdPostOrder\\App\\Libraries\\CategoryHelper')) {
+if (!class_exists('\\RundizPostOrder\\App\\Libraries\\CategoryHelper')) {
     class CategoryHelper
     {
 

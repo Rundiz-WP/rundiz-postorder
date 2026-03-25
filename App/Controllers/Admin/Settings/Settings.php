@@ -24,12 +24,18 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\Setting
 
 
         /**
+         * @var string Settings page menu slug. This constant must be public.
+         */
+        const MENU_SLUG = 'rundiz-postorder-settings';
+
+
+        /**
          * Admin menu.<br>
          * Add sub menus in this method.
          */
         public function adminMenuAction()
         {
-            $hookSuffix = add_options_page(__('Rundiz PostOrder', 'rundiz-postorder'), __('Rundiz PostOrder', 'rundiz-postorder'), 'manage_options', 'rd-postorder-settings', [$this, 'settingsPageAction']);
+            $hookSuffix = add_options_page(__('Rundiz PostOrder', 'rundiz-postorder'), __('Rundiz PostOrder', 'rundiz-postorder'), 'manage_options', self::MENU_SLUG, [$this, 'settingsPageAction']);
 
             if (is_string($hookSuffix)) {
                 add_action('load-' . $hookSuffix, [$this, 'callEnqueueHook']);
@@ -70,14 +76,14 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\Setting
         public function registerScripts()
         {
             wp_enqueue_style(
-                'rd-postorder-settings-page',
+                'rundiz-postorder-settings-css',
                 plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/css/Admin/Settings/settings.css',
                 [],
                 RUNDIZPOSTORDER_VERSION
             );
 
             wp_register_script(
-                'rd-postorder-settings-page',
+                'rundiz-postorder-settings-js',
                 plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/js/Admin/Settings/settings.js',
                 [],
                 RUNDIZPOSTORDER_VERSION,
@@ -86,13 +92,13 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\Setting
                 ]
             );
             wp_localize_script(
-                'rd-postorder-settings-page',
+                'rundiz-postorder-settings-js',
                 'RdPostOrderSettingsObj',
                 [
                     'txtAreYouSure' => __('Are you sure?', 'rundiz-postorder'),
                 ]
             );
-            wp_enqueue_script('rd-postorder-settings-page');
+            wp_enqueue_script('rundiz-postorder-settings-js');
         }// registerScripts
 
 

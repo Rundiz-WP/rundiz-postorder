@@ -28,6 +28,7 @@ if (!trait_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\Traits\\
             $PostOrder = new \RundizPostOrder\App\Models\PostOrder();
             $PostOrder->setMenuOrderToOriginal();
             // delete post meta that this plugin use to store their original value.
+            delete_post_meta_by_key('_rd-postorder-original-menu-order');// delete on old version. @todo[rundiz] delete this line on next version 1.2+
             delete_post_meta_by_key(\RundizPostOrder\App\Models\PostOrder::POST_META_ORIG_MENUORDER_NAME);
             unset($PostOrder);
 
@@ -47,8 +48,7 @@ if (!trait_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\Traits\\
         {
             $PostOrder = new \RundizPostOrder\App\Models\PostOrder();
             $PostOrder->setMenuOrderToZero();
-            // delete post meta that this plugin use to store their original value.
-            delete_post_meta_by_key(\RundizPostOrder\App\Models\PostOrder::POST_META_ORIG_MENUORDER_NAME);
+            // this method should not delete post meta that this plugin use to store their original value due to its task is set menu order to '0', not to their original.
             unset($PostOrder);
 
             $output = [];

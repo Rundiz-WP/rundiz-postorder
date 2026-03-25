@@ -241,7 +241,7 @@ class RdPostOrderReOrder {
                             document.getElementById('menu_order_' + item.ID).value = item.menu_order;
                             const tableTrPerPostId = document.getElementById('postID-' + item.ID);
                             if (tableTrPerPostId) {
-                                tableTrPerPostId.dataset.rdPostorderMenuOrder = item.menu_order;
+                                tableTrPerPostId.dataset.rundizPostorderMenuOrder = item.menu_order;
                             } else {
                                 console.error('[rundiz postorder]: Unable to find table row ID `postID-' + itme.ID + '`.');
                             }
@@ -426,7 +426,7 @@ class RdPostOrderReOrder {
      * @returns {undefined}
      */
     #autoHideNoticePopup() {
-        const noticeElement = document.querySelector('.rd-postorder-notice-popup');
+        const noticeElement = document.querySelector('.rundiz-postorder-notice-popup');
         const timeout = 7000;
 
         if (noticeElement) {
@@ -562,7 +562,7 @@ class RdPostOrderReOrder {
                 // get max value of menu_order
                 let max_menu_order = -Infinity;
                 document.querySelectorAll('.post-item-row')?.forEach((item) => {
-                    max_menu_order = Math.max(max_menu_order, parseFloat(item.dataset.rdPostorderMenuOrder));
+                    max_menu_order = Math.max(max_menu_order, parseFloat(item.dataset.rundizPostorderMenuOrder));
                 });
 
                 thisClass.#ajaxReOrderPosts(sorted_items_serialize_values, max_menu_order);// required `thisClass`.
@@ -622,7 +622,7 @@ class RdPostOrderReOrder {
      * @returns { String }
      */
     #getNoticeElement(notice_class, notice_message) {
-        return '<div class="' + notice_class + ' notice rd-postorder-notice-popup is-dismissible">'
+        return '<div class="' + notice_class + ' notice rundiz-postorder-notice-popup is-dismissible">'
             +'<p><strong>' + notice_message + '</strong></p>'
             +'<button type="button" class="notice-dismiss"><span class="screen-reader-text">' + RdPostOrderObj.txtDismissNotice + '</span></button>'
             +'</div>';
@@ -760,25 +760,25 @@ class RdPostOrderReOrder {
     #listenClickReOrderPerItem() {
         document.addEventListener('click', (event) => {
             let thisTarget = event.currentTarget.activeElement;
-            if (thisTarget.closest('.rd-postorder-reorder-action-per-item')) {
-                thisTarget = thisTarget.closest('.rd-postorder-reorder-action-per-item');
+            if (thisTarget.closest('.rundiz-postorder-reorder-action-per-item')) {
+                thisTarget = thisTarget.closest('.rundiz-postorder-reorder-action-per-item');
                 event.preventDefault();
             } else {
                 return ;
             }
 
             const tableTr = thisTarget.closest('.post-item-row');
-            const moveTo = thisTarget.dataset.rdPostorderAction;
+            const moveTo = thisTarget.dataset.rundizPostorderAction;
             let postID;
             let currentMenuOrder;
 
             if (tableTr) {
-                postID = tableTr.dataset.rdPostorderPostId;
+                postID = tableTr.dataset.rundizPostorderPostId;
                 if (typeof(postID) === 'string') {
                     postID = parseInt(postID);
                 }
 
-                currentMenuOrder = tableTr.dataset.rdPostorderMenuOrder;
+                currentMenuOrder = tableTr.dataset.rundizPostorderMenuOrder;
                 if (typeof(currentMenuOrder) !== 'undefined') {
                     currentMenuOrder = parseFloat(currentMenuOrder);
                 }

@@ -298,13 +298,13 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
             $post_type_object = get_post_type_object($item->post_type);
             $actions = [];
 
-            $actions['moveup'] = '<a class="rd-postorder-reorder-action-per-item" href="#move-up,' . $item->ID . '" 
-                    data-rd-postorder-action="up" 
+            $actions['moveup'] = '<a class="rundiz-postorder-reorder-action-per-item" href="#move-up,' . $item->ID . '" 
+                    data-rundiz-postorder-action="up" 
                 >'
                 . '<i class="fa fa-sort-asc fa-fw"></i> ' . __('Move up', 'rundiz-postorder') 
                 . '</a>';
-            $actions['movedown'] = '<a class="rd-postorder-reorder-action-per-item" href="#move-down,' . $item->ID . '" 
-                    data-rd-postorder-action="down" 
+            $actions['movedown'] = '<a class="rundiz-postorder-reorder-action-per-item" href="#move-down,' . $item->ID . '" 
+                    data-rundiz-postorder-action="down" 
                 >'
                 . '<i class="fa fa-sort-desc fa-fw"></i> ' . __('Move down', 'rundiz-postorder')
                 . '</a>';
@@ -415,8 +415,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
         {
             echo '<tr id="postID-' . esc_attr($item->ID) . '" 
                 class="post-' . esc_attr($item->ID) . ' menu_order-' . esc_attr($item->menu_order) . ' post-item-row" 
-                data-rd-postorder-post-id="' . esc_attr($item->ID) . '" 
-                data-rd-postorder-menu-order="' . esc_attr($item->menu_order) . '"
+                data-rundiz-postorder-post-id="' . esc_attr($item->ID) . '" 
+                data-rundiz-postorder-menu-order="' . esc_attr($item->menu_order) . '"
             >';
             $this->single_row_columns($item);
             echo '</tr>';

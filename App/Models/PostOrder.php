@@ -26,7 +26,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
         /**
          * @var string Original menu order value in post meta name to keep its original value safe.
          */
-        const POST_META_ORIG_MENUORDER_NAME = '_rd-postorder-original-menu-order';
+        const POST_META_ORIG_MENUORDER_NAME = '_rundiz-postorder-original-menu-order';
 
 
         /**
@@ -123,7 +123,14 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
             $i_count = count($allPosts);
             $updated = 0;
             foreach ($allPosts as $row) {
-                $originalMenuOrderVal = get_post_meta($row->ID, static::POST_META_ORIG_MENUORDER_NAME, true);
+                $oldPluginVersionOriginalMenuOrderValue = get_post_meta($row->ID, '_rd-postorder-original-menu-order', true);// check with old version. @todo[rundiz] delete this line on next version 1.2+
+                if (false === $oldPluginVersionOriginalMenuOrderValue || '' === $oldPluginVersionOriginalMenuOrderValue || is_null($oldPluginVersionOriginalMenuOrderValue)) {
+                    $originalMenuOrderVal = get_post_meta($row->ID, static::POST_META_ORIG_MENUORDER_NAME, true);
+                } else {
+                    $originalMenuOrderVal = $oldPluginVersionOriginalMenuOrderValue;
+                }
+                unset($oldPluginVersionOriginalMenuOrderValue);
+
                 if ('' === $originalMenuOrderVal || is_null($originalMenuOrderVal) || false === $originalMenuOrderVal) {
                     // if never saved before.
                     update_post_meta($row->ID, static::POST_META_ORIG_MENUORDER_NAME, intval($row->menu_order));
@@ -184,7 +191,14 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
 
             if (is_array($results)) {
                 foreach ($results as $row) {
-                    $originalMenuOrderValue = get_post_meta($row->ID, static::POST_META_ORIG_MENUORDER_NAME, true);
+                    $oldPluginVersionOriginalMenuOrderValue = get_post_meta($row->ID, '_rd-postorder-original-menu-order', true);// check with old version. @todo[rundiz] delete this line on next version 1.2+
+                    if (false === $oldPluginVersionOriginalMenuOrderValue || '' === $oldPluginVersionOriginalMenuOrderValue || is_null($oldPluginVersionOriginalMenuOrderValue)) {
+                        $originalMenuOrderValue = get_post_meta($row->ID, static::POST_META_ORIG_MENUORDER_NAME, true);
+                    } else {
+                        $originalMenuOrderValue = $oldPluginVersionOriginalMenuOrderValue;
+                    }
+                    unset($oldPluginVersionOriginalMenuOrderValue);
+
                     if (is_string($originalMenuOrderValue) || is_int($originalMenuOrderValue) || is_float($originalMenuOrderValue)) {
                         $originalMenuOrderValue = intval($originalMenuOrderValue);
                     } else {

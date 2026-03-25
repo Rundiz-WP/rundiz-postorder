@@ -47,6 +47,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Uninstall
             unset($PostOrder);
 
             // delete post meta that this plugin use to store its original value.
+            delete_post_meta_by_key('_rd-postorder-original-menu-order');// delete on old version. @todo[rundiz] delete this line on next version 1.2+
             delete_post_meta_by_key(\RundizPostOrder\App\Models\PostOrder::POST_META_ORIG_MENUORDER_NAME);
 
             // remove option related to this plugin.

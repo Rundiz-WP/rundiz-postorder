@@ -293,7 +293,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
 
                     // current menu_order was set. remove it from `$menu_orders` array.
                     foreach ($menu_orders as $a_post_ID => $a_menu_order) {
-                        if ($menu_order === intval($a_menu_order)) {
+                        if (intval($a_menu_order) === $menu_order) {
                             // if current `variable for save` ($data)'s menu_order is match the menu_order in `$menu_orders` array.
                             // remove this array key from `menu_orders` array.
                             unset($menu_orders[$a_post_ID]);

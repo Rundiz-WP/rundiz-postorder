@@ -22,9 +22,9 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AbstractRe
 
 
         /**
-         * @var string Admin menu slug.
+         * @var string Admin re-order posts menu slug. This constant must be public.
          */
-        const MENU_SLUG = 'rd-postorder_reorder-posts';
+        const MENU_SLUG = 'rundiz-postorder_reorder-posts';
 
 
     }// AbstractReOrderPosts

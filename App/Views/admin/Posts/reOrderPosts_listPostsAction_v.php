@@ -11,7 +11,7 @@
 
     <div class="form-result-placeholder"></div>
     <form id="re-order-posts-form" method="get">
-        <input type="hidden" name="page" value="rd-postorder_reorder-posts">
+        <input type="hidden" name="page" value="<?php echo esc_attr(RundizPostOrder\App\Controllers\Admin\Posts\ReOrderPosts::MENU_SLUG); ?>">
         <?php 
         if (isset($PostsListTable) && is_object($PostsListTable) && method_exists($PostsListTable, 'display')) {
             $PostsListTable->display();

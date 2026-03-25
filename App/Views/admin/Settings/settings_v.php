@@ -19,7 +19,7 @@
     </div>
     <?php } ?> 
 
-    <form id="rd-postorder-settings-form" method="post">
+    <form id="rundiz-postorder-settings-form" method="post">
         <?php wp_nonce_field(); ?> 
 
         <table class="form-table">

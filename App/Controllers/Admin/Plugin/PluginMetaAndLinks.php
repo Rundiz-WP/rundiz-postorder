@@ -35,11 +35,11 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMet
             if ($plugin === $plugin_file) {
                 $link = [];
                 if (current_user_can('manage_options') && !is_network_admin()) {
-                    $link['settings'] = '<a href="' . esc_url(get_admin_url(null, 'options-general.php?page=rd-postorder-settings')) . '">' . __('Settings', 'rundiz-postorder') . '</a>';
+                    $link['settings'] = '<a href="' . esc_url(get_admin_url(null, 'options-general.php?page=' . \RundizPostOrder\App\Controllers\Admin\Settings\Settings::MENU_SLUG)) . '">' . __('Settings', 'rundiz-postorder') . '</a>';
                     $actions = array_merge($link, $actions);
                 }
                 if (current_user_can('manage_network_plugins') && is_network_admin()) {
-                    $link['networksettings'] = '<a href="' . esc_url(network_admin_url('settings.php?page=rd-postorder-networksettings')) . '">' . __('Settings', 'rundiz-postorder') . '</a>';
+                    $link['networksettings'] = '<a href="' . esc_url(network_admin_url('settings.php?page=' . \RundizPostOrder\App\Controllers\Admin\Settings\MultisiteSettings::MENU_SLUG)) . '">' . __('Settings', 'rundiz-postorder') . '</a>';
                     $actions = array_merge($link, $actions);
                 }
                 //$actions['after_actions'] = '<a href="#" onclick="return false;">'.__('After Actions', 'rd-yte').'</a>';

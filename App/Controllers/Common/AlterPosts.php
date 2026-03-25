@@ -170,19 +170,19 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
         {
             // check by using hook (filters). ----------------
             if ('front' === $checkFor) {
-                $rd_postorder_is_working = apply_filters('rundiz_postorder_is_working', true);
-                if (true !== $rd_postorder_is_working) {
+                $rundiz_postorder_is_working = apply_filters('rundiz_postorder_is_working', true);
+                if (true !== $rundiz_postorder_is_working) {
                     // disable by plugin hooks (filter).
                     return true;
                 }
-                unset($rd_postorder_is_working);
+                unset($rundiz_postorder_is_working);
             } elseif ('admin' === $checkFor) {
-                $rd_postorder_admin_is_working = apply_filters('rundiz_postorder_admin_is_working', true);
-                if (true !== $rd_postorder_admin_is_working) {
+                $rundiz_postorder_admin_is_working = apply_filters('rundiz_postorder_admin_is_working', true);
+                if (true !== $rundiz_postorder_admin_is_working) {
                     // disable by plugin hooks (filter).
                     return true;
                 }
-                unset($rd_postorder_admin_is_working);
+                unset($rundiz_postorder_admin_is_working);
             }// endif; $checkFor
             // end check by using hook (filters). ------------
 

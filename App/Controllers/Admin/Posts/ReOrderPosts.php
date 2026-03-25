@@ -31,22 +31,22 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
             $screen = get_current_screen();
 
             $screen->add_help_tab([
-                'id' => 'rd-postorder_reorder-posts-helptab1',
+                'id' => 'rundiz-postorder_reorder-posts-helptab1',
                 'title' => __('Re-order by dragging', 'rundiz-postorder'),
                 'content' => $this->Loader->getLoadView('admin/Posts/ReOrderPosts/adminHelpTab_01'),
             ]);
             $screen->add_help_tab([
-                'id' => 'rd-postorder_reorder-posts-helptab2',
+                'id' => 'rundiz-postorder_reorder-posts-helptab2',
                 'title' => __('Re-order over next/previous pages', 'rundiz-postorder'),
                 'content' => $this->Loader->getLoadView('admin/Posts/ReOrderPosts/adminHelpTab_02'),
             ]);
             $screen->add_help_tab([
-                'id' => 'rd-postorder_reorder-posts-helptab3',
+                'id' => 'rundiz-postorder_reorder-posts-helptab3',
                 'title' => __('Manually change order number', 'rundiz-postorder'),
                 'content' => $this->Loader->getLoadView('admin/Posts/ReOrderPosts/adminHelpTab_03'),
             ]);
             $screen->add_help_tab([
-                'id' => 'rd-postorder_reorder-posts-helptab4',
+                'id' => 'rundiz-postorder_reorder-posts-helptab4',
                 'title' => __('Re-number and reset', 'rundiz-postorder'),
                 'content' => $this->Loader->getLoadView('admin/Posts/ReOrderPosts/adminHelpTab_04'),
             ]);
@@ -159,11 +159,11 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
         public function registerScripts()
         {
             // to name font awesome handle as `plugin-name-prefix-font-awesome4` is to prevent conflict with other plugins that maybe use older version but same handle that cause some newer icons in this plugin disappears.
-            wp_enqueue_style('rd-postorder-font-awesome4', plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/css/font-awesome.min.css', [], '4.7.0');
-            wp_enqueue_style('rd-postorder-ReOrderPosts-css', plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/css/Admin/Posts/ReOrderPosts.css', [], RUNDIZPOSTORDER_VERSION);
+            wp_enqueue_style('rundiz-postorder-font-awesome4', plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/css/font-awesome.min.css', [], '4.7.0');
+            wp_enqueue_style('rundiz-postorder-ReOrderPosts-css', plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/css/Admin/Posts/ReOrderPosts.css', [], RUNDIZPOSTORDER_VERSION);
 
             wp_enqueue_script(
-                'rd-postorder-ReOrderPosts-js', 
+                'rundiz-postorder-ReOrderPosts-js', 
                 plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/js/Admin/Posts/ReOrderPosts.js', 
                 [
                     'jquery-query',
@@ -177,7 +177,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
                 ]
             );
             wp_localize_script(
-                'rd-postorder-ReOrderPosts-js',
+                'rundiz-postorder-ReOrderPosts-js',
                 'RdPostOrderObj',
                 [
                     'ajaxnonce' => wp_create_nonce('rdPostOrderReOrderPostsAjaxNonce'),

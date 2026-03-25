@@ -18,7 +18,7 @@
     </div>
     <?php } ?> 
 
-    <form id="rd-postorder-settings-form" method="post">
+    <form id="rundiz-postorder-settings-form" method="post">
         <?php wp_nonce_field(); ?> 
 
         <p class="txt-danger txt-white-box"><?php esc_html_e('Warning! This will be affect on all sites.', 'rundiz-postorder'); ?></p>

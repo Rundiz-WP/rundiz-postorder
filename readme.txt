@@ -2,7 +2,7 @@
 Contributors: okvee
 Tags: posts, order, sort, re-arrange, sortable
 Tested up to: 7.0
-Stable tag: 1.0.10
+Stable tag: 1.1.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 Requires at least: 4.7.0
@@ -19,7 +19,7 @@ Re-arrange or re-order the posts but not interfere with sticky posts. Make your 
 You can re-order by one step (move up/down) or multiple steps (sortable items - drag and drop).  
 Re-order across the page by drag and drop to the top or bottom and then use move up and down to make it re-order across the page.
 
-You can also disable custom post order in some category or all everywhere by adding `rd_postorder_is_working` and `rd_postorder_admin_is_working` filters and its value is boolean.
+You can also disable custom post order in some category or all everywhere by adding `rundiz_postorder_is_working` and `rundiz_postorder_admin_is_working` filters and its value is boolean.
 OR!!  
 You can do that in the settings menu. That's very easy.
 
@@ -53,13 +53,13 @@ No, it doesn't support custom post type.
 No, on uninstall or delete the plugin, it will be reset the *menu_order* to zero (0) which is WordPress default value for post content.
 
 = How to disable custom order in some category? =
-Create your plugin and conditions whatever you want such as `is_category(['your','category','id','or','name'])` and then add this code `add_filter('rd_postorder_is_working', '__return_false');` to disable custom order in the categories you choose.
+Create your plugin and conditions whatever you want such as `is_category(['your','category','id','or','name'])` and then add this code `add_filter('rundiz_postorder_is_working', '__return_false');` to disable custom order in the categories you choose.
 If you want to enable, just remove the filter or change from `__return_false` to `__return_true`.
 Please note that to hook into this filter in the theme some times it might not work due to `pre_get_posts` limitation on the template. See more at https://codex.wordpress.org/Plugin_API/Action_Reference/pre_get_posts .
 For anyone who use this plugin v 0.8 or newer, there is a settings page that you can check front page or categories to disable custom order. To do this, go to Settings > Rundiz PostOrder menu.
 
 = How to disable custom order in admin list post page? =
-Same as disable custom order in the front-end. Add this filter hook into your theme or plugin. `add_filter('rd_postorder_admin_is_working', '__return_false');`
+Same as disable custom order in the front-end. Add this filter hook into your theme or plugin. `add_filter('rundiz_postorder_admin_is_working', '__return_false');`
 Please note that to hook into this filter in the theme some times it might not work due to `pre_get_posts` limitation on the template. See more at https://codex.wordpress.org/Plugin_API/Action_Reference/pre_get_posts .
 
 == Screenshots ==
@@ -68,6 +68,15 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.1.0 =
+2026-03-25
+
+* Rename main plugin file, namespace, text domain to match plugin slug. The name `rd-postorder` was used from the beginning but was renamed to `rundiz-postorder` by WordPress.org plugin system.
+* Update as per PHPCS's instruction.
+* Rename hooks from `rd_postorder_is_working` to be `rundiz_postorder_is_working`.
+* Rename hooks from `rd_postorder_admin_is_working` to be `rundiz_postorder_admin_is_working`.
+* Rename menu slugs, HTML attributes such as classes, ids, data-* to match plugin slug.
+
 = 1.0.10 =
 2025-12-18
 

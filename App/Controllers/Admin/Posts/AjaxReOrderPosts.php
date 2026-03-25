@@ -1,5 +1,7 @@
 <?php
 /**
+ * AJAX re-order posts.
+ * 
  * @since 1.0.9 Renamed from ReOrderPostsAjax.php to AjaxReOrderPosts.php
  * @package rundiz-postorder
  * @license http://opensource.org/licenses/MIT MIT
@@ -27,10 +29,11 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
             // check permission
             if (!current_user_can('edit_others_posts')) {
                 status_header(403);
-                wp_die(__('You do not have permission to access this page.'));
+                wp_die(esc_html__('You do not have permission to access this page.', 'rundiz-postorder'));
             }
 
-            if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            if (isset($_SERVER['REQUEST_METHOD']) && strtolower(wp_unslash($_SERVER['REQUEST_METHOD'])) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Please reload this page and try again.', 'rundiz-postorder');
@@ -46,13 +49,13 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
                     . ' WHERE `post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                     . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                     . ' ORDER BY `menu_order` DESC';
-                $result = $wpdb->get_results($sql, OBJECT_K);
+                $result = $wpdb->get_results($sql, OBJECT_K); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
                 unset($sql);
                 if (is_array($result)) {
                     $i_count = count($result);
                     foreach ($result as $row) {
-                        $wpdb->update($wpdb->posts, ['menu_order' => $i_count], ['ID' => $row->ID], ['%d'], ['%d']);
-                        $i_count--;
+                        $wpdb->update($wpdb->posts, ['menu_order' => $i_count], ['ID' => $row->ID], ['%d'], ['%d']);// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+                        --$i_count;
                     }
                     unset($i_count, $row);
                 }
@@ -95,10 +98,11 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
             // check permission
             if (!current_user_can('edit_others_posts')) {
                 status_header(403);
-                wp_die(__('You do not have permission to access this page.'));
+                wp_die(esc_html__('You do not have permission to access this page.', 'rundiz-postorder'));
             }
 
-            if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            if (isset($_SERVER['REQUEST_METHOD']) && strtolower(wp_unslash($_SERVER['REQUEST_METHOD'])) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Please reload this page and try again.', 'rundiz-postorder');
@@ -108,10 +112,10 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
 
                 \RundizPostOrder\App\Libraries\Input::static_setPaged();
 
-                $move_to = (isset($_POST['move_to']) ? $_POST['move_to'] : null);
-                $postID = (isset($_POST['postID']) ? intval($_POST['postID']) : null);
-                $menu_order = (isset($_POST['menu_order']) ? intval($_POST['menu_order']) : null);
-                $paged = $_GET['paged'];
+                $move_to = (isset($_POST['move_to']) ? sanitize_text_field(wp_unslash($_POST['move_to'])) : null);
+                $postID = (isset($_POST['postID']) ? intval(sanitize_text_field(wp_unslash($_POST['postID']))) : null);
+                $menu_order = (isset($_POST['menu_order']) ? intval(sanitize_text_field(wp_unslash($_POST['menu_order']))) : null);
+                $paged = (isset($_GET['paged']) ? sanitize_text_field(wp_unslash($_GET['paged'])) : 0);
 
                 if ($menu_order <= 0) {
                     $output['form_result_class'] = 'notice-error';
@@ -140,8 +144,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
 
                 // get menu_order of selected item to make very sure that it will be correctly order.
                 $sql = 'SELECT `ID`, `menu_order` FROM `' . $wpdb->posts . '` WHERE `ID` = \'%d\'';
-                $sql = $wpdb->prepare($sql, $postID);
-                $Posts = $wpdb->get_row($sql);
+                $sql = $wpdb->prepare($sql, $postID);// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+                $Posts = $wpdb->get_row($sql);// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                 unset($sql);
                 $menu_order = $Posts->menu_order;
                 unset($Posts);
@@ -153,8 +157,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
                         . ' AND `post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                         . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                         . ' ORDER BY `menu_order` ASC';
-                    $sql = $wpdb->prepare($sql, $menu_order);
-                    $Posts = $wpdb->get_row($sql);
+                    $sql = $wpdb->prepare($sql, $menu_order);// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+                    $Posts = $wpdb->get_row($sql);// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
                     unset($sql);
                 } elseif ('down' === $move_to) {
                     $sql = 'SELECT `ID`, `menu_order`, `post_type`, `post_status` FROM `' . $wpdb->posts . '`'
@@ -162,8 +166,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
                         . ' AND `post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\''
                         . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                         . ' ORDER BY `menu_order` DESC';
-                    $sql = $wpdb->prepare($sql, $menu_order);
-                    $Posts = $wpdb->get_row($sql);
+                    $sql = $wpdb->prepare($sql, $menu_order);// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+                    $Posts = $wpdb->get_row($sql);// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                     unset($sql);
                 }
                 if (isset($Posts) && is_object($Posts)) {
@@ -183,7 +187,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
                 $rowsUpdated = 0;
                 if (is_array($data)) {
                     foreach ($data as $a_post_id => $item) {
-                        $updateResult = $wpdb->update(
+                        $updateResult = $wpdb->update(// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                             $wpdb->posts, 
                             ['menu_order' => $item['menu_order']], 
                             ['ID' => $item['ID']],
@@ -238,10 +242,11 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
             // check permission
             if (!current_user_can('edit_others_posts')) {
                 status_header(403);
-                wp_die(__('You do not have permission to access this page.'));
+                wp_die(esc_html__('You do not have permission to access this page.', 'rundiz-postorder'));
             }
 
-            if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            if (isset($_SERVER['REQUEST_METHOD']) && strtolower(wp_unslash($_SERVER['REQUEST_METHOD'])) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Please reload this page and try again.', 'rundiz-postorder');
@@ -249,9 +254,11 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
                     wp_die();
                 }
 
-                $postIDs = (isset($_POST['postID']) ? $_POST['postID'] : []);
-                $menu_orders = (isset($_POST['menu_order']) ? $_POST['menu_order'] : []);// menu_order[post ID] = menu order number.
-                $max_menu_order = (isset($_POST['max_menu_order']) ? $_POST['max_menu_order'] : 0);
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+                $postIDs = (isset($_POST['postID']) ? wp_unslash($_POST['postID']) : []); 
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+                $menu_orders = (isset($_POST['menu_order']) ? wp_unslash($_POST['menu_order']) : []);// menu_order[post ID] = menu order number.
+                $max_menu_order = (isset($_POST['max_menu_order']) ? sanitize_text_field(wp_unslash($_POST['max_menu_order'])) : 0);
 
                 if ($max_menu_order <= 0) {
                     // max menu_order is 0 or lower. 
@@ -286,7 +293,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
 
                     // current menu_order was set. remove it from `$menu_orders` array.
                     foreach ($menu_orders as $a_post_ID => $a_menu_order) {
-                        if ($menu_order == $a_menu_order) {
+                        if ($menu_order === intval($a_menu_order)) {
                             // if current `variable for save` ($data)'s menu_order is match the menu_order in `$menu_orders` array.
                             // remove this array key from `menu_orders` array.
                             unset($menu_orders[$a_post_ID]);
@@ -306,7 +313,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
                 if (is_array($data) && !empty($data)) {
                     global $wpdb;
                     foreach ($data as $postID => $item) {
-                        $wpdb->update(
+                        $wpdb->update(// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                             $wpdb->posts, 
                             ['menu_order' => $item['menu_order']], 
                             ['ID' => $item['ID']],
@@ -343,10 +350,11 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
         {
             // check permission
             if (!current_user_can('edit_others_posts')) {
-                wp_die(__('You do not have permission to access this page.'));
+                wp_die(esc_html__('You do not have permission to access this page.', 'rundiz-postorder'));
             }
 
-            if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            if (isset($_SERVER['REQUEST_METHOD']) && strtolower(wp_unslash($_SERVER['REQUEST_METHOD'])) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Please reload this page and try again.', 'rundiz-postorder');
@@ -395,10 +403,11 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
         {
             // check permission
             if (!current_user_can('edit_others_posts')) {
-                wp_die(__('You do not have permission to access this page.'));
+                wp_die(esc_html__('You do not have permission to access this page.', 'rundiz-postorder'));
             }
 
-            if (strtolower($_SERVER['REQUEST_METHOD']) === 'post' && isset($_POST) && !empty($_POST)) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            if (isset($_SERVER['REQUEST_METHOD']) && strtolower(wp_unslash($_SERVER['REQUEST_METHOD'])) === 'post' && isset($_POST) && !empty($_POST)) {
                 if (check_ajax_referer('rdPostOrderReOrderPostsAjaxNonce', 'security', false) === false) {
                     $output['form_result_class'] = 'notice-error';
                     $output['form_result_msg'] = __('Please reload this page and try again.', 'rundiz-postorder');
@@ -408,7 +417,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
 
                 \RundizPostOrder\App\Libraries\Input::static_setPaged();
 
-                $menu_orders = (isset($_POST['menu_order']) ? $_POST['menu_order'] : []);
+                $menu_orders = (isset($_POST['menu_order']) ? wp_unslash($_POST['menu_order']) : []); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                 global $wpdb;
 
                 if (!is_array($menu_orders) || empty($menu_orders)) {
@@ -419,7 +428,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
                 }
 
                 foreach ($menu_orders as $a_post_id => $a_menu_order) {
-                    $wpdb->update(
+                    $wpdb->update(// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                         $wpdb->posts, 
                         ['menu_order' => $a_menu_order], 
                         ['ID' => $a_post_id], 
@@ -463,8 +472,10 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
          */
         protected function getHookName()
         {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             if (isset($_REQUEST['hookName'])) {
-                $hookName = trim($_REQUEST['hookName']);
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                $hookName = sanitize_text_field(wp_unslash($_REQUEST['hookName']));
             } else {
                 $hookName = '';
             }
@@ -492,5 +503,5 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\AjaxReOrde
         }// registerHooks
 
 
-    }
+    }// AjaxReOrderPosts
 }

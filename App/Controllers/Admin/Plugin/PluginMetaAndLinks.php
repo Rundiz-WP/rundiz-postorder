@@ -1,9 +1,18 @@
 <?php
+/**
+ * Plugin meta and links.
+ * 
+ * @package rundiz-postorder
+ */
 
 
 namespace RundizPostOrder\App\Controllers\Admin\Plugin;
 
+
 if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMetaAndLinks')) {
+    /**
+     * Plugin meta and links class.
+     */
     class PluginMetaAndLinks implements \RundizPostOrder\App\Controllers\ControllerInterface
     {
 
@@ -23,14 +32,14 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMet
                 $plugin = plugin_basename(RUNDIZPOSTORDER_FILE);
             }
 
-            if ($plugin == $plugin_file) {
+            if ($plugin === $plugin_file) {
                 $link = [];
                 if (current_user_can('manage_options') && !is_network_admin()) {
-                    $link['settings'] = '<a href="'.  esc_url(get_admin_url(null, 'options-general.php?page=rd-postorder-settings')).'">'.__('Settings').'</a>';
+                    $link['settings'] = '<a href="' . esc_url(get_admin_url(null, 'options-general.php?page=rd-postorder-settings')) . '">' . __('Settings', 'rundiz-postorder') . '</a>';
                     $actions = array_merge($link, $actions);
                 }
                 if (current_user_can('manage_network_plugins') && is_network_admin()) {
-                    $link['networksettings'] = '<a href="'.  esc_url(network_admin_url('settings.php?page=rd-postorder-networksettings')).'">'.__('Settings').'</a>';
+                    $link['networksettings'] = '<a href="' . esc_url(network_admin_url('settings.php?page=rd-postorder-networksettings')) . '">' . __('Settings', 'rundiz-postorder') . '</a>';
                     $actions = array_merge($link, $actions);
                 }
                 //$actions['after_actions'] = '<a href="#" onclick="return false;">'.__('After Actions', 'rd-yte').'</a>';
@@ -55,7 +64,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMet
 
 
         /**
-         * add links to row meta that is in plugin page under plugin description.
+         * Add links to row meta that is in plugin page under plugin description.
          * 
          * @link https://developer.wordpress.org/reference/hooks/plugin_row_meta/ Document.
          * @staticvar string $plugin the plugin file name.
@@ -79,5 +88,5 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\PluginMet
         }// rowMeta
 
 
-    }
+    }// PluginMetaAndLinks
 }

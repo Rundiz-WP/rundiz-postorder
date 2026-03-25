@@ -1,7 +1,13 @@
 <?php
+/**
+ * Alger posts.
+ * 
+ * @package rundiz-postorder
+ */
 
 
 namespace RundizPostOrder\App\Controllers\Common;
+
 
 if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
     /**
@@ -17,12 +23,13 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
         /**
          * Alter list post query.
          * 
-         * @param \WP_Query $query
+         * @param \WP_Query $query The `WP_Query` object.
          */
         public function alterListPostAction($query)
         {
             if (is_admin()) {
-                if (isset($query->query['post_type']) && 'post' == $query->query['post_type'] && !isset($_GET['orderby']) && !isset($_GET['order'])) {
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                if (isset($query->query['post_type']) && 'post' === $query->query['post_type'] && !isset($_GET['orderby']) && !isset($_GET['order'])) {
                     $is_disable_customorder_admin = $this->isDisableCustomOrder('admin');
 
                     if (isset($is_disable_customorder_admin) && true !== $is_disable_customorder_admin) {
@@ -35,7 +42,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
             } else {
                 if (!$query->is_main_query()) {
                     // if not main query (such as widget recent posts).
-                    return ;
+                    return;
                 }
 
                 $is_disable_customorder = $this->isDisableCustomOrder();
@@ -92,7 +99,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
 
             if (isset($is_disable_customorder) && true !== $is_disable_customorder) {
                 if (isset($post->post_type) && \RundizPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
-                    $where = str_replace('p.post_date > \''.$post->post_date.'\'', 'p.menu_order > \''.$post->menu_order.'\'', $where);
+                    $where = str_replace('p.post_date > \'' . $post->post_date . '\'', 'p.menu_order > \'' . $post->menu_order . '\'', $where);
                 }
             }
 
@@ -143,7 +150,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
 
             if (isset($is_disable_customorder) && true !== $is_disable_customorder) {
                 if (isset($post->post_type) && \RundizPostOrder\App\Models\PostOrder::POST_TYPE === $post->post_type) {
-                    $where = str_replace('p.post_date < \''.$post->post_date.'\'', 'p.menu_order < \''.$post->menu_order.'\'', $where);
+                    $where = str_replace('p.post_date < \'' . $post->post_date . '\'', 'p.menu_order < \'' . $post->menu_order . '\'', $where);
                 }
             }
 
@@ -163,14 +170,14 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
         {
             // check by using hook (filters). ----------------
             if ('front' === $checkFor) {
-                $rd_postorder_is_working = apply_filters('rd_postorder_is_working', true);
+                $rd_postorder_is_working = apply_filters('rundiz_postorder_is_working', true);
                 if (true !== $rd_postorder_is_working) {
                     // disable by plugin hooks (filter).
                     return true;
                 }
                 unset($rd_postorder_is_working);
             } elseif ('admin' === $checkFor) {
-                $rd_postorder_admin_is_working = apply_filters('rd_postorder_admin_is_working', true);
+                $rd_postorder_admin_is_working = apply_filters('rundiz_postorder_admin_is_working', true);
                 if (true !== $rd_postorder_admin_is_working) {
                     // disable by plugin hooks (filter).
                     return true;
@@ -227,7 +234,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
                     if (
                         array_key_exists('disable_customorder_categories', $plugin_options) && 
                         is_array($plugin_options['disable_customorder_categories']) &&
-                        in_array($this_category_id, $plugin_options['disable_customorder_categories'])
+                        in_array($this_category_id, $plugin_options['disable_customorder_categories']) // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
                     ) {
                         return true;
                     }
@@ -253,5 +260,5 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Common\\AlterPosts')) {
         }// registerHooks
 
 
-    }
+    }// AlterPosts
 }

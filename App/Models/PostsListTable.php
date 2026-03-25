@@ -1,4 +1,9 @@
 <?php
+/**
+ * Post list table.
+ * 
+ * @package rundiz-postorder
+ */
 
 
 namespace RundizPostOrder\App\Models;
@@ -8,13 +13,13 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
     /**
      * List data into table.
      * Warning! Do not modify method name because they are extended from WP_List_Table class of WordPress. Changing the method name may cause program error.
-     * Warning! this parent class is marked as private. Please read at wordpress source.
+     * Warning! this parent class is marked as private. Please read at WordPress source.
      * 
      * This class copy from wp-admin/includes/class-wp-posts-list-table.php
      * 
      * @link http://wpengineer.com/2426/wp_list_table-a-step-by-step-guide/ tutorial about how to list table data.
      * @link http://www.sitepoint.com/using-wp_list_table-to-create-wordpress-admin-tables/ another tutorial
-     * @link https://codex.wordpress.org/Class_Reference/WP_List_Table wordpress list table class source.
+     * @link https://codex.wordpress.org/Class_Reference/WP_List_Table WordPress list table class source.
      */
     class PostsListTable extends WPListTable
     {
@@ -26,7 +31,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
         /**
          * Class constructor.
          * 
-         * @param array $args
+         * @param array $args Array or string of arguments.
          */
         public function __construct($args = [])
         {
@@ -39,19 +44,19 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
         /**
          * Column checkbox.
          * 
-         * @param object $item
+         * @param object $item Row item object.
          * @return string
          */
         public function column_cb($item)
         {
-            return '<i class="reorder-handle fa fa-sort fa-fw" title="' . __('Drag to re-order', 'rd-orderpost') . '"></i>';
+            return '<i class="reorder-handle fa fa-sort fa-fw" title="' . __('Drag to re-order', 'rundiz-postorder') . '"></i>';
         }// column_cb
 
 
         /**
          * Get column date result.
          * 
-         * @param object $item
+         * @param object $item Row item object.
          * @return string
          */
         public function column_date($item)
@@ -60,39 +65,40 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
             $output = '';
 
             if (isset($item->post_date)) {
-                if ('0000-00-00 00:00:00' == $item->post_date) {
-                    $t_time = __('Unpublished');
+                if ('0000-00-00 00:00:00' === $item->post_date) {
+                    $t_time = __('Unpublished', 'rundiz-postorder');
                     $h_time = $t_time;
                     $time_diff = 0;
                 } else {
-                    $t_time = get_the_time(__('Y/m/d g:i:s a'), $item);
+                    $t_time = get_the_time(__('Y/m/d g:i:s a', 'rundiz-postorder'), $item);
                     $m_time = $item->post_date;
 
                     $time = get_post_time('G', true, $item);
                     $time_diff = time() - $time;
 
                     if ($time_diff > 0 && $time_diff < DAY_IN_SECONDS) {
-                        $h_time = sprintf(__( '%s ago' ), human_time_diff($time));
+                        /* translators: %s times ago */
+                        $h_time = sprintf(__('%s ago', 'rundiz-postorder'), human_time_diff($time));
                     } else {
-                        $h_time = mysql2date(__('Y/m/d'), $m_time);
+                        $h_time = mysql2date(__('Y/m/d', 'rundiz-postorder'), $m_time);
                     }
                 }
             }
 
             if (isset($item->post_status)) {
-                if ('publish' == $item->post_status) {
-                    $output .= __('Published');
-                } elseif ('future' == $item->post_status) {
+                if ('publish' === $item->post_status) {
+                    $output .= __('Published', 'rundiz-postorder');
+                } elseif ('future' === $item->post_status) {
                     if ($time_diff > 0) {
-                        $output .= '<strong class="error-message">' . __('Missed schedule') . '</strong>';
+                        $output .= '<strong class="error-message">' . __('Missed schedule', 'rundiz-postorder') . '</strong>';
                     } else {
-                        $output .= __('Scheduled');
+                        $output .= __('Scheduled', 'rundiz-postorder');
                     }
                 } else {
-                    $output .= __('Last Modified');
+                    $output .= __('Last Modified', 'rundiz-postorder');
                 }
                 $output .= '<br>';
-                $output .= '<abbr title="' . $t_time . '">' . apply_filters('post_date_column_time', $h_time, $item, 'date', 'list') . '</abbr>';
+                $output .= '<abbr title="' . $t_time . '">' . apply_filters('post_date_column_time', $h_time, $item, 'date', 'list') . '</abbr>';// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
             }
 
             unset($h_time, $m_time, $t_time, $time, $time_diff);
@@ -103,8 +109,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
         /**
          * Get column data.
          * 
-         * @param object $item
-         * @param string $column_name
+         * @param object $item Row item object.
+         * @param string $column_name Column name.
          * @return string
          */
         public function column_default($item, $column_name)
@@ -134,7 +140,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
         /**
          * Handles the title column output.
          * 
-         * @param object $item
+         * @param object $item Row item object.
          * @return string
          */
         public function column_title($item)
@@ -152,8 +158,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
         /**
          * Generate a link for taxonomy such as categories, tags.
          * 
-         * @param string $taxonomy
-         * @param object $item
+         * @param string $taxonomy Taxonomy.
+         * @param object $item Row item object.
          * @return string
          */
         private function columnTaxonomyLink($taxonomy, $item)
@@ -169,7 +175,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
                 }// endforeach;
                 unset($term);
 
-                $output = join(__(', '), $outlink);
+                $output = join(__(', ', 'rundiz-postorder'), $outlink);
                 unset($outlink);
             }
 
@@ -181,33 +187,33 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
         /**
          * Get post status to display append after the title.
          * 
-         * @param object $item
+         * @param object $item Row item object.
          * @return string
          */
         private function columnTitleDisplayPostStatus($item)
         {
             $post_states = [];
             if (isset($item->post_password) && !empty($item->post_password)) {
-                $post_states['protected'] = __('Password protected');
+                $post_states['protected'] = __('Password protected', 'rundiz-postorder');
             }
             if (isset($item->post_status)) {
-                if ('future' == $item->post_status) {
-                    $post_states['future'] = __('Scheduled');
+                if ('future' === $item->post_status) {
+                    $post_states['future'] = __('Scheduled', 'rundiz-postorder');
                 }
-                if ('draft' == $item->post_status) {
-                    $post_states['draft'] = __('Draft');
+                if ('draft' === $item->post_status) {
+                    $post_states['draft'] = __('Draft', 'rundiz-postorder');
                 }
-                if ('pending' == $item->post_status) {
-                    $post_states['pending'] = __('Pending');
+                if ('pending' === $item->post_status) {
+                    $post_states['pending'] = __('Pending', 'rundiz-postorder');
                 }
-                if ('private' == $item->post_status) {
-                    $post_states['private'] = __('Private');
+                if ('private' === $item->post_status) {
+                    $post_states['private'] = __('Private', 'rundiz-postorder');
                 }
-                if ('trash' == $item->post_status) {
-                    $post_states['trash'] = __('Trash');
+                if ('trash' === $item->post_status) {
+                    $post_states['trash'] = __('Trash', 'rundiz-postorder');
                 }
                 if (is_sticky($item->ID)) {
-                    $post_states['sticky'] = __('Sticky');
+                    $post_states['sticky'] = __('Sticky', 'rundiz-postorder');
                 }
             }
 
@@ -217,9 +223,9 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
                 $output = ' &mdash; ';
                 foreach ($post_states as $state) {
                     $output .= '<span class="post-state">' . $state . '</span>';
-                    $i++;
+                    ++$i;
                     if ($i < $total_states) {
-                        $output .= __(', ');
+                        $output .= __(', ', 'rundiz-postorder');
                     }
                 }// endforeach;
                 unset($i, $post_states, $state, $total_states);
@@ -244,7 +250,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
 
 
         /**
-         * get columns to display.
+         * Get columns to display.
          * 
          * @return array
          */
@@ -252,12 +258,12 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
         {
             $columns = [
                 'cb' => '',
-                'title' => __('Title'),
-                'author' => __('Author'),
-                'categories' => __('Categories'),
-                'tags' => __('Tags'),
+                'title' => __('Title', 'rundiz-postorder'),
+                'author' => __('Author', 'rundiz-postorder'),
+                'categories' => __('Categories', 'rundiz-postorder'),
+                'tags' => __('Tags', 'rundiz-postorder'),
                 'order' => __('Order', 'rundiz-postorder'),
-                'date' => __( 'Date' ),
+                'date' => __('Date', 'rundiz-postorder'),
             ];
             return $columns;
         }// get_columns
@@ -278,6 +284,9 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
          * {@inheritDoc}
          * 
          * @since 1.0.9 Move row actions from inside `column_title()` to here.
+         * @param object $item Row item object.
+         * @param string $column_name Column name.
+         * @param string $primary Primary column.
          */
         protected function handle_row_actions($item, $column_name, $primary)
         {
@@ -306,8 +315,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
                     '<a href="%s" aria-label="%s">%s</a>',
                     get_edit_post_link($item->ID),
                     /* translators: %s: Post title. */
-                    esc_attr(sprintf(__('Edit &#8220;%s&#8221;'), $title)),
-                    __('Edit')
+                    esc_attr(sprintf(__('Edit &#8220;%s&#8221;', 'rundiz-postorder'), $title)),
+                    __('Edit', 'rundiz-postorder')
                 );
             }
 
@@ -315,11 +324,11 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
                 if ('trash' !== $item->post_status) {
                     // view link copied from wp-admin/includes/class-wp-posts-list-table.php
                     $actions['view'] = sprintf(
-                            '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
-                            get_permalink($item->ID),
-                            /* translators: %s: Post title. */
-                            esc_attr(sprintf(__('View &#8220;%s&#8221;'), $title)),
-                            __('View')
+                        '<a href="%s" rel="bookmark" aria-label="%s">%s</a>',
+                        get_permalink($item->ID),
+                        /* translators: %s: Post title. */
+                        esc_attr(sprintf(__('View &#8220;%s&#8221;', 'rundiz-postorder'), $title)),
+                        __('View', 'rundiz-postorder')
                     );
                 }
             }
@@ -330,11 +339,10 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
 
 
         /**
-         * prepare data and items
+         * Prepare data and items.
          * 
          * @global \wpdb $wpdb
          * @global \WP_Query $wp_query
-         * @param integer $user_id
          */
         public function prepare_items()
         {
@@ -355,7 +363,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
 
             $post_type = $this->screen->post_type;
             $per_page = $this->get_items_per_page('edit_' . $post_type . '_per_page');
-            $per_page = apply_filters('edit_posts_per_page', $per_page, $post_type);
+            $per_page = apply_filters('edit_posts_per_page', $per_page, $post_type);// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 
             $total_items = $wp_query->found_posts;
             if (isset($wp_query->posts) && is_array($wp_query->posts)) {
@@ -365,7 +373,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
             }
 
             // list posts for previous version.
-            /*$current_page = $this->get_pagenum();
+            /*
+            $current_page = $this->get_pagenum();
 
             // connect db and list data.
             // get *total* items
@@ -383,13 +392,14 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
             $sql .= ' ORDER BY `menu_order` DESC';
             $sql .= ' LIMIT ' . (($current_page - 1) * $per_page) . ', ' . $per_page;
             $results = $wpdb->get_results($sql, OBJECT_K);
-            unset($sql);*/
+            unset($sql);
+             */
             // end list posts for previous version.
 
             // create pagination
             $this->set_pagination_args([
                 'total_items' => $total_items, 
-                'per_page'    => $per_page
+                'per_page'    => $per_page,
             ]);
 
             $this->items = $results;
@@ -399,19 +409,19 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
         /**
          * Display a table row.
          * 
-         * @param object $item
+         * @param object $item Row item object.
          */
         public function single_row($item)
         {
-            echo '<tr id="postID-' . $item->ID . '" 
-                class="post-' . $item->ID . ' menu_order-' . $item->menu_order . ' post-item-row" 
-                data-rd-postorder-post-id="' . $item->ID . '" 
-                data-rd-postorder-menu-order="' . $item->menu_order . '"
+            echo '<tr id="postID-' . esc_attr($item->ID) . '" 
+                class="post-' . esc_attr($item->ID) . ' menu_order-' . esc_attr($item->menu_order) . ' post-item-row" 
+                data-rd-postorder-post-id="' . esc_attr($item->ID) . '" 
+                data-rd-postorder-menu-order="' . esc_attr($item->menu_order) . '"
             >';
             $this->single_row_columns($item);
             echo '</tr>';
         }// single_row
 
 
-    }
+    }// PostsListTable
 }

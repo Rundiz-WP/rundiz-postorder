@@ -1,4 +1,9 @@
 <?php
+/**
+ * Re-order posts.
+ * 
+ * @package rundiz-postorder
+ */
 
 
 namespace RundizPostOrder\App\Controllers\Admin\Posts;
@@ -79,7 +84,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
         {
             // check permission
             if (!current_user_can('edit_others_posts')) {
-                wp_die(__('You do not have permission to access this page.'));
+                wp_die(esc_html__('You do not have permission to access this page.', 'rundiz-postorder'));
             }
 
             $output = [];
@@ -105,12 +110,13 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
          */
         public function redirectNiceUrl()
         {
-            if (isset($_GET['page']) && static::MENU_SLUG == $_GET['page']) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            if (isset($_GET['page']) && static::MENU_SLUG === $_GET['page']) {
                 // redirect to show nice URL
                 $not_showing_queries = ['_wpnonce', '_wp_http_referer', 'menu_order'];
-                if (is_array($_REQUEST)) {
-                    foreach ($_REQUEST as $name => $value) {
-                        if (in_array($name, $not_showing_queries)) {
+                if (is_array($_REQUEST)) {// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                    foreach ($_REQUEST as $name => $value) {// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                        if (in_array(strtolower($name), $not_showing_queries, true)) {
                             $needs_redirect = true;
                             break;
                         }
@@ -120,15 +126,15 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
                     if (isset($needs_redirect) && true === $needs_redirect) {
                         $new_url = admin_url('edit.php') . '?';
                         $new_query = [];
-                        foreach ($_REQUEST as $name => $value) {
-                            if (!in_array($name, $not_showing_queries)) {
+                        foreach ($_REQUEST as $name => $value) {// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                            if (!in_array(strtolower($name), $not_showing_queries, true)) {
                                 $new_query[$name] = $value;
                             }
                         }// endforeach;
                         unset($name, $value);
                         $new_url .= http_build_query($new_query);
                         unset($new_query);
-                        wp_redirect($new_url);
+                        wp_redirect($new_url);// phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
                     }
                 }
                 unset($needs_redirect, $not_showing_queries);
@@ -179,7 +185,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
                     'hookName' => $this->hookName,
                     'txtConfirm' => __('Are you sure?', 'rundiz-postorder'),
                     'txtConfirmReorderAll' => __('Are you sure to doing this? (This may slow down your server if you have too many posts.)', 'rundiz-postorder'),
-                    'txtDismissNotice' => __('Dismiss this notice.'),
+                    'txtDismissNotice' => __('Dismiss this notice.', 'rundiz-postorder'),
                     'txtPleaseSelectSaveAllChanges' => __('Please select save all changes and then press apply button.', 'rundiz-postorder'),
                     'txtPreviousXhrWorking' => __('The previous XHR is currently working, please wait few seconds and try again.', 'rundiz-postorder'),
                     'txtReloadPageTryAgain' => __('Please reload this page and try again.', 'rundiz-postorder'),
@@ -188,5 +194,5 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
         }// registerScripts
 
 
-    }
+    }// ReOrderPosts
 }

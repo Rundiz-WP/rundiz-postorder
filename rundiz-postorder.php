@@ -24,7 +24,7 @@ if (!defined('RUNDIZPOSTORDER_FILE')) {
 
 if (!defined('RUNDIZPOSTORDER_VERSION')) {
     $rundiz_postorder_pluginData = (function_exists('get_file_data') ? get_file_data(__FILE__, ['Version' => 'Version']) : null);
-    $rundiz_postorder_pluginVersion = (isset($rundiz_postorder_pluginData['Version']) ? $rundiz_postorder_pluginData['Version'] : date('Ym'));
+    $rundiz_postorder_pluginVersion = (isset($rundiz_postorder_pluginData['Version']) ? $rundiz_postorder_pluginData['Version'] : date('Ym'));// phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
     unset($rundiz_postorder_pluginData);
     define('RUNDIZPOSTORDER_VERSION', $rundiz_postorder_pluginVersion);
     unset($rundiz_postorder_pluginVersion);

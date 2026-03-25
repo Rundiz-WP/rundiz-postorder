@@ -1,6 +1,11 @@
 <?php
 /**
+ * Post order DB.
+ * 
+ * @package rundiz-postorder
  * @license http://opensource.org/licenses/MIT MIT
+ * 
+ * phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
  */
 
 
@@ -8,6 +13,9 @@ namespace RundizPostOrder\App\Models;
 
 
 if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
+    /**
+     * PostOrder class.
+     */
     class PostOrder
     {
 
@@ -39,7 +47,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
 
             // get new menu_order number (new post is latest menu_order+1).
             $sql = 'SELECT `post_status`, `menu_order`, `post_type` FROM `' . $wpdb->posts . '`'
-                . ' WHERE `post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\''
+                . ' WHERE `post_type` = \'' . self::POST_TYPE . '\''
                 . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                 . ' ORDER BY `menu_order` DESC LIMIT 0, 1';
             $LastPost = $wpdb->get_row($sql);
@@ -73,7 +81,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
                 $sql .= ' AND `ID` IN (' . implode(', ', $stickiesPlaceholders) . ')';
                 $sql .= ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')';
                 $sql .= ' ORDER BY `post_date` DESC';
-                $prepared = $wpdb->prepare($sql, array_merge([\RundizPostOrder\App\Models\PostOrder::POST_TYPE], $stickies));
+                $prepared = $wpdb->prepare($sql, array_merge([self::POST_TYPE], $stickies));
                 $stickyPosts = $wpdb->get_results($prepared);
                 unset($prepared, $sql);
             }
@@ -88,7 +96,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
                 $sql .= ' AND `ID` NOT IN (' . implode(', ', $stickiesPlaceholders) . ')';
             }
             $sql .= ' ORDER BY `post_date` DESC';
-            $values = [\RundizPostOrder\App\Models\PostOrder::POST_TYPE];
+            $values = [self::POST_TYPE];
             if (isset($stickyPosts) && is_iterable($stickyPosts)) {
                 foreach ($stickyPosts as $stickyPost) {
                     $values[] = $stickyPost->ID;
@@ -158,9 +166,9 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
          */
         public function setMenuOrderToOriginal()
         {
-          global $wpdb;
+            global $wpdb;
 
-          $results = $wpdb->get_results(
+            $results = $wpdb->get_results(
                 'SELECT ' . 
                     '`ID`, ' . 
                     '`post_date`, ' . 
@@ -168,7 +176,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
                     '`post_status`, ' . 
                     '`post_type`' . 
                     ' FROM `' . $wpdb->posts . '`' . 
-                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\'' . 
+                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'' . self::POST_TYPE . '\'' . 
                     ' AND `' . $wpdb->posts . '`.`post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')' . 
                     ' ORDER BY `' . $wpdb->posts . '`.`post_date` ASC',
                 OBJECT
@@ -207,9 +215,9 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
          */
         public function setMenuOrderToZero()
         {
-          global $wpdb;
+            global $wpdb;
 
-          $results = $wpdb->get_results(
+            $results = $wpdb->get_results(
                 'SELECT ' . 
                     '`ID`, ' . 
                     '`post_date`, ' . 
@@ -217,7 +225,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
                     '`post_status`, ' . 
                     '`post_type`' . 
                     ' FROM `' . $wpdb->posts . '`' . 
-                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\'' . 
+                    ' WHERE `' . $wpdb->posts . '`.`post_type` = \'' . self::POST_TYPE . '\'' . 
                     ' AND `' . $wpdb->posts . '`.`post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')' . 
                     ' ORDER BY `' . $wpdb->posts . '`.`post_date` ASC',
                 OBJECT
@@ -246,7 +254,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
          * See `updateScheduledPostsOrderToLatest()` method for more info.
          * 
          * @global \wpdb $wpdb WordPress DB class.
-         * @param int $post_id
+         * @param int $post_id Post ID.
          * @return false|array Return `false` on failure, `array` on success.<br>
          *      The associative array keys are:<br>
          *          `menu_order` (int) post order number.<br>
@@ -306,7 +314,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
 
             // get scheduled posts by order ascending (for increase from latest order +1 each).
             $sql = 'SELECT `ID`, `post_date`, `post_date_gmt`, `post_status`, `menu_order`, `post_type` FROM `' . $wpdb->posts . '`'
-                . ' WHERE `post_type` = \'' . \RundizPostOrder\App\Models\PostOrder::POST_TYPE . '\''
+                . ' WHERE `post_type` = \'' . self::POST_TYPE . '\''
                 . ' AND `post_status` IN(\'' . implode('\', \'', $this->allowed_order_post_status) . '\')'
                 . ' AND (`post_date` > \'%s\' OR `post_date_gmt` > \'%s\')'
                 . ' ORDER BY `menu_order` ASC';
@@ -318,7 +326,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
             $updated = 0;
             if (is_array($Posts)) {
                 foreach ($Posts as $row) {
-                    $latestMenuOrder = ($latestMenuOrder + 1);
+                    ++$latestMenuOrder;
                     $result = $wpdb->update(
                         $wpdb->posts, 
                         ['menu_order' => $latestMenuOrder], 
@@ -338,5 +346,5 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
         }// updateScheduledPostsOrderToLatest
 
 
-    }
+    }// PostOrder
 }

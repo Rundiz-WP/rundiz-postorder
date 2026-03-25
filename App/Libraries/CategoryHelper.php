@@ -1,9 +1,18 @@
 <?php
+/**
+ * Category helper.
+ * 
+ * @package rundiz-postorder
+ */
 
 
 namespace RundizPostOrder\App\Libraries;
 
+
 if (!class_exists('\\RundizPostOrder\\App\\Libraries\\CategoryHelper')) {
+    /**
+     * CategoryHelper class.
+     */
     class CategoryHelper
     {
 
@@ -19,15 +28,16 @@ if (!class_exists('\\RundizPostOrder\\App\\Libraries\\CategoryHelper')) {
          * 
          * @link http://stackoverflow.com/questions/13877656/php-hierarchical-array-parents-and-childs Original source code.
          * @param array $items The result of db query.
-         * @param integer $parent Parent ID.
+         * @param int $parent Parent ID.
+         * @param int $depth Current depth.
          * @return array Return structed children node.
          */
-        public function buildCategoryHierarchyArray(array $items, $parent = 0, $depth = 0)
+        public function buildCategoryHierarchyArray(array $items, $parent = 0, $depth = 0)// phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.parentFound
         {
             $output = [];
 
             foreach ($items as $item) {
-                if (isset($item->parent) && $item->parent == $parent) {
+                if (isset($item->parent) && $item->parent === $parent) {
                     $item->depth = $depth;
                     $children = $this->buildCategoryHierarchyArray($items, $item->term_id, $depth + 1);
 
@@ -76,5 +86,5 @@ if (!class_exists('\\RundizPostOrder\\App\\Libraries\\CategoryHelper')) {
         }// buildCategoryNestedFlat2DArray
 
 
-    }
+    }// CategoryHelper
 }

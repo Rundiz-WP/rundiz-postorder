@@ -1,5 +1,8 @@
 <?php
 /**
+ * Multi-site settings.
+ * 
+ * @package rundiz-postorder
  * @license http://opensource.org/licenses/MIT MIT
  */
 
@@ -8,6 +11,9 @@ namespace RundizPostOrder\App\Controllers\Admin\Settings;
 
 
 if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\MultisiteSettings')) {
+    /**
+     * Multi site settings class.
+     */
     class MultisiteSettings implements \RundizPostOrder\App\Controllers\ControllerInterface
     {
 
@@ -56,25 +62,27 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\Multisi
         {
             // check permission.
             if (!current_user_can('manage_network_plugins')) {
-                wp_die(__('You do not have permission to access this page.'));
+                wp_die(esc_html__('You do not have permission to access this page.', 'rundiz-postorder'));
                 exit();
             }
             if (!is_multisite()) {
-                wp_die(__('You do not have permission to access this page.'));
+                wp_die(esc_html__('You do not have permission to access this page.', 'rundiz-postorder'));
                 exit();
             }
 
             $output = [];
 
+            // phpcs:ignore WordPress.Security.NonceVerification.Missing
             if ($_POST) {
                 // if form submitted.
-                if (!wp_verify_nonce((isset($_POST['_wpnonce']) ? $_POST['_wpnonce'] : ''))) {
+                // phpcs:ignore WordPress.Security.NonceVerification.Missing
+                if (!wp_verify_nonce((isset($_POST['_wpnonce']) ? sanitize_text_field(wp_unslash($_POST['_wpnonce'])) : ''))) {
                     wp_nonce_ays('-1');
                 }
 
                 global $wpdb;
                 $btnAct = sanitize_text_field(wp_unslash(filter_input(INPUT_POST, 'btn-act')));
-                $blog_ids = $wpdb->get_col('SELECT blog_id FROM '.$wpdb->blogs);
+                $blog_ids = $wpdb->get_col('SELECT blog_id FROM ' . $wpdb->blogs);// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                 $original_blog_id = get_current_blog_id();
 
                 if (is_array($blog_ids)) {
@@ -149,5 +157,5 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\Multisi
         }// registerScripts
 
 
-    }
+    }// MultisiteSettings
 }

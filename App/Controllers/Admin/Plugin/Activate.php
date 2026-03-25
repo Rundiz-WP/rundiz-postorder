@@ -1,7 +1,13 @@
 <?php
+/**
+ * Activate plugin.
+ * 
+ * @package rundiz-postorder
+ */
 
 
 namespace RundizPostOrder\App\Controllers\Admin\Plugin;
+
 
 if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate')) {
     /**
@@ -27,7 +33,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate'
 
             if (is_multisite() && is_network_admin()) {
                 // if multi site enabled and activate plugin from network admin page (using Network Activate).
-                $blog_ids = $wpdb->get_col('SELECT blog_id FROM '.$wpdb->blogs);
+                $blog_ids = $wpdb->get_col('SELECT blog_id FROM ' . $wpdb->blogs);// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                 $original_blog_id = get_current_blog_id();
 
                 if (is_array($blog_ids)) {
@@ -62,7 +68,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate'
             // it is not supported manual order per category.
             // if doing that, the single post will still load previous & next post from home posts listing.
             // example code to add order number in `table_relationships` table.
-            /*$results = $wpdb->get_results(
+            /*
+            $results = $wpdb->get_results(
                 'SELECT ' . 
                     '`' . $wpdb->term_relationships . '`.`object_id`, ' . 
                     '`' . $wpdb->term_relationships . '`.`term_taxonomy_id`, ' . 
@@ -99,7 +106,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate'
                 }// endforeach;
                 unset($i_count, $row);
             }
-            unset($results);*/
+            unset($results);
+             */
             // the example code above will not be use as explained.
 
             // add order number into `posts` table.
@@ -110,7 +118,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate'
 
             // add option related to this plugin (if not exists).
             $plugin_option = get_option($this->main_option_name);
-            if ($plugin_option === false) {
+            if (false === $plugin_option) {
                 // not exists, add new.
                 add_option($this->main_option_name, []);
             }
@@ -135,23 +143,23 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate'
          * Works on update plugin.
          * 
          * @link https://developer.wordpress.org/reference/hooks/upgrader_process_complete/ Reference.
-         * @param \WP_Upgrader $upgrader
-         * @param array $hook_extra
+         * @param \WP_Upgrader $upgrader Upgrader object.
+         * @param array $hook_extra Hook extra.
          */
         public function updatePlugin(\WP_Upgrader $upgrader, array $hook_extra)
         {
             if (is_array($hook_extra) && array_key_exists('action', $hook_extra) && array_key_exists('type', $hook_extra) && array_key_exists('plugins', $hook_extra)) {
-                if ($hook_extra['action'] == 'update' && $hook_extra['type'] == 'plugin' && is_array($hook_extra['plugins']) && !empty($hook_extra['plugins'])) {
+                if ('update' === $hook_extra['action'] && 'plugin' === $hook_extra['type'] && is_array($hook_extra['plugins']) && !empty($hook_extra['plugins'])) {
                     $this_plugin = plugin_basename(RUNDIZPOSTORDER_FILE);
                     foreach ($hook_extra['plugins'] as $key => $plugin) {
-                        if ($this_plugin == $plugin) {
+                        if ($this_plugin === $plugin) {
                             $this_plugin_updated = true;
                             break;
                         }
                     }// endforeach;
                     unset($key, $plugin, $this_plugin);
 
-                    if (isset($this_plugin_updated) && $this_plugin_updated === true) {
+                    if (isset($this_plugin_updated) && true === $this_plugin_updated) {
                         \RundizPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder updatePlugin() method was called.');
 
                         global $wpdb;
@@ -163,5 +171,5 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate'
         }// updatePlugin
 
 
-    }
+    }// Activate
 }

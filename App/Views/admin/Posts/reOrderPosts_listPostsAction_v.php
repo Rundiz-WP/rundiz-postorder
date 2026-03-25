@@ -1,5 +1,12 @@
+<?php
+/**
+ * Re-order posts list table.
+ * 
+ * @package rundiz-postorder
+ */
+?>
 <div class="wrap">
-    <h1><?php _e('Re-order posts', 'rundiz-postorder'); ?></h1>
+    <h1><?php esc_html_e('Re-order posts', 'rundiz-postorder'); ?></h1>
 
 
     <div class="form-result-placeholder"></div>

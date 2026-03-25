@@ -20,6 +20,6 @@ require 'rundiz-postorder.php';
 
 // due to it is not working to uninstall (delete) the plugin via multisite enabled. 
 // (some time is working and some time is not working. I don't know why.) 
-// wordpress did not call to registered uninstall hook. 
+// WordPress did not call to registered uninstall hook. 
 // we have to directly call it here.
 \RundizPostOrder\App\Controllers\Admin\Plugin\Uninstall::uninstallAction();

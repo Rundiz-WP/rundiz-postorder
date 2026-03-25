@@ -2,6 +2,7 @@
 /**
  * The loader file that will be use for load things such as controllers, views, etc...
  * 
+ * @package rundiz-postorder
  * @author Vee W.
  * @license http://opensource.org/licenses/MIT MIT
  */
@@ -57,19 +58,19 @@ if (!class_exists('\\RundizPostOrder\\App\\Libraries\\Loader')) {
          * 
          * @param string $view_name The views file name refer from app/Views folder.
          * @param array $data Array data for send its key as variable into view.
-         * @param boolean $require_once Use include or include_once? If true, use include_once.
-         * @return boolean Return true if success loading, or return false if failed to load.
+         * @param bool $require_once Use include or include_once? If true, use include_once.
+         * @return bool Return true if success loading, or return false if failed to load.
          */
         public function loadView($view_name, array $data = [], $require_once = false)
         {
             $view_dir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Views' . DIRECTORY_SEPARATOR;
 
-            if ($view_name != null && file_exists($view_dir . $view_name . '.php') && is_file($view_dir . $view_name . '.php')) {
+            if ('' !== $view_name && file_exists($view_dir . $view_name . '.php') && is_file($view_dir . $view_name . '.php')) {
                 if (is_array($data)) {
-                    extract($data, EXTR_PREFIX_SAME, 'dupvar_');
+                    extract($data, EXTR_PREFIX_SAME, 'dupvar_'); // phpcs:ignore WordPress.PHP.DontExtract.extract_extract
                 }
 
-                if ($require_once === true) {
+                if (true === $require_once) {
                     include_once $view_dir . $view_name . '.php';
                 } else {
                     include $view_dir . $view_name . '.php';
@@ -89,9 +90,9 @@ if (!class_exists('\\RundizPostOrder\\App\\Libraries\\Loader')) {
          * 
          * @since 1.0.3
          * @see `loadView()` method for more details.
-         * @param string $view_name
-         * @param array $data
-         * @param string $require_once
+         * @param string $view_name Views file name without extension.
+         * @param array $data Array data for send its key as variable into view.
+         * @param string $require_once Use include or include_once? If true, use include_once.
          * @return string
          */
         public function getLoadView($view_name, array $data = [], $require_once = false)
@@ -104,5 +105,5 @@ if (!class_exists('\\RundizPostOrder\\App\\Libraries\\Loader')) {
         }// getLoadView
 
 
-    }
+    }// Loader
 }

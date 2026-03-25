@@ -3,12 +3,14 @@
  * The controller interface.<br>
  * This file contain the interface and required method(s) that is needed to use with auto register controller in the loader library.
  * 
+ * @package rundiz-postorder
  * @author Vee W.
  * @license http://opensource.org/licenses/MIT MIT
  */
 
 
 namespace RundizPostOrder\App\Controllers;
+
 
 if (!interface_exists('\\RundizPostOrder\\App\\Controllers\\ControllerInterface')) {
     /**
@@ -25,5 +27,5 @@ if (!interface_exists('\\RundizPostOrder\\App\\Controllers\\ControllerInterface'
         public function registerHooks();
 
 
-    }
+    }// ControllerInterface
 }

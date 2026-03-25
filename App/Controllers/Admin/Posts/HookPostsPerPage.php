@@ -11,6 +11,9 @@ namespace RundizPostOrder\App\Controllers\Admin\Posts;
 
 
 if (!class_exists('\\RundizPostOrder\\App\\Controlers\\Admin\\Posts\\HookPostsPerPage')) {
+    /**
+     * HooksPostsPerPage class.
+     */
     class HookPostsPerPage implements \RundizPostOrder\App\Controllers\ControllerInterface
     {
 
@@ -19,7 +22,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controlers\\Admin\\Posts\\HookPostsPe
          * Hook on `edit_posts_per_page`.
          * 
          * @param int $posts_per_page Number of posts to be displayed. Default 20.
-	 * @param string $post_type The post type.
+         * @param string $post_type The post type.
          */
         public function hookPostsPerPage($posts_per_page, $post_type)
         {
@@ -35,13 +38,13 @@ if (!class_exists('\\RundizPostOrder\\App\\Controlers\\Admin\\Posts\\HookPostsPe
                 is_admin() && // must always in admin pages AND ...
                 (
                     (
-                        isset($_GET['page']) && 
-                        ReOrderPosts::MENU_SLUG === $_GET['page']
+                        isset($_GET['page']) && // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                        ReOrderPosts::MENU_SLUG === $_GET['page'] // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                     ) ||// contains ?page matched this plugin menu slug. OR
                     (
                         wp_doing_ajax() &&
-                        isset($_REQUEST['action']) &&
-                        in_array($_REQUEST['action'], $allowedActions)
+                        isset($_REQUEST['action']) && // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                        in_array($_REQUEST['action'], $allowedActions, true) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                     )// is AJAX and in allowed actions in this plugin.
                 )
             ) {

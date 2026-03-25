@@ -2,6 +2,7 @@
 /**
  * Input class.
  * 
+ * @package rundiz-postorder
  * @since 1.0.3
  * @license http://opensource.org/licenses/MIT MIT
  */
@@ -23,8 +24,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Libraries\\Input')) {
         /**
          * Call method from static;
          * 
-         * @param string $name
-         * @param mixed $arguments
+         * @param string $name Method name.
+         * @param mixed $arguments Method argument
          * @return mixed
          */
         public static function __callStatic($name, $arguments)
@@ -39,6 +40,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Libraries\\Input')) {
 
         /**
          * Set pagination paged number on all global variables ($_GET, $_POST, $_REQUEST) to be integer or `null`.
+         * 
+         * phpcs:disable WordPress.Security.NonceVerification.Missing
          */
         public function setPaged()
         {
@@ -54,5 +57,5 @@ if (!class_exists('\\RundizPostOrder\\App\\Libraries\\Input')) {
         }// setPaged
 
 
-    }
+    }// Input
 }

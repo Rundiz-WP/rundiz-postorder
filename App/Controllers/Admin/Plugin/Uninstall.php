@@ -1,7 +1,13 @@
 <?php
+/**
+ * Uninstall
+ * 
+ * @package rundiz-postorder
+ */
 
 
 namespace RundizPostOrder\App\Controllers\Admin\Plugin;
+
 
 if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Uninstall')) {
     /**
@@ -57,12 +63,12 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Uninstall
         public static function uninstallAction()
         {
             global $wpdb;
-            $ThisClass = new self;
+            $ThisClass = new self();
 
             \RundizPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder uninstallAction() method was called.');
 
             if (is_multisite()) {
-                $blog_ids = $wpdb->get_col('SELECT blog_id FROM '.$wpdb->blogs);
+                $blog_ids = $wpdb->get_col('SELECT blog_id FROM ' . $wpdb->blogs);// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                 $original_blog_id = get_current_blog_id();
 
                 if (is_array($blog_ids)) {
@@ -82,5 +88,5 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Uninstall
         }// uninstallAction
 
 
-    }
+    }// Uninstall
 }

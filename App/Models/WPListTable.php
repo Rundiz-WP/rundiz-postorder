@@ -8,6 +8,10 @@
  * 3. Paste here below the `namespace` to the end of file.
  * 4. Replace class name to `WPListTable` (without back tick `).
  * 5. Run admin page to test that there are no errors.
+ * 
+ * @package rundiz-postorder
+ * 
+ * phpcs:disable
  */
 
 

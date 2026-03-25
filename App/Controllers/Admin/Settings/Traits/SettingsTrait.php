@@ -11,6 +11,9 @@ namespace RundizPostOrder\App\Controllers\Admin\Settings\Traits;
 
 
 if (!trait_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\Traits\\SettingsTrait')) {
+    /**
+     * Settings trait.
+     */
     trait SettingsTrait
     {
 
@@ -30,7 +33,7 @@ if (!trait_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\Traits\\
 
             $output = [];
             $output['form_result_class'] = 'notice-success';
-            $output['form_result_msg'] =  __('Post order has been reset successfully.', 'rundiz-postorder');
+            $output['form_result_msg'] = __('Post order has been reset successfully.', 'rundiz-postorder');
             return $output;
         }// resetPostOrdersToOriginal
 
@@ -50,7 +53,7 @@ if (!trait_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\Traits\\
 
             $output = [];
             $output['form_result_class'] = 'notice-success';
-            $output['form_result_msg'] =  __('Post order has been reset to zero successfully.', 'rundiz-postorder');
+            $output['form_result_msg'] = __('Post order has been reset to zero successfully.', 'rundiz-postorder');
             return $output;
         }// resetPostOrdersToZero
 

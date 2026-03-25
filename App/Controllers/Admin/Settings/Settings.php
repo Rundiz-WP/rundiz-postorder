@@ -1,7 +1,13 @@
 <?php
+/**
+ * Settings.
+ * 
+ * @package rundiz-postorder
+ */
 
 
 namespace RundizPostOrder\App\Controllers\Admin\Settings;
+
 
 if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\Settings')) {
     /**
@@ -97,7 +103,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\Setting
         {
             // check permission.
             if (!current_user_can('manage_options')) {
-                wp_die(__('You do not have permission to access this page.'));
+                wp_die(esc_html__('You do not have permission to access this page.', 'rundiz-postorder'));
             }
 
             $output = [];
@@ -125,9 +131,10 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\Setting
             $output['categories'] = $categories;
             unset($categories);
 
+            // phpcs:ignore WordPress.Security.NonceVerification.Missing
             if ($_POST) {
                 // if form submitted.
-                if (!wp_verify_nonce((isset($_POST['_wpnonce']) ? $_POST['_wpnonce'] : ''))) {
+                if (!wp_verify_nonce((isset($_POST['_wpnonce']) ? sanitize_text_field(wp_unslash($_POST['_wpnonce'])) : ''))) {
                     wp_nonce_ays('-1');
                 }
 
@@ -144,7 +151,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\Setting
                     // normal save form process. --------------------------------------
                     $data = [];
                     $data['disable_customorder_frontpage'] = (isset($_POST['disable_customorder_frontpage']) && '1' === $_POST['disable_customorder_frontpage'] ? '1' : null);
-                    $data['disable_customorder_categories'] = (isset($_POST['disable_customorder_categories']) && is_array($_POST['disable_customorder_categories']) ? $_POST['disable_customorder_categories'] : []);
+                    $data['disable_customorder_categories'] = (isset($_POST['disable_customorder_categories']) && is_array($_POST['disable_customorder_categories']) ? wp_unslash($_POST['disable_customorder_categories']) : []);// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                     $data['disable_customorder_adminpage'] = (isset($_POST['disable_customorder_adminpage']) && '1' === $_POST['disable_customorder_adminpage'] ? '1' : null);
                     // validate selected categories.
                     foreach ($data['disable_customorder_categories'] as $index => $eachCategory) {
@@ -157,7 +164,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\Setting
                     update_option($this->main_option_name, $data);
 
                     $output['form_result_class'] = 'notice-success';
-                    $output['form_result_msg'] =  __('Settings saved.');
+                    $output['form_result_msg'] = __('Settings saved.', 'rundiz-postorder');
                 }// endif; `btn-act`.
                 unset($btnAct);
             }// endif; method POST.
@@ -171,5 +178,5 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Settings\\Setting
         }// settingsPageAction
 
 
-    }
+    }// Settings
 }

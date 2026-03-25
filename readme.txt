@@ -77,6 +77,8 @@ Please note that to hook into this filter in the theme some times it might not w
 * Rename hooks from `rd_postorder_admin_is_working` to be `rundiz_postorder_admin_is_working`.
 * Rename menu slugs, HTML attributes such as classes, ids, data-* to match plugin slug.
 
+After upgraded to this version, you may need to re-activate this plugin again.
+
 = 1.0.10 =
 2025-12-18
 
@@ -104,3 +106,9 @@ Please note that to hook into this filter in the theme some times it might not w
 2025-01-13
 
 * Update alter post query and add new setting to disable custom order on admin pages.
+
+== Upgrade Notice ==
+
+= 1.1.0 =
+
+After upgraded to this version, you may need to re-activate this plugin again.

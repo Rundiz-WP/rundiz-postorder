@@ -134,6 +134,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostOrder')) {
                 if ('' === $originalMenuOrderVal || is_null($originalMenuOrderVal) || false === $originalMenuOrderVal) {
                     // if never saved before.
                     update_post_meta($row->ID, static::POST_META_ORIG_MENUORDER_NAME, intval($row->menu_order));
+                    delete_post_meta($row->ID, '_rd-postorder-original-menu-order');// delete on old version. @todo[rundiz] delete this line on next version 1.2+
                 }
 
                 if (

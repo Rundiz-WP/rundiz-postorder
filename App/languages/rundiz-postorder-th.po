@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rundiz PostOrder\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rundiz-postorder\n"
-"POT-Creation-Date: 2026-03-25T11:59:32+07:00\n"
-"PO-Revision-Date: 2026-03-25 11:59+0700\n"
+"POT-Creation-Date: 2026-04-05T15:00:43+07:00\n"
+"PO-Revision-Date: 2026-04-05 15:06+0700\n"
 "Last-Translator: Vee W.\n"
 "Language-Team: \n"
 "Language: th_TH\n"
@@ -20,8 +20,8 @@ msgstr ""
 "X-Poedit-SearchPath-1: ..\n"
 
 #. Plugin Name of the plugin
-#: rundiz-postorder.php App/Controllers/Admin/Settings/MultisiteSettings.php:26
-#: App/Controllers/Admin/Settings/Settings.php:26
+#: rundiz-postorder.php App/Controllers/Admin/Settings/MultisiteSettings.php:38
+#: App/Controllers/Admin/Settings/Settings.php:38
 msgid "Rundiz PostOrder"
 msgstr "Rundiz PostOrder"
 
@@ -45,23 +45,36 @@ msgstr "Vee Winch"
 msgid "https://rundiz.com"
 msgstr "https://rundiz.com"
 
-#: App/Controllers/Admin/Plugin/PluginMetaAndLinks.php:73
+#: App/Controllers/Admin/Plugin/PluginMetaAndLinks.php:38
+#: App/Controllers/Admin/Plugin/PluginMetaAndLinks.php:42
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+#: App/Controllers/Admin/Plugin/PluginMetaAndLinks.php:82
 msgid "Donate"
 msgstr "บริจาค"
 
-#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:36 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:104
-#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:247 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:352
-#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:404 App/Controllers/Admin/Posts/ReOrderPosts.php:185
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:32 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:101
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:245 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:353
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:406 App/Controllers/Admin/Posts/ReOrderPosts.php:87
+#: App/Controllers/Admin/Settings/MultisiteSettings.php:71
+#: App/Controllers/Admin/Settings/MultisiteSettings.php:75 App/Controllers/Admin/Settings/Settings.php:112
+msgid "You do not have permission to access this page."
+msgstr "คุณไม่มีสิทธิ์เข้าถึงหน้านี้"
+
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:39 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:108
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:252 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:360
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:413 App/Controllers/Admin/Posts/ReOrderPosts.php:191
 msgid "Please reload this page and try again."
 msgstr "กรุณาโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
 
-#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:63 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:201
-#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:321 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:364
-#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:434
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:66 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:205
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:328 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:372
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:443
 msgid "Update completed"
 msgstr "อัพเดทเรียบร้อยแล้ว"
 
-#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:118 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:261
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:122 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:268
 msgid ""
 "Error! Unable to re-order the posts due the the currently order number is incorrect. Please click on "
 "&quot;Re-number all posts&quot; button to re-number all the posts."
@@ -69,35 +82,35 @@ msgstr ""
 "ผิดพลาด! ไม่สามารถเรียงลำดับโพสต์ได้เนื่องจากเลขลำดับปัจจุบันไม่ถูกต้อง. โปรดคลิกบนปุ่ม &quot;เรียงเลขโพสต์ใหม่ทั้งหมด&quot; "
 "เพื่อเรียงเลขของโพสต์ทั้งหมดเสียใหม่."
 
-#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:130
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:134
 msgid ""
 "Unable to re-order the post. The js form did not send required data to re-order. Please reload the page "
 "and try again."
 msgstr "ไม่สามารถเรียงลำดับโพสต์. ฟอร์ม javascript ไม่ได้ส่งค่าที่ต้องการมาให้ในการเรียงลำดับ. โปรดโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
 
-#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:268 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:416
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:275 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:425
 msgid ""
 "Unable to re-order the posts. The js form did not send any data to re-order. Please reload the page and "
 "try again."
 msgstr "ไม่สามารถเรียงลำดับโพสต์. ฟอร์ม javascript ไม่ได้ส่งค่าใดๆให้ในการเรียงลำดับ. โปรดโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:30
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:35
 msgid "Re-order by dragging"
 msgstr "เรียงลำดับโดยการลาก"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:35
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:40
 msgid "Re-order over next/previous pages"
 msgstr "เรียงลำดับข้ามหน้าก่อน/หน้าถัดไป"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:40
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:45
 msgid "Manually change order number"
 msgstr "เปลี่ยนเลขลำดับด้วยตนเอง"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:45
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:50
 msgid "Re-number and reset"
 msgstr "เรียงเลขและล้างค่า"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:50
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:55
 msgid ""
 "Please note that sticky post can be re-order here but the results will remain on top on the front untill "
 "it is unstick."
@@ -105,120 +118,239 @@ msgstr ""
 "โปรดทราบว่าโพสต์ที่ติดหนึบ (sticky) จะยังสามารถเรียงลำดับได้ที่นี่ แต่ผลลัพธ์จะยังคงอยู่ด้านบนของด้านหน้าเว็บ "
 "จนกกว่ามันจะถูกยกเลิกการติดหนึบ."
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:62 App/Views/admin/Posts/reOrderPosts_listPostsAction_v.php:2
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:67 App/Views/admin/Posts/reOrderPosts_listPostsAction_v.php:9
 msgid "Re-order posts"
 msgstr "จัดเรียงโพสต์"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:180 App/Controllers/Admin/Settings/MultisiteSettings.php:145
-#: App/Controllers/Admin/Settings/Settings.php:86
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:186 App/Controllers/Admin/Settings/MultisiteSettings.php:159
+#: App/Controllers/Admin/Settings/Settings.php:98
 msgid "Are you sure?"
 msgstr "คุณแน่ใจหรือไม่?"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:181
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:187
 msgid "Are you sure to doing this? (This may slow down your server if you have too many posts.)"
 msgstr "คุณแน่ใจหรือไม่ที่จะทำสิ่งนี้? (นี่อาจทำให้เซิร์ฟเวอร์ของคุณทำงานช้าลงถ้าคุณมีโพสต์จำนวนมาก.)"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:183
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:188 App/Views/admin/Settings/multisiteSettings_v.php:17
+#: App/Views/admin/Settings/settings_v.php:18
+msgid "Dismiss this notice."
+msgstr "รับทราบการแจ้งเตือน"
+
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:189
 msgid "Please select save all changes and then press apply button."
 msgstr "กรุณาเลือกบันทึกการเปลี่ยนแปลงตัวเลขทั้งหมด แล้วกดปุ่มนำไปใช้."
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:184
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:190
 msgid "The previous XHR is currently working, please wait few seconds and try again."
 msgstr "XHR ก่อนหน้านี้กำลังทำงาน, โปรดรอสักไม่กี่วินาทีแล้วลองอีกครั้ง."
 
-#: App/Controllers/Admin/Settings/MultisiteSettings.php:145
-#: App/Views/admin/Settings/multisiteSettings_v.php:17
+#: App/Controllers/Admin/Settings/MultisiteSettings.php:159
+#: App/Views/admin/Settings/multisiteSettings_v.php:24
 msgid "Warning! This will be affect on all sites."
 msgstr "คำเตือน! นี่จะมีผลกระทบกับเว็บไซต์ทั้งหมด."
 
-#: App/Controllers/Admin/Settings/Traits/SettingsTrait.php:33
+#: App/Controllers/Admin/Settings/Settings.php:173
+msgid "Settings saved."
+msgstr "บันทึกการตั้งค่าแล้ว."
+
+#: App/Controllers/Admin/Settings/Traits/SettingsTrait.php:37
 msgid "Post order has been reset successfully."
 msgstr "ลำดับของโพสต์ถูกล้างค่าเรียบร้อยแล้ว."
 
-#: App/Controllers/Admin/Settings/Traits/SettingsTrait.php:53
+#: App/Controllers/Admin/Settings/Traits/SettingsTrait.php:56
 msgid "Post order has been reset to zero successfully."
 msgstr "ลำดับของโพสต์ถูกล้างค่าไปเป็นศูนย์เรียบร้อยแล้ว."
 
-#: App/Models/PostsListTable.php:239 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:6
+#: App/Models/PostsListTable.php:52
+msgid "Drag to re-order"
+msgstr "ลากเพื่อเรียงลำดับ"
+
+#: App/Models/PostsListTable.php:69
+msgid "Unpublished"
+msgstr "ไม่เผยแพร่"
+
+#: App/Models/PostsListTable.php:73
+msgid "Y/m/d g:i:s a"
+msgstr "Y/m/d g:i:s a"
+
+#. translators: %s times ago
+#: App/Models/PostsListTable.php:81
+#, php-format
+msgid "%s ago"
+msgstr "%s ที่ผ่านมา"
+
+#: App/Models/PostsListTable.php:83
+msgid "Y/m/d"
+msgstr "Y/m/d"
+
+#: App/Models/PostsListTable.php:90
+msgid "Published"
+msgstr "เผยแพร่แล้ว"
+
+#: App/Models/PostsListTable.php:93
+msgid "Missed schedule"
+msgstr "พลาดกำหนดการ"
+
+#: App/Models/PostsListTable.php:95 App/Models/PostsListTable.php:201
+msgid "Scheduled"
+msgstr "กำหนดการ"
+
+#: App/Models/PostsListTable.php:98
+msgid "Last Modified"
+msgstr "ปรับปรุงล่าสุด"
+
+#: App/Models/PostsListTable.php:178 App/Models/PostsListTable.php:228
+msgid ", "
+msgstr ", "
+
+#: App/Models/PostsListTable.php:197
+msgid "Password protected"
+msgstr "มีการป้องกันด้วยรหัสผ่าน"
+
+#: App/Models/PostsListTable.php:204
+msgid "Draft"
+msgstr "ร่าง"
+
+#: App/Models/PostsListTable.php:207
+msgid "Pending"
+msgstr "รอดำเนินการ"
+
+#: App/Models/PostsListTable.php:210
+msgid "Private"
+msgstr "ส่วนตัว"
+
+#: App/Models/PostsListTable.php:213
+msgid "Trash"
+msgstr "ถังขยะ"
+
+#: App/Models/PostsListTable.php:216
+msgid "Sticky"
+msgstr ""
+
+#: App/Models/PostsListTable.php:245 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:13
 msgid "Re-number all posts"
 msgstr "เรียงเลขโพสต์ใหม่ทั้งหมด"
 
-#: App/Models/PostsListTable.php:240 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:14
+#: App/Models/PostsListTable.php:246 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:21
 msgid "Reset all order"
 msgstr "ล้างค่าลำดับทั้งหมด"
 
-#: App/Models/PostsListTable.php:241 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:10
+#: App/Models/PostsListTable.php:247 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:17
 msgid "Save all changes on order numbers"
 msgstr "บันทึกการเปลี่ยนแปลงตัวเลขทั้งหมด"
 
-#: App/Models/PostsListTable.php:259
+#: App/Models/PostsListTable.php:261
+msgid "Title"
+msgstr "ไตเติ้ล"
+
+#: App/Models/PostsListTable.php:262
+msgid "Author"
+msgstr "ผู้เขียน"
+
+#: App/Models/PostsListTable.php:263
+msgid "Categories"
+msgstr "หมวดหมู่"
+
+#: App/Models/PostsListTable.php:264
+msgid "Tags"
+msgstr "แท็ก"
+
+#: App/Models/PostsListTable.php:265
 msgid "Order"
 msgstr "ลำดับ"
 
-#: App/Models/PostsListTable.php:295 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:6
+#: App/Models/PostsListTable.php:266
+msgid "Date"
+msgstr "วันที่"
+
+#: App/Models/PostsListTable.php:304 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:13
 msgid "Move up"
 msgstr "ย้ายขึ้น"
 
-#: App/Models/PostsListTable.php:300 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:7
+#: App/Models/PostsListTable.php:309 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:14
 msgid "Move down"
 msgstr "ย้ายลง"
 
+#. translators: %s: Post title.
+#: App/Models/PostsListTable.php:318
+#, php-format
+msgid "Edit &#8220;%s&#8221;"
+msgstr "แก้ไข &#8220;%s&#8221;"
+
+#: App/Models/PostsListTable.php:319
+msgid "Edit"
+msgstr "แก้ไข"
+
+#. translators: %s: Post title.
+#: App/Models/PostsListTable.php:330
+#, php-format
+msgid "View &#8220;%s&#8221;"
+msgstr "ดู &#8220;%s&#8221;"
+
+#: App/Models/PostsListTable.php:331
+msgid "View"
+msgstr "ดู"
+
 #. translators: %1$s: The re-order icon.
-#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_01.php:4
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_01.php:11
 #, php-format
 msgid "Put your cursor on the row you want to re-order and drag at the up/down icon (%1$s)."
 msgstr "วางเคอร์เซอร์บนบรรทัดที่คุณต้องการในการเปลี่ยนลำดับแล้วลากที่ไอคอนขึ้น/ลง (%1$s) เพื่อเรียงลำดับโพสต์."
 
-#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_01.php:7
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_01.php:14
 msgid "Once you stop dragging and release the mouse button it will be update automatically."
 msgstr "เมื่อคุณหยุดลากและปล่อยปุ่มเมาส์แล้ว มันจะอัพเดทเองโดยอัตโนมัติ."
 
 #. translators: %1$s Esc keyboard.
-#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_01.php:11
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_01.php:18
 #, php-format
 msgid "To cancel re-order while dragging, please press %1$s on your keyboard."
 msgstr "การยกเลิกเรียงลำดับในขณะที่กำลังลาก, โปรดกดคีย์บอร์ดที่ปุ่ม %1$s."
 
 #. translators: %1$s Move up command; %2$s Move down command.
-#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:5
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:12
 #, php-format
 msgid ""
 "To re-order a post over next or previous pages, move your cursor on the row you want to re-order and click "
 "on %1$s or %2$s."
 msgstr "การเรียงลำดับข้ามไปยังหน้าก่อนหรือหน้าถัดไป, ให้ย้ายเคอร์เซอร์ไปบนบรรทัดที่คุณต้องการแล้วคลิกที่%1$sหรือ%2$s."
 
-#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:11
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:18
 msgid ""
 "The post that is on top of the list will be move up to previous page, the post that is on bottom of the "
 "list will be move down to next page."
 msgstr "โพสต์ที่อยู่ด้านบนของรายการจะย้ายขึ้นไปยังหน้าก่อน, โพสต์ที่อยู่ด้านล่างจะย้ายลงไปยังหน้าถัดไป."
 
-#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:2
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:9
 msgid ""
 "The manually change order number is very useful if you have many posts and you want to re-order the number "
 "manually."
 msgstr "การเปลี่ยนเลขลำดับเอาเองจะมีประโยชน์อย่างมากหากคุณมีหลายๆโพสต์และต้องการเรียงลำดับบแบบที่ต้องการเอง."
 
-#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:4
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:11
 msgid ""
 "You can just enter the number you want. The lowest number (example: 1) will be display on the last while "
 "the highest number will be display first."
 msgstr "คุณสามารถกรอกตัวเลขที่ต้องการได้เลย. ตัวเลขที่ต่ำสุด (เช่น 1) จะแสดงรั้งท้าย ขณะที่ตัวเลขที่สูงสุดจะแสดงก่อน."
 
 #. translators: %1$s The word save all changes on order numbers on select action; %2$s Apply text on button.
-#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:9
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:16
 #, php-format
 msgid "Once you okay with those numbers, please select %1$s from bulk actions and click %2$s."
 msgstr "เมื่อคุณลงตัวกับตัวเลขต่างๆแล้ว, โปรดเลือก%1$s จากตัวเลือกแล้วคลิก %2$s."
 
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:18
+msgid "Apply"
+msgstr "นำไปใช้"
+
 #. translators: %1$s re-number all posts text.
-#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:5
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:12
 #, php-format
 msgid "The %1$s action will be re-arrange numbers respectively on all posts in current listing order."
 msgstr "การกระทำ %1$s จะเป็นการเรียงลำดับตัวเลขใหม่ของโพสต์ทั้งหมดในจากการแสดงผลที่เป็นอยู่."
 
 #. translators: %1$s reset all order
-#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:13
+#: App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:20
 #, php-format
 msgid ""
 "The %1$s action will be reset the number on all posts order by date. It is the default order by WordPress "
@@ -226,57 +358,57 @@ msgid ""
 msgstr ""
 "การกระทำ %1$s จะเป็นการตั้งค่าตัวเลขใหม่จากโพสต์ทั้งหมดที่เรียงโดยวันที่. นี่คือการเรียงลำดับในขั้นต้นโดยระบบหลักของเวิร์ดเพรส."
 
-#: App/Views/admin/Settings/multisiteSettings_v.php:2 App/Views/admin/Settings/settings_v.php:2
+#: App/Views/admin/Settings/multisiteSettings_v.php:9 App/Views/admin/Settings/settings_v.php:11
 msgid "Rundiz PostOrder settings"
 msgstr "ตั้งค่า Rundiz PostOrder"
 
-#: App/Views/admin/Settings/multisiteSettings_v.php:3
+#: App/Views/admin/Settings/multisiteSettings_v.php:10
 msgid "This settings page is for manage all sites."
 msgstr "หน้าตั้งค่านี้สำหรับจัดการกับทุกเว็บไซต์."
 
-#: App/Views/admin/Settings/multisiteSettings_v.php:19 App/Views/admin/Settings/settings_v.php:79
+#: App/Views/admin/Settings/multisiteSettings_v.php:26 App/Views/admin/Settings/settings_v.php:88
 msgid "Reset post orders to their original value."
 msgstr "ล้างค่าลำดับโพสต์เป็นค่าแรกเริ่ม."
 
-#: App/Views/admin/Settings/multisiteSettings_v.php:20 App/Views/admin/Settings/settings_v.php:80
+#: App/Views/admin/Settings/multisiteSettings_v.php:27 App/Views/admin/Settings/settings_v.php:89
 msgid "Reset post orders to zero. (WordPress default.)"
 msgstr "ล้างค่าลำดับโพสต์เป็นศูนย์. (ค่าเริ่มต้นของเวิร์ดเพรส.)"
 
-#: App/Views/admin/Settings/settings_v.php:19
+#: App/Views/admin/Settings/settings_v.php:28
 msgid "Disable on front pages"
 msgstr "ปิดการใช้งานหน้าแรก"
 
-#: App/Views/admin/Settings/settings_v.php:23
+#: App/Views/admin/Settings/settings_v.php:32
 msgid "Disable custom post order on front pages."
 msgstr "ปิดการจัดเรียงที่หน้าแรก."
 
-#: App/Views/admin/Settings/settings_v.php:26
+#: App/Views/admin/Settings/settings_v.php:35
 msgid "This included front or home page."
 msgstr "นี่จะรวมถึงหน้าหลักหรือหน้าแรก."
 
-#: App/Views/admin/Settings/settings_v.php:31 App/Views/admin/Settings/settings_v.php:35
+#: App/Views/admin/Settings/settings_v.php:40 App/Views/admin/Settings/settings_v.php:44
 msgid "Disable on categories"
 msgstr "ปิดการใช้งานบนหมวดหมู่"
 
-#: App/Views/admin/Settings/settings_v.php:33
+#: App/Views/admin/Settings/settings_v.php:42
 msgid "Please tick on the check box of category you want to disable custom post order."
 msgstr "โปรดติ๊กบนเช็คบ็อกส์ของหมวดหมู่ที่คุณต้องการปิดใช้การจัดเรียง."
 
-#: App/Views/admin/Settings/settings_v.php:61
+#: App/Views/admin/Settings/settings_v.php:70
 msgid ""
 "This setting affect on both admin and front, or home pages but admin or front pages custom post order must "
 "be enabled."
 msgstr "การตั้งค่านี้มีผลกระทบกับทั้งหน้าผู้ดูแลและหน้าหลักหรือหน้าแรก แต่การเรียงลำดับเองของหน้าผู้ดูแลหรือหน้าแรกจะต้องเปิดใช้งาน."
 
-#: App/Views/admin/Settings/settings_v.php:66
+#: App/Views/admin/Settings/settings_v.php:75
 msgid "Disable on admin pages"
 msgstr "ปิดการใช้งานหน้าผู้ดูแล"
 
-#: App/Views/admin/Settings/settings_v.php:70
+#: App/Views/admin/Settings/settings_v.php:79
 msgid "Disable custom post order on admin pages."
 msgstr "ปิดการจัดเรียงที่หน้าผู้ดูแล."
 
-#: App/Views/admin/Settings/settings_v.php:71
+#: App/Views/admin/Settings/settings_v.php:80
 msgid "Please note that this will not disable on admin re-order posts page."
 msgstr "โปรดทราบว่านี่จะไม่ปิดการใช้งานหน้าเรียงลำดับโพสต์สำหรับผู้ดูแล."
 

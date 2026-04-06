@@ -3,7 +3,7 @@
  * Plugin Name: Rundiz PostOrder
  * Plugin URI: https://rundiz.com/?p=319
  * Description: Re-order posts to what you want.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Requires at least: 4.7.0
  * Requires PHP: 5.5
  * Author: Vee Winch
@@ -35,10 +35,7 @@ if (!defined('RUNDIZPOSTORDER_VERSION')) {
 require __DIR__ . DIRECTORY_SEPARATOR . 'autoload.php';
 
 
-// Run this wp plugin.
+// Run this WP plugin.
 $rundiz_postorder_App = new \RundizPostOrder\App\App();
 $rundiz_postorder_App->run();
 unset($rundiz_postorder_App);
-
-
-// That's it. Everything is load and works inside the main App class.

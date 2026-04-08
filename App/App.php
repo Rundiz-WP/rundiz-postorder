@@ -10,10 +10,15 @@
 
 namespace RundizPostOrder\App;
 
+
+if (!defined('ABSPATH')) {
+    exit();
+}
+
+
 if (!class_exists('\\RundizPostOrder\\App\\App')) {
     /**
-     * The main application class for this plugin.<br>
-     * This class is the only main class that were called from main plugin file and it will be load any hook actions/filters to work inside the run() method.
+     * Plugin application main entry class.
      */
     class App
     {

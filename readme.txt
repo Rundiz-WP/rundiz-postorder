@@ -4,7 +4,7 @@ Tags: posts, order, sort, re-arrange, sortable
 Tested up to: 7.0
 Requires at least: 4.7.0
 Requires PHP: 5.5
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -68,6 +68,11 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.1.2 =
+2026-07-21
+
+* Minor update.
+
 = 1.1.1 =
 2026-04-06
 

@@ -2,11 +2,11 @@
 Contributors: okvee
 Tags: posts, order, sort, re-arrange, sortable
 Tested up to: 7.0
+Requires at least: 4.7.0
+Requires PHP: 5.5
 Stable tag: 1.1.1
 License: MIT
 License URI: https://opensource.org/licenses/MIT
-Requires at least: 4.7.0
-Requires PHP: 5.5
 
 Re-order posts to what you want.
 

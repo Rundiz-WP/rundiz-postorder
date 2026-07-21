@@ -1,6 +1,6 @@
 <?php
 /**
- * App trait.
+ * Main app trait for common works.
  * 
  * @package rundiz-postorder
  */
@@ -8,20 +8,19 @@
 
 namespace RundizPostOrder\App;
 
+
 if (!trait_exists('\\RundizPostOrder\\App\\AppTrait')) {
     /**
-     * Main application trait for common works.
+     * Main application trait.
      */
     trait AppTrait
     {
 
 
         /**
-         * Loader class into the property.
-         * 
-         * @var \RundizPostOrder\App\Libraries\Loader 
+         * @var \RundizPostOrder\App\Libraries\Loader The loader class if it has been initiated. Make sure that this property must be set before use.
          */
-        public $Loader;
+        protected $Loader = null;
 
 
         /**
@@ -36,6 +35,35 @@ if (!trait_exists('\\RundizPostOrder\\App\\AppTrait')) {
          * @var string Main options name for use with add_option() or get_option().
          */
         public $main_option_name = 'rundiz_postorder_options';
+
+
+        /**
+         * Get `Loader` object from `Loader` property.
+         * 
+         * This method is in main AppTrait.
+         *
+         * @return \RundizPostOrder\App\Libraries\Loader Return the `Loader` object.
+         */
+        protected function getLoader()
+        {
+            if (!$this->Loader instanceof \RundizPostOrder\App\Libraries\Loader) {
+                $this->Loader = new \RundizPostOrder\App\Libraries\Loader();
+            }
+            return $this->Loader;
+        }// getLoader
+
+
+        /**
+         * Set `Loader` object to `Loader` property.
+         * 
+         * This method is in main AppTrait.
+         *
+         * @param \RundizPostOrder\App\Libraries\Loader $Loader The `Loader` object.
+         */
+        public function setLoader(\RundizPostOrder\App\Libraries\Loader $Loader)
+        {
+            $this->Loader = $Loader;
+        }// setLoader
 
 
     }// AppTrait

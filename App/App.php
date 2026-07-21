@@ -1,6 +1,6 @@
 <?php
 /**
- * The main application file for this plugin.
+ * Main app class. Extend this class if you want to use any method of this class.
  * 
  * @package rundiz-postorder
  * @author Vee W.
@@ -24,11 +24,11 @@ if (!class_exists('\\RundizPostOrder\\App\\App')) {
     {
 
 
-        use \RundizPostOrder\App\AppTrait;
+        use AppTrait;
 
 
         /**
-         * Run the main application class (plugin).
+         * Run the WP plugin app.
          */
         public function run()
         {

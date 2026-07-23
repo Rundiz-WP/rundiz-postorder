@@ -26,4 +26,4 @@ require 'rundiz-postorder.php';
 // (some time is working and some time is not working. I don't know why.) 
 // WordPress did not call to registered uninstall hook. 
 // we have to directly call it here.
-\RundizPostOrder\App\Controllers\Admin\Plugin\Uninstall::uninstallAction();
+\RundizPostOrder\App\Controllers\Admin\Plugins\Uninstallation::uninstall();

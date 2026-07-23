@@ -34,26 +34,26 @@ if (!class_exists('\\RundizPostOrder\\App\\Libraries\\Loader')) {
             $file_list = $this->getClassFileList($this_plugin_dir . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR . 'Controllers');
 
             if (is_array($file_list)) {
-	            foreach ($file_list as $file) {
-	                $this_file_classname = '\\RundizPostOrder' . str_replace([$this_plugin_dir, '.php', '/'], ['', '', '\\'], $file);
-	                if (class_exists($this_file_classname)) {
-	                    $TestClass = new \ReflectionClass($this_file_classname);
-	                    if (
-	                        !$TestClass->isAbstract() && 
-	                        !$TestClass->isTrait() && 
-	                        $TestClass->implementsInterface('\\RundizPostOrder\\App\\Controllers\\ControllerInterface')
-	                    ) {
-	                        $ControllerClass = new $this_file_classname();
-	                        if (method_exists($ControllerClass, 'setLoader')) {
-	                            $ControllerClass->setLoader($this);
-	                        }
-	                        $ControllerClass->registerHooks();
-	                        unset($ControllerClass);
-	                    }
-	                    unset($TestClass);
-	                }
-	                unset($this_file_classname);
-	            }// endforeach;
+                foreach ($file_list as $file) {
+                    $this_file_classname = '\\RundizPostOrder' . str_replace([$this_plugin_dir, '.php', '/'], ['', '', '\\'], $file);
+                    if (class_exists($this_file_classname)) {
+                        $TestClass = new \ReflectionClass($this_file_classname);
+                        if (
+                            !$TestClass->isAbstract() && 
+                            !$TestClass->isTrait() && 
+                            $TestClass->implementsInterface('\\RundizPostOrder\\App\\Controllers\\ControllerInterface')
+                        ) {
+                            $ControllerClass = new $this_file_classname();
+                            if (method_exists($ControllerClass, 'setLoader')) {
+                                $ControllerClass->setLoader($this);
+                            }
+                            $ControllerClass->registerHooks();
+                            unset($ControllerClass);
+                        }
+                        unset($TestClass);
+                    }
+                    unset($this_file_classname);
+                }// endforeach;
                 unset($file);
             }
 

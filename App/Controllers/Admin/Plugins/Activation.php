@@ -1,19 +1,24 @@
 <?php
 /**
- * Activate plugin.
+ * Activate the plugin action.
  * 
  * @package rundiz-postorder
  */
 
 
-namespace RundizPostOrder\App\Controllers\Admin\Plugin;
+namespace RundizPostOrder\App\Controllers\Admin\Plugins;
 
 
-if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate')) {
+if (!defined('ABSPATH')) {
+    exit();
+}
+
+
+if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugins\\Activation')) {
     /**
-     * The controller that will be working on activate the plugin.
+     * Plugin activation and new site activation hooks class.
      */
-    class Activate implements \RundizPostOrder\App\Controllers\ControllerInterface
+    class Activation implements \RundizPostOrder\App\Controllers\ControllerInterface
     {
 
 
@@ -21,36 +26,35 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate'
 
 
         /**
-         * Activate the plugin.
+         * Activate the plugin by admin on WP plugin page.
          * 
+         * @link https://developer.wordpress.org/reference/functions/register_activation_hook/ The function `register_activation_hook()` reference.
+         * @link https://developer.wordpress.org/reference/hooks/activate_plugin/ The reference about what will be pass to callback of function `register_activation_hook()`.
          * @global \wpdb $wpdb WordPress DB class.
+         * @param bool $network_wide Whether to enable the plugin for all sites in the network or just the current site. Multisite only. Default false.
          */
-        public function activateAction()
+        public function activate($network_wide)
         {
             global $wpdb;
 
-            \RundizPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder activateAction() method was called.');
+            \RundizPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder activate() method was called.');
 
-            if (is_multisite() && is_network_admin()) {
-                // if multi site enabled and activate plugin from network admin page (using Network Activate).
-                $blog_ids = $wpdb->get_col('SELECT blog_id FROM ' . $wpdb->blogs);// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+            if (is_multisite() && $network_wide) {
+                // This site is multisite and network activate. Add/update options, create/alter tables on all sites.
+                $blog_ids = get_sites(['fields' => 'ids', 'number' => 0]);
                 $original_blog_id = get_current_blog_id();
-
-                if (is_array($blog_ids)) {
-                    // loop thru each sites to do activate action.
+                if ($blog_ids) {
                     foreach ($blog_ids as $blog_id) {
                         switch_to_blog($blog_id);
                         $this->doActivateAction();
                     }
                 }
-
-                // switch back to current site.
                 switch_to_blog($original_blog_id);
                 unset($blog_id, $blog_ids, $original_blog_id);
             } else {
                 $this->doActivateAction();
             }
-        }// activateAction
+        }// activate
 
 
         /**
@@ -61,7 +65,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate'
          * 
          * @global \wpdb $wpdb WordPress DB class.
          */
-        protected function doActivateAction()
+        private function doActivateAction()
         {
             global $wpdb;
 
@@ -133,43 +137,9 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugin\\Activate'
         public function registerHooks()
         {
             // register activate hook
-            register_activation_hook(RUNDIZPOSTORDER_FILE, [$this, 'activateAction']);
-            // on update/upgrade plugin
-            add_action('upgrader_process_complete', [$this, 'updatePlugin'], 10, 2);
+            register_activation_hook(RUNDIZPOSTORDER_FILE, [$this, 'activate']);
         }// registerHooks
 
 
-        /**
-         * Works on update plugin.
-         * 
-         * @link https://developer.wordpress.org/reference/hooks/upgrader_process_complete/ Reference.
-         * @param \WP_Upgrader $upgrader Upgrader object.
-         * @param array $hook_extra Hook extra.
-         */
-        public function updatePlugin(\WP_Upgrader $upgrader, array $hook_extra)
-        {
-            if (is_array($hook_extra) && array_key_exists('action', $hook_extra) && array_key_exists('type', $hook_extra) && array_key_exists('plugins', $hook_extra)) {
-                if ('update' === $hook_extra['action'] && 'plugin' === $hook_extra['type'] && is_array($hook_extra['plugins']) && !empty($hook_extra['plugins'])) {
-                    $this_plugin = plugin_basename(RUNDIZPOSTORDER_FILE);
-                    foreach ($hook_extra['plugins'] as $key => $plugin) {
-                        if ($this_plugin === $plugin) {
-                            $this_plugin_updated = true;
-                            break;
-                        }
-                    }// endforeach;
-                    unset($key, $plugin, $this_plugin);
-
-                    if (isset($this_plugin_updated) && true === $this_plugin_updated) {
-                        \RundizPostOrder\App\Libraries\Debug::writeLog('Debug: RundizPostOrder updatePlugin() method was called.');
-
-                        global $wpdb;
-                        // do the update plugin task.
-                        // leave this for the future use, if not then this code inside next update cannot working.
-                    }// endif; $this_plugin_updated
-                }// endif update plugin and plugins not empty.
-            }// endif; $hook_extra
-        }// updatePlugin
-
-
-    }// Activate
+    }// Activation
 }

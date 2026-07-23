@@ -92,20 +92,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Plugins')) {
 
             if ($plugin === $file) {
                 $after_link = [];
-
-                /*$configValues = $this->getOptions();
-                if (
-                    is_array($configValues) && 
-                    array_key_exists('rdsfw_plugin_db_version', $configValues) && 
-                    is_scalar($configValues['rdsfw_plugin_db_version']) && 
-                    !empty($configValues['rdsfw_plugin_db_version'])
-                ) {
-                    /* translators: %s The DB version of this plugin. */
-                   /* $after_link[] = sprintf(__('DB version %s', 'plugin-template'), $configValues['rdsfw_plugin_db_version']);
-                }
-                unset($configValues);*/
-
-                 $after_link[] = '<a href="https://rundiz.com/en/donate" target="donate">' . __('Donate', 'rundiz-postorder') . '</a>';
+                $after_link[] = '<a href="https://rundiz.com/en/donate" target="donate">' . __('Donate', 'rundiz-postorder') . '</a>';
                 $links = array_merge($links, $after_link);
                 unset($after_link);
             }

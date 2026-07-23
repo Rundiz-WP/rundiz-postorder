@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rundiz PostOrder\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rundiz-postorder\n"
-"POT-Creation-Date: 2026-04-05T15:00:43+07:00\n"
-"PO-Revision-Date: 2026-04-05 15:06+0700\n"
+"POT-Creation-Date: 2026-07-23T14:29:35+07:00\n"
+"PO-Revision-Date: 2026-07-23 14:29+0700\n"
 "Last-Translator: Vee W.\n"
 "Language-Team: \n"
 "Language: th_TH\n"
@@ -45,12 +45,11 @@ msgstr "Vee Winch"
 msgid "https://rundiz.com"
 msgstr "https://rundiz.com"
 
-#: App/Controllers/Admin/Plugin/PluginMetaAndLinks.php:38
-#: App/Controllers/Admin/Plugin/PluginMetaAndLinks.php:42
+#: App/Controllers/Admin/Plugins.php:47 App/Controllers/Admin/Plugins.php:51
 msgid "Settings"
 msgstr "การตั้งค่า"
 
-#: App/Controllers/Admin/Plugin/PluginMetaAndLinks.php:82
+#: App/Controllers/Admin/Plugins.php:95
 msgid "Donate"
 msgstr "บริจาค"
 

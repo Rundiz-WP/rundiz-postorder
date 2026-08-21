@@ -1,0 +1,100 @@
+{
+    "moduleName": "Rundiz PostOrder",
+    "wpDev": true,
+    "build": {
+        "clean": {
+            "destinations": []
+        },
+        "copy": {
+            "copyTasks": [],
+            "copyWP": [
+                {
+                    "patterns": "App/**",
+                    "destination": "App"
+                },
+                {
+                    "patterns": "assets/**",
+                    "destination": "assets"
+                },
+                {
+                    "patterns": "*.php",
+                    "destination": "."
+                },
+                {
+                    "patterns": "*.txt",
+                    "destination": "."
+                }
+            ]
+        },
+        "customTasks": []
+    },
+    "watch": {
+        "watcher": [
+            {
+                "patterns": "App/**",
+                "destination": "App"
+            },
+            {
+                "patterns": "assets/**",
+                "destination": "assets"
+            },
+            {
+                "patterns": "*.php",
+                "destination": "."
+            },
+            {
+                "patterns": "*.txt",
+                "destination": "."
+            }
+        ],
+        "customWatches": []
+    },
+    "writeVersions": [],
+    "pack": {
+        "versionHeaderFile": "readme.txt",
+        "versionPattern": "Stable tag(\\s?)(:?)(\\s?)(?<version>([\\d\\.]+)([-+\\.0-9a-z]*))",
+        "packPatterns": {
+            "dev": {
+                "patterns": [
+                    "**",
+                    ".*/**",
+                    ".*"
+                ],
+                "options": {
+                    "ignore": [
+                        ".backup",
+                        ".dist",
+                        ".git",
+                        "node_modules"
+                    ]
+                }
+            },
+            "prod": {
+                "patterns": [
+                    "**"
+                ],
+                "options": {
+                    "ignore": [
+                        ".*",
+                        ".dev-notes",
+                        ".dist",
+                        ".git",
+                        ".phpdoc",
+                        ".phpunit*",
+                        ".vscode",
+                        "assets-src",
+                        "blocks-src",
+                        "node_modules",
+                        "node_tasks",
+                        "package*.json",
+                        "tests"
+                    ]
+                }
+            }
+        },
+        "zipFilePrefix": "$folderName$",
+        "zipOptions": {
+            "zipPrefix": "$folderName$"
+        }
+    }
+}

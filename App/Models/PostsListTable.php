@@ -133,6 +133,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
                     if (isset($item->$column_name)) {
                         return $item->$column_name;
                     }
+                    return '';
             }
         }// column_default
 
@@ -231,6 +232,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
                 unset($i, $post_states, $state, $total_states);
                 return $output;
             }
+
+            return '';
         }// columnTitleDisplayPostStatus
 
 

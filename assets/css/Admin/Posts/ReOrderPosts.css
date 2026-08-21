@@ -19,8 +19,8 @@
 
 
 .menu_order_value {
+    appearance: textfield !important;
     max-width: 100px;
-    -moz-appearance: textfield;
     width: 100%;
 }
 .menu_order_value::-webkit-outer-spin-button,
@@ -30,6 +30,10 @@
 }
 
 
+.post-reorder-table tr:active .check-column .reorder-handle,
+.post-reorder-table tr:focus .check-column .reorder-handle,
+.post-reorder-table tr:focus-within .check-column .reorder-handle,
+.post-reorder-table tr:target .check-column .reorder-handle,
 .post-reorder-table tr:hover .check-column .reorder-handle {
     display: inline-block;
 }

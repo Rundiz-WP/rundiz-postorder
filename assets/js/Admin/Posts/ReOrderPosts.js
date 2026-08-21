@@ -716,7 +716,10 @@ class RdPostOrderReOrder {
 
 
     /**
-     * Listen click on expand/collapse table row button and do the task. Use event delegation for always work with AJAX.
+     * Listen click on expand/collapse table row button and do expand/collapse. 
+     * 
+     * Use event delegation for always work with AJAX.  
+     * For example: when user click on "move down", the AJAX works, table re-render, WP expand/collapse functional breaks due to it's listening to `$('tbody').on('click')`.
      * 
      * The table expand/collapse function will be working on small screen such as smart phone.
      * 
@@ -735,17 +738,15 @@ class RdPostOrderReOrder {
                 return ;
             }
 
+            event.stopPropagation(); // WP's tbody handler (if still alive) never fires
+
             const tableTr = thisTarget.closest('tr');
             if (!tableTr) {
                 console.warn('There is no table `tr` element.');
             } else {
-                if (tableTr.classList.contains('is-expanded')) {
-                    tableTr.classList.remove('is-expanded');
-                } else {
-                    tableTr.classList.add('is-expanded');
-                }
+                tableTr.classList.toggle('is-expanded');
             }
-        });
+        }, true);
     }// #listenClickExpandCollapseTableRow
 
 

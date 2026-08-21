@@ -91,7 +91,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Libraries\\Loader')) {
          * @see `loadView()` method for more details.
          * @param string $view_name Views file name without extension.
          * @param array $data Array data for send its key as variable into view.
-         * @param string $require_once Use include or include_once? If true, use include_once.
+         * @param bool $require_once Use include or include_once? If true, use include_once.
          * @return string
          */
         public function getLoadView($view_name, array $data = [], $require_once = false)

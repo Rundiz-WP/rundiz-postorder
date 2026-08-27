@@ -4,7 +4,7 @@ Tags: posts, order, sort, re-arrange, sortable
 Tested up to: 7.1
 Requires at least: 4.7.0
 Requires PHP: 5.5
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -68,6 +68,11 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.1.5 =
+2026-08-27
+
+* Fix ReOrderPosts.js to perform the form submit before WP core. This will fix bulk actions on re-order posts page not working.
+
 = 1.1.4 =
 2026-08-22
 

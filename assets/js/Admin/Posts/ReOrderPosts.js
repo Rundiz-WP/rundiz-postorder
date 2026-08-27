@@ -664,7 +664,7 @@ class RdPostOrderReOrder {
             if (thisTarget.closest('.button.action')) {
                 thisTarget = thisTarget.closest('.button.action');
             } else {
-                return ;
+                return;
             }
 
             if (RdPostOrderObj.debug === 'true') {
@@ -802,6 +802,7 @@ class RdPostOrderReOrder {
      */
     #listenFormSubmit() {
         document.addEventListener('submit', (event) => {
+            console.debug('form submitted');
             const thisTarget = event.target;
             if (thisTarget.getAttribute('id') !== 're-order-posts-form') {
                 // if not this page's form.
@@ -819,16 +820,16 @@ class RdPostOrderReOrder {
             }
 
             if ('renumber_all' === bulkActionsValue) {
-                event.preventDefault();
+                event.stopPropagation();// avoid fallback to WP core JS that will be alert "Please select at least one item to perform this action on".
                 return this.#ajaxReNumberAll();
             } else if ('reset_all' === bulkActionsValue) {
-                event.preventDefault();
+                event.stopPropagation();// avoid fallback to WP core JS.
                 return this.#ajaxResetAllPostsOrder();
             } else if ('save_all_numbers_changed' === bulkActionsValue) {
-                event.preventDefault();
+                event.stopPropagation();// avoid fallback to WP core JS.
                 return this.#ajaxSaveAllNumbersChanged();
             }
-        });
+        }, true);// use `true` to listen before WP core JS.
     }// #listenFormSubmit
 
 

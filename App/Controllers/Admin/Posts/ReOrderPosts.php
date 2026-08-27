@@ -166,6 +166,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
                 'rundiz-postorder-ReOrderPosts-js', 
                 plugin_dir_url(RUNDIZPOSTORDER_FILE) . 'assets/js/Admin/Posts/ReOrderPosts.js', 
                 [
+                    'jquery',// TESTING
                     'jquery-query',
                     'jquery-ui-core', 
                     'jquery-ui-sortable', 

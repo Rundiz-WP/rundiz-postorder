@@ -21,7 +21,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
      * @link http://www.sitepoint.com/using-wp_list_table-to-create-wordpress-admin-tables/ another tutorial
      * @link https://codex.wordpress.org/Class_Reference/WP_List_Table WordPress list table class source.
      */
-    class PostsListTable extends WPListTable
+    class PostsListTable extends \WP_List_Table
     {
 
 
@@ -350,9 +350,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Models\\PostsListTable')) {
         public function prepare_items()
         {
             // prepare columns
-            $columns = $this->get_columns();
-            $hidden = [];
-            $this->_column_headers = [$columns, $hidden];
+            $this->_column_headers = [$this->get_columns(), []];
 
             global $wpdb, $wp_query;
             $wpdb->show_errors();

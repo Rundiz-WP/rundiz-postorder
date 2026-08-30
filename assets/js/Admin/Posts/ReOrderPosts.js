@@ -821,12 +821,15 @@ class RdPostOrderReOrder {
 
             if ('renumber_all' === bulkActionsValue) {
                 event.stopPropagation();// avoid fallback to WP core JS that will be alert "Please select at least one item to perform this action on".
+                event.preventDefault();// avoid that even JS confirm dialog was canceled, it still submit anyway. (No effect on form submit but waste of resource loading).
                 return this.#ajaxReNumberAll();
             } else if ('reset_all' === bulkActionsValue) {
                 event.stopPropagation();// avoid fallback to WP core JS.
+                event.preventDefault();// avoid confirm dialog was canceled but still follow form submit.
                 return this.#ajaxResetAllPostsOrder();
             } else if ('save_all_numbers_changed' === bulkActionsValue) {
                 event.stopPropagation();// avoid fallback to WP core JS.
+                event.preventDefault();// avoid confirm dialog was canceled but still follow form submit.
                 return this.#ajaxSaveAllNumbersChanged();
             }
         }, true);// use `true` to listen before WP core JS.

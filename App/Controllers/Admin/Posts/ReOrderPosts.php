@@ -24,6 +24,12 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
 
 
         /**
+         * @var \RundizPostOrder\App\Models\PostsListTable The posts list table for re-order posts.
+         */
+        private $PostsListTable;
+
+
+        /**
          * Admin help tab.
          */
         public function adminHelpTab()
@@ -59,7 +65,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
 
 
         /**
-         * Admin menu.<br>
+         * Admin menu.  
          * Add sub menus in this method.
          */
         public function adminMenuAction()
@@ -72,6 +78,8 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
             add_action('load-' . $hook, [$this, 'registerScripts']);
             // add help tab
             add_action('load-' . $hook, [$this, 'adminHelpTab']);
+            // prepare items for list table
+            add_action('load-' . $hook, [$this, 'prepareItems']);
 
             unset($hook);
         }// adminMenuAction
@@ -90,10 +98,10 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
             $output = [];
 
             // list the posts
-            $PostsListTable = new \RundizPostOrder\App\Models\PostsListTable();
-            $PostsListTable->prepare_items();
-            $output['PostsListTable'] = $PostsListTable;
-            unset($PostsListTable);
+            if (!$this->PostsListTable instanceof \RundizPostOrder\App\Models\PostsListTable) {
+                $this->prepareItems();
+            }
+            $output['PostsListTable'] = $this->PostsListTable;
 
             nocache_headers();
 
@@ -102,6 +110,20 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
             $Loader->loadView('admin/Posts/reOrderPosts_listPostsAction_v', $output);
             unset($Loader, $output);
         }// listPostsAction
+
+
+        /**
+         * Prepare items for list table here.
+         * 
+         * The list table must be prepare before HTML body will be sent to let redirect fix on its parent class can work properly.
+         * 
+         * @since 1.1.6
+         */
+        public function prepareItems()
+        {
+            $this->PostsListTable = new \RundizPostOrder\App\Models\PostsListTable();
+            $this->PostsListTable->prepare_items();
+        }// prepareItems
 
 
         /**
@@ -135,6 +157,7 @@ if (!class_exists('\\RundizPostOrder\\App\\Controllers\\Admin\\Posts\\ReOrderPos
                         $new_url .= http_build_query($new_query);
                         unset($new_query);
                         wp_redirect($new_url);// phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
+                        exit();
                     }
                 }
                 unset($needs_redirect, $not_showing_queries);

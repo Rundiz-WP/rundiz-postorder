@@ -4,6 +4,11 @@
  * 
  * @package rundiz-postorder
  */
+
+
+/** @var \RundizPostOrder\App\Models\PostsListTable $PostsListTable Posts list table for re-order */
+
+
 ?>
 <div class="wrap">
     <h1><?php esc_html_e('Re-order posts', 'rundiz-postorder'); ?></h1>

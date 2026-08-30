@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rundiz PostOrder\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/rundiz-postorder\n"
-"POT-Creation-Date: 2026-07-23T14:29:35+07:00\n"
-"PO-Revision-Date: 2026-07-23 14:29+0700\n"
+"POT-Creation-Date: 2026-08-30T22:06:16+07:00\n"
+"PO-Revision-Date: 2026-08-30 22:06+0700\n"
 "Last-Translator: Vee W.\n"
 "Language-Team: \n"
 "Language: th_TH\n"
@@ -45,17 +45,17 @@ msgstr "Vee Winch"
 msgid "https://rundiz.com"
 msgstr "https://rundiz.com"
 
-#: App/Controllers/Admin/Plugins.php:47 App/Controllers/Admin/Plugins.php:51
+#: App/Controllers/Admin/Plugins.php:51 App/Controllers/Admin/Plugins.php:55
 msgid "Settings"
 msgstr "การตั้งค่า"
 
-#: App/Controllers/Admin/Plugins.php:95
+#: App/Controllers/Admin/Plugins.php:102
 msgid "Donate"
 msgstr "บริจาค"
 
 #: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:32 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:101
 #: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:245 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:353
-#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:406 App/Controllers/Admin/Posts/ReOrderPosts.php:87
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:406 App/Controllers/Admin/Posts/ReOrderPosts.php:95
 #: App/Controllers/Admin/Settings/MultisiteSettings.php:71
 #: App/Controllers/Admin/Settings/MultisiteSettings.php:75 App/Controllers/Admin/Settings/Settings.php:112
 msgid "You do not have permission to access this page."
@@ -63,7 +63,7 @@ msgstr "คุณไม่มีสิทธิ์เข้าถึงหน้
 
 #: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:39 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:108
 #: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:252 App/Controllers/Admin/Posts/AjaxReOrderPosts.php:360
-#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:413 App/Controllers/Admin/Posts/ReOrderPosts.php:191
+#: App/Controllers/Admin/Posts/AjaxReOrderPosts.php:413 App/Controllers/Admin/Posts/ReOrderPosts.php:215
 msgid "Please reload this page and try again."
 msgstr "กรุณาโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
 
@@ -93,23 +93,23 @@ msgid ""
 "try again."
 msgstr "ไม่สามารถเรียงลำดับโพสต์. ฟอร์ม javascript ไม่ได้ส่งค่าใดๆให้ในการเรียงลำดับ. โปรดโหลดหน้านี้ใหม่แล้วลองอีกครั้ง."
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:35
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:41
 msgid "Re-order by dragging"
 msgstr "เรียงลำดับโดยการลาก"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:40
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:46
 msgid "Re-order over next/previous pages"
 msgstr "เรียงลำดับข้ามหน้าก่อน/หน้าถัดไป"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:45
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:51
 msgid "Manually change order number"
 msgstr "เปลี่ยนเลขลำดับด้วยตนเอง"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:50
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:56
 msgid "Re-number and reset"
 msgstr "เรียงเลขและล้างค่า"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:55
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:61
 msgid ""
 "Please note that sticky post can be re-order here but the results will remain on top on the front untill "
 "it is unstick."
@@ -117,29 +117,30 @@ msgstr ""
 "โปรดทราบว่าโพสต์ที่ติดหนึบ (sticky) จะยังสามารถเรียงลำดับได้ที่นี่ แต่ผลลัพธ์จะยังคงอยู่ด้านบนของด้านหน้าเว็บ "
 "จนกกว่ามันจะถูกยกเลิกการติดหนึบ."
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:67 App/Views/admin/Posts/reOrderPosts_listPostsAction_v.php:9
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:73
+#: App/Views/admin/Posts/reOrderPosts_listPostsAction_v.php:14
 msgid "Re-order posts"
 msgstr "จัดเรียงโพสต์"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:186 App/Controllers/Admin/Settings/MultisiteSettings.php:159
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:210 App/Controllers/Admin/Settings/MultisiteSettings.php:159
 #: App/Controllers/Admin/Settings/Settings.php:98
 msgid "Are you sure?"
 msgstr "คุณแน่ใจหรือไม่?"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:187
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:211
 msgid "Are you sure to doing this? (This may slow down your server if you have too many posts.)"
 msgstr "คุณแน่ใจหรือไม่ที่จะทำสิ่งนี้? (นี่อาจทำให้เซิร์ฟเวอร์ของคุณทำงานช้าลงถ้าคุณมีโพสต์จำนวนมาก.)"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:188 App/Views/admin/Settings/multisiteSettings_v.php:17
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:212 App/Views/admin/Settings/multisiteSettings_v.php:17
 #: App/Views/admin/Settings/settings_v.php:18
 msgid "Dismiss this notice."
 msgstr "รับทราบการแจ้งเตือน"
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:189
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:213
 msgid "Please select save all changes and then press apply button."
 msgstr "กรุณาเลือกบันทึกการเปลี่ยนแปลงตัวเลขทั้งหมด แล้วกดปุ่มนำไปใช้."
 
-#: App/Controllers/Admin/Posts/ReOrderPosts.php:190
+#: App/Controllers/Admin/Posts/ReOrderPosts.php:214
 msgid "The previous XHR is currently working, please wait few seconds and try again."
 msgstr "XHR ก่อนหน้านี้กำลังทำงาน, โปรดรอสักไม่กี่วินาทีแล้วลองอีกครั้ง."
 
@@ -190,7 +191,7 @@ msgstr "เผยแพร่แล้ว"
 msgid "Missed schedule"
 msgstr "พลาดกำหนดการ"
 
-#: App/Models/PostsListTable.php:95 App/Models/PostsListTable.php:201
+#: App/Models/PostsListTable.php:95 App/Models/PostsListTable.php:202
 msgid "Scheduled"
 msgstr "กำหนดการ"
 
@@ -198,95 +199,95 @@ msgstr "กำหนดการ"
 msgid "Last Modified"
 msgstr "ปรับปรุงล่าสุด"
 
-#: App/Models/PostsListTable.php:178 App/Models/PostsListTable.php:228
+#: App/Models/PostsListTable.php:179 App/Models/PostsListTable.php:229
 msgid ", "
 msgstr ", "
 
-#: App/Models/PostsListTable.php:197
+#: App/Models/PostsListTable.php:198
 msgid "Password protected"
 msgstr "มีการป้องกันด้วยรหัสผ่าน"
 
-#: App/Models/PostsListTable.php:204
+#: App/Models/PostsListTable.php:205
 msgid "Draft"
 msgstr "ร่าง"
 
-#: App/Models/PostsListTable.php:207
+#: App/Models/PostsListTable.php:208
 msgid "Pending"
 msgstr "รอดำเนินการ"
 
-#: App/Models/PostsListTable.php:210
+#: App/Models/PostsListTable.php:211
 msgid "Private"
 msgstr "ส่วนตัว"
 
-#: App/Models/PostsListTable.php:213
+#: App/Models/PostsListTable.php:214
 msgid "Trash"
 msgstr "ถังขยะ"
 
-#: App/Models/PostsListTable.php:216
+#: App/Models/PostsListTable.php:217
 msgid "Sticky"
 msgstr ""
 
-#: App/Models/PostsListTable.php:245 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:13
+#: App/Models/PostsListTable.php:248 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:13
 msgid "Re-number all posts"
 msgstr "เรียงเลขโพสต์ใหม่ทั้งหมด"
 
-#: App/Models/PostsListTable.php:246 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:21
+#: App/Models/PostsListTable.php:249 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_04.php:21
 msgid "Reset all order"
 msgstr "ล้างค่าลำดับทั้งหมด"
 
-#: App/Models/PostsListTable.php:247 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:17
+#: App/Models/PostsListTable.php:250 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_03.php:17
 msgid "Save all changes on order numbers"
 msgstr "บันทึกการเปลี่ยนแปลงตัวเลขทั้งหมด"
 
-#: App/Models/PostsListTable.php:261
+#: App/Models/PostsListTable.php:264
 msgid "Title"
 msgstr "ไตเติ้ล"
 
-#: App/Models/PostsListTable.php:262
+#: App/Models/PostsListTable.php:265
 msgid "Author"
 msgstr "ผู้เขียน"
 
-#: App/Models/PostsListTable.php:263
+#: App/Models/PostsListTable.php:266
 msgid "Categories"
 msgstr "หมวดหมู่"
 
-#: App/Models/PostsListTable.php:264
+#: App/Models/PostsListTable.php:267
 msgid "Tags"
 msgstr "แท็ก"
 
-#: App/Models/PostsListTable.php:265
+#: App/Models/PostsListTable.php:268
 msgid "Order"
 msgstr "ลำดับ"
 
-#: App/Models/PostsListTable.php:266
+#: App/Models/PostsListTable.php:269
 msgid "Date"
 msgstr "วันที่"
 
-#: App/Models/PostsListTable.php:304 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:13
+#: App/Models/PostsListTable.php:307 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:13
 msgid "Move up"
 msgstr "ย้ายขึ้น"
 
-#: App/Models/PostsListTable.php:309 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:14
+#: App/Models/PostsListTable.php:312 App/Views/admin/Posts/ReOrderPosts/adminHelpTab_02.php:14
 msgid "Move down"
 msgstr "ย้ายลง"
 
 #. translators: %s: Post title.
-#: App/Models/PostsListTable.php:318
+#: App/Models/PostsListTable.php:321
 #, php-format
 msgid "Edit &#8220;%s&#8221;"
 msgstr "แก้ไข &#8220;%s&#8221;"
 
-#: App/Models/PostsListTable.php:319
+#: App/Models/PostsListTable.php:322
 msgid "Edit"
 msgstr "แก้ไข"
 
 #. translators: %s: Post title.
-#: App/Models/PostsListTable.php:330
+#: App/Models/PostsListTable.php:333
 #, php-format
 msgid "View &#8220;%s&#8221;"
 msgstr "ดู &#8220;%s&#8221;"
 
-#: App/Models/PostsListTable.php:331
+#: App/Models/PostsListTable.php:334
 msgid "View"
 msgstr "ดู"
 

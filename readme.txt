@@ -4,7 +4,7 @@ Tags: posts, order, sort, re-arrange, sortable
 Tested up to: 7.1
 Requires at least: 4.7.0
 Requires PHP: 5.5
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -68,6 +68,12 @@ Please note that to hook into this filter in the theme some times it might not w
 3. Re-ordering action.
 
 == Changelog ==
+= 1.1.6 =
+2026-08-30
+
+* Fix ReorderPosts.js that confirm was canceled but form submit still working.
+* Update prepare list table to work before any headers was sent.
+
 = 1.1.5 =
 2026-08-27
 
